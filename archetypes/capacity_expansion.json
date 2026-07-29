@@ -1,0 +1,97 @@
+{
+  "id": "capacity_expansion",
+  "name": "Capacity Expansion",
+  "description": "Evaluate whether investment in expansion makes financial sense.",
+  "archetype": "capacity_expansion",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Net benefit = (Additional units \u00d7 Contribution margin \u00d7 Years) - Capex - (Additional fixed costs \u00d7 Years)",
+  "skills_tested": [
+    "capex_analysis",
+    "payback_period",
+    "contribution_margin",
+    "capacity_math"
+  ],
+  "business_contexts": [
+    "manufacturer evaluating a new production line",
+    "logistics firm considering a second distribution center",
+    "hospital system assessing a new ward build-out",
+    "data center operator planning capacity expansion",
+    "brewery deciding whether to add fermentation tanks"
+  ],
+  "question_patterns": [
+    "Does the incremental profit justify the capital investment?",
+    "What is the payback period on this expansion?",
+    "How many years until the investment breaks even?",
+    "Should the client expand now or wait for higher utilization?"
+  ],
+  "variables": {
+    "capex_required": {
+      "min": 500000,
+      "max": 20000000,
+      "step": 250000,
+      "unit": "$"
+    },
+    "additional_capacity_units": {
+      "min": 500,
+      "max": 10000,
+      "step": 250,
+      "unit": "units/year"
+    },
+    "contribution_margin": {
+      "min": 20,
+      "max": 300,
+      "step": 10,
+      "unit": "$/unit"
+    },
+    "additional_fixed_costs": {
+      "min": 50000,
+      "max": 2000000,
+      "step": 25000,
+      "unit": "$/year"
+    },
+    "expected_utilization": {
+      "min": 0.6,
+      "max": 0.9,
+      "step": 0.05,
+      "unit": "%"
+    },
+    "analysis_years": {
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "years"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate effective additional units = additional_capacity_units \u00d7 expected_utilization",
+    "Step 2: Calculate annual incremental profit = effective_units \u00d7 contribution_margin - additional_fixed_costs",
+    "Step 3: Calculate total profit over period = annual_incremental_profit \u00d7 analysis_years",
+    "Step 4: Calculate net return = total_profit - capex_required",
+    "Step 5: Calculate payback period = capex_required / annual_incremental_profit"
+  ],
+  "key_insight": "Never evaluate capex on revenue alone. The question is always: does the incremental profit, over time, justify the upfront spend?",
+  "common_mistakes": [
+    "Using full capacity instead of expected utilization",
+    "Forgetting additional fixed costs that come with expansion (staff, rent, maintenance)",
+    "Not calculating payback period \u2014 just total return"
+  ],
+  "framework_soundbite": "Capex only makes sense if payback period is acceptable and incremental returns exceed cost of capital. Start with payback.",
+  "archetype_tags": [
+    "manufacturing",
+    "real estate",
+    "logistics",
+    "hospitals",
+    "energy"
+  ],
+  "display_context": "Operations \u2022 Capacity Expansion"
+}

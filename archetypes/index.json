@@ -1,0 +1,320 @@
+{
+  "library_version": "1.2.0",
+  "total_archetypes": 15,
+  "archetypes": [
+    {
+      "id": "throughput_bottleneck",
+      "name": "Throughput Bottleneck",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "throughput",
+        "capacity_math",
+        "operations"
+      ],
+      "file": "throughput_bottleneck.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Operations \u2022 Capacity Bottleneck"
+    },
+    {
+      "id": "profitability_decline",
+      "name": "Profitability Decline",
+      "difficulty_range": [
+        "duckling",
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "profitability",
+        "margin_math",
+        "cost_structure"
+      ],
+      "file": "profitability_decline.json",
+      "recommended_difficulty": "duckling",
+      "content_type": "drill",
+      "display_context": "Consumer Retail \u2022 Profitability Decline"
+    },
+    {
+      "id": "market_sizing",
+      "name": "Market Sizing",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "market_sizing",
+        "estimation",
+        "segmentation"
+      ],
+      "file": "market_sizing.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Market Entry \u2022 Sizing"
+    },
+    {
+      "id": "pricing_optimization",
+      "name": "Pricing Optimization",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "pricing",
+        "elasticity",
+        "revenue_math"
+      ],
+      "file": "pricing_optimization.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Consumer Goods \u2022 Pricing"
+    },
+    {
+      "id": "capacity_expansion",
+      "name": "Capacity Expansion",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "capex_analysis",
+        "payback_period",
+        "contribution_margin"
+      ],
+      "file": "capacity_expansion.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Operations \u2022 Capacity Expansion"
+    },
+    {
+      "id": "supply_chain_efficiency",
+      "name": "Supply Chain Efficiency",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "cost_per_unit",
+        "logistics_math",
+        "efficiency_gains"
+      ],
+      "file": "supply_chain_efficiency.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Logistics \u2022 Supply Chain Efficiency"
+    },
+    {
+      "id": "break_even_investment",
+      "name": "Break-Even Investment",
+      "difficulty_range": [
+        "duckling",
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "break_even_analysis",
+        "contribution_margin",
+        "payback_period"
+      ],
+      "file": "break_even_investment.json",
+      "recommended_difficulty": "duckling",
+      "content_type": "drill",
+      "display_context": "Capital Investment \u2022 Break-Even"
+    },
+    {
+      "id": "productivity_improvement",
+      "name": "Productivity Improvement",
+      "difficulty_range": [
+        "duckling",
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "productivity_math",
+        "labor_economics",
+        "efficiency_gains"
+      ],
+      "file": "productivity_improvement.json",
+      "recommended_difficulty": "duckling",
+      "content_type": "drill",
+      "display_context": "Operations \u2022 Productivity"
+    },
+    {
+      "id": "market_share_shift",
+      "name": "Market Share Shift",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "market_share_math",
+        "competitive_dynamics",
+        "revenue_decomposition"
+      ],
+      "file": "market_share_shift.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Competitive Strategy \u2022 Market Share"
+    },
+    {
+      "id": "cost_structure_creep",
+      "name": "Cost Structure Creep",
+      "difficulty_range": [
+        "duckling",
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "profitability",
+        "margin_math",
+        "cost_structure"
+      ],
+      "file": "cost_structure_creep.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Manufacturing \u2022 Cost Creep"
+    },
+    {
+      "id": "revenue_mix_shift",
+      "name": "Revenue Mix Shift",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "profitability",
+        "margin_math",
+        "weighted_average_math"
+      ],
+      "file": "revenue_mix_shift.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Retail \u2022 Revenue Mix"
+    },
+    {
+      "id": "channel_profitability_divergence",
+      "name": "Channel Profitability Divergence",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "profitability",
+        "margin_math",
+        "cost_structure"
+      ],
+      "file": "channel_profitability_divergence.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Retail \u2022 Channel Profitability"
+    },
+    {
+      "id": "customer_base_growth",
+      "name": "Customer Base Growth",
+      "difficulty_range": [
+        "duckling",
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "churn_math",
+        "growth_dynamics",
+        "customer_economics"
+      ],
+      "file": "customer_base_growth.json",
+      "recommended_difficulty": "duckling",
+      "content_type": "drill",
+      "display_context": "Subscription Business \u2022 Net Customer Growth"
+    },
+    {
+      "id": "ltv_cac_ratio",
+      "name": "LTV to CAC Ratio",
+      "difficulty_range": [
+        "duckling",
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "unit_economics",
+        "LTV",
+        "customer_economics"
+      ],
+      "file": "ltv_cac_ratio.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "SaaS \u2022 Growth Spend ROI"
+    },
+    {
+      "id": "ltv_horizon",
+      "name": "Lifetime Value Over a Fixed Horizon",
+      "difficulty_range": [
+        "billable_bird",
+        "fully_quacked"
+      ],
+      "primary_skills": [
+        "unit_economics",
+        "LTV",
+        "customer_economics"
+      ],
+      "file": "ltv_horizon.json",
+      "recommended_difficulty": "billable_bird",
+      "content_type": "drill",
+      "display_context": "Private Equity \u2022 Hold-Period Valuation"
+    }
+  ],
+  "all_skills": [
+    "throughput",
+    "capacity_math",
+    "bottleneck_identification",
+    "operations",
+    "profitability",
+    "margin_math",
+    "cost_structure",
+    "revenue_decomposition",
+    "market_sizing",
+    "estimation",
+    "segmentation",
+    "order_of_magnitude",
+    "pricing",
+    "elasticity",
+    "revenue_math",
+    "capex_analysis",
+    "payback_period",
+    "contribution_margin",
+    "capacity_math",
+    "churn_math",
+    "LTV",
+    "customer_economics",
+    "growth_dynamics",
+    "cost_per_unit",
+    "logistics_math",
+    "efficiency_gains",
+    "break_even_analysis",
+    "investment_math",
+    "productivity_math",
+    "labor_economics",
+    "unit_economics",
+    "market_share_math",
+    "competitive_dynamics",
+    "weighted_average_math",
+    "rate_math",
+    "ratio_math",
+    "time_horizon"
+  ],
+  "difficulty_tiers": {
+    "duckling": {
+      "xp_required": 0,
+      "label": "Duckling"
+    },
+    "billable_bird": {
+      "xp_required": 200,
+      "label": "Billable Bird"
+    },
+    "fully_quacked": {
+      "xp_required": 600,
+      "label": "Fully Quacked"
+    }
+  }
+}

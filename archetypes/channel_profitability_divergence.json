@@ -1,0 +1,107 @@
+{
+  "id": "channel_profitability_divergence",
+  "name": "Channel Profitability Divergence",
+  "description": "One sales channel is quietly profitable while another is dragging down overall performance.",
+  "archetype": "channel_profitability_divergence",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Channel Profit = (Price - Variable Cost per Unit) \u00d7 Units - Allocated Fixed Cost = Profit_A vs Profit_B",
+  "skills_tested": [
+    "profitability",
+    "margin_math",
+    "cost_structure",
+    "revenue_decomposition"
+  ],
+  "business_contexts": [
+    "retailer comparing owned e-commerce against wholesale/distributor channel",
+    "consumer goods company comparing direct-to-consumer against big-box retail",
+    "hotel brand comparing direct bookings against third-party travel sites",
+    "insurer comparing independent agent sales against its direct call center",
+    "furniture company comparing showroom sales against online sales"
+  ],
+  "question_patterns": [
+    "Which channel is actually more profitable, and by how much?",
+    "What is the dollar profit gap between the two channels?",
+    "If the weaker channel matched the other channel's economics, how much more profit would the company earn?",
+    "How much of total profit is being dragged down by the weaker channel?"
+  ],
+  "variables": {
+    "channel_a_units": {
+      "min": 10000,
+      "max": 100000,
+      "step": 2000,
+      "unit": "units"
+    },
+    "channel_a_price": {
+      "min": 20,
+      "max": 150,
+      "step": 5,
+      "unit": "$"
+    },
+    "channel_a_variable_cost": {
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "$"
+    },
+    "channel_a_fixed_cost": {
+      "min": 100000,
+      "max": 800000,
+      "step": 25000,
+      "unit": "$"
+    },
+    "channel_b_units": {
+      "min": 10000,
+      "max": 100000,
+      "step": 2000,
+      "unit": "units"
+    },
+    "channel_b_price": {
+      "min": 20,
+      "max": 150,
+      "step": 5,
+      "unit": "$"
+    },
+    "channel_b_variable_cost": {
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "unit": "$"
+    },
+    "channel_b_fixed_cost": {
+      "min": 100000,
+      "max": 800000,
+      "step": 25000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate Channel A profit = (channel_a_price - channel_a_variable_cost) \u00d7 channel_a_units - channel_a_fixed_cost",
+    "Step 2: Calculate Channel B profit = (channel_b_price - channel_b_variable_cost) \u00d7 channel_b_units - channel_b_fixed_cost",
+    "Step 3: Calculate profit gap = Channel A profit - Channel B profit"
+  ],
+  "key_insight": "Blended, company-wide margins can hide a channel that's actively destroying value \u2014 always break profitability down by channel before recommending a fix.",
+  "common_mistakes": [
+    "Comparing channel revenue instead of channel profit",
+    "Treating the given fixed cost figures as needing further allocation instead of taking them as the channel's already-assigned cost",
+    "Assuming the higher-revenue channel is automatically the more profitable one"
+  ],
+  "framework_soundbite": "A healthy blended margin can hide one channel eating the other's lunch \u2014 split profit by channel before you diagnose.",
+  "archetype_tags": [
+    "retail",
+    "consumer goods",
+    "hospitality",
+    "insurance",
+    "e-commerce"
+  ],
+  "display_context": "Retail \u2022 Channel Profitability"
+}

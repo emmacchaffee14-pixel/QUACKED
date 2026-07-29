@@ -1,0 +1,90 @@
+{
+  "id": "throughput_bottleneck",
+  "name": "Throughput Bottleneck",
+  "description": "Operations cannot support demand growth.",
+  "archetype": "throughput_bottleneck",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Max throughput = min(capacity_per_stage) \u00d7 utilization \u00d7 operating_hours",
+  "skills_tested": [
+    "throughput",
+    "capacity_math",
+    "bottleneck_identification",
+    "operations"
+  ],
+  "business_contexts": [
+    "warehouse pick-and-pack operations",
+    "airport security screening lanes",
+    "hospital patient intake and triage",
+    "factory assembly line production",
+    "call center ticket processing"
+  ],
+  "question_patterns": [
+    "What is the maximum throughput this operation can support?",
+    "Which stage is constraining total system output?",
+    "How much daily contribution margin is being lost to the bottleneck?",
+    "Can current operations support the projected demand increase?"
+  ],
+  "variables": {
+    "units_demanded_per_day": {
+      "min": 800,
+      "max": 5000,
+      "step": 200,
+      "unit": "units/day"
+    },
+    "bottleneck_capacity": {
+      "min": 600,
+      "max": 4000,
+      "step": 100,
+      "unit": "units/day"
+    },
+    "utilization_rate": {
+      "min": 0.7,
+      "max": 0.92,
+      "step": 0.02,
+      "unit": "%"
+    },
+    "operating_hours_per_day": {
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "unit": "hours"
+    },
+    "unit_contribution_margin": {
+      "min": 15,
+      "max": 120,
+      "step": 5,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate effective capacity = bottleneck_capacity \u00d7 utilization_rate",
+    "Step 2: Calculate unmet demand = units_demanded_per_day - effective_capacity",
+    "Step 3: Calculate daily revenue lost = unmet_demand \u00d7 unit_contribution_margin",
+    "Step 4: Determine if bottleneck relief (e.g. extra shift) covers the gap"
+  ],
+  "key_insight": "The system output is always limited by the single slowest stage. Optimizing anything else first is waste.",
+  "common_mistakes": [
+    "Using total capacity instead of bottleneck capacity",
+    "Forgetting to apply utilization rate",
+    "Confusing units demanded with units producible"
+  ],
+  "framework_soundbite": "Find the constraint first. Everything upstream and downstream of it is irrelevant until it's relieved.",
+  "archetype_tags": [
+    "operations",
+    "manufacturing",
+    "logistics",
+    "hospitals",
+    "airlines"
+  ],
+  "display_context": "Operations \u2022 Capacity Bottleneck"
+}

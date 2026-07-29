@@ -1,0 +1,87 @@
+{
+  "id": "ltv_cac_ratio",
+  "name": "LTV to CAC Ratio",
+  "description": "Determine whether the lifetime value of a customer justifies what it costs to acquire them.",
+  "archetype": "ltv_cac_ratio",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "duckling",
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "LTV = (ARPU x Gross Margin) / Monthly Churn Rate; LTV:CAC = LTV / CAC",
+  "skills_tested": [
+    "unit_economics",
+    "LTV",
+    "customer_economics",
+    "margin_math",
+    "ratio_math"
+  ],
+  "business_contexts": [
+    "a subscription software business reviewing its growth spend",
+    "a meal-kit company evaluating whether to keep scaling paid acquisition",
+    "a mobile fitness app assessing the return on its marketing budget",
+    "a telecom operator reviewing prepaid subscriber economics",
+    "an online education platform questioning its cost per enrolment"
+  ],
+  "question_patterns": [
+    "What is the ratio of customer lifetime value to acquisition cost?",
+    "For every dollar spent acquiring a customer, how much lifetime value comes back?",
+    "Does the lifetime value of a customer justify the current acquisition cost?",
+    "What is the LTV to CAC ratio at current churn and margin?"
+  ],
+  "variables": {
+    "cac": {
+      "max": 2000,
+      "min": 800,
+      "step": 50,
+      "unit": "$/customer"
+    },
+    "arpu_monthly": {
+      "max": 120,
+      "min": 40,
+      "step": 5,
+      "unit": "$/month"
+    },
+    "gross_margin_pct": {
+      "max": 0.9,
+      "min": 0.65,
+      "step": 0.05,
+      "unit": "% of revenue"
+    },
+    "monthly_churn_rate": {
+      "max": 0.08,
+      "min": 0.02,
+      "step": 0.01,
+      "unit": "% of base"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Monthly gross profit per customer = arpu_monthly x gross_margin_pct",
+    "Step 2: Average customer lifetime in months = 1 / monthly_churn_rate",
+    "Step 3: Customer LTV = monthly gross profit x average lifetime",
+    "Step 4: LTV to CAC ratio = LTV / cac"
+  ],
+  "key_insight": "Lifetime value must be measured on gross profit, not revenue. Acquiring customers profitably depends on margin and retention, not top-line price.",
+  "common_mistakes": [
+    "Using revenue instead of gross profit, which overstates LTV substantially",
+    "Forgetting that average lifetime is the inverse of churn, not a given number of months",
+    "Judging acquisition spend on CAC alone without comparing it to LTV"
+  ],
+  "framework_soundbite": "Lifetime value is monthly gross profit divided by churn. Compare it to acquisition cost before scaling spend.",
+  "archetype_tags": [
+    "SaaS",
+    "subscriptions",
+    "fintech",
+    "media",
+    "telecoms",
+    "consumer"
+  ],
+  "display_context": "SaaS \u2022 Growth Spend ROI"
+}

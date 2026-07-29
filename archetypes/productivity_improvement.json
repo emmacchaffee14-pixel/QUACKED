@@ -1,0 +1,98 @@
+{
+  "id": "productivity_improvement",
+  "name": "Productivity Improvement",
+  "description": "Increase labor, machine, or asset productivity.",
+  "archetype": "productivity_improvement",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "duckling",
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "duckling",
+  "formula": "Productivity = Output / Input. Gain = (New output - Old output) \u00d7 value per unit. Labor saving = headcount_reduction \u00d7 cost_per_employee.",
+  "skills_tested": [
+    "productivity_math",
+    "labor_economics",
+    "efficiency_gains",
+    "unit_economics"
+  ],
+  "business_contexts": [
+    "logistics firm rolling out route optimization software",
+    "manufacturer introducing lean production techniques",
+    "bank streamlining back-office processing workflows",
+    "retailer retraining store staff on new checkout process",
+    "call center deploying AI-assisted response tools"
+  ],
+  "question_patterns": [
+    "What is the annual value of the proposed productivity improvement?",
+    "How many FTEs could be redeployed if productivity increases by X%?",
+    "What additional output is generated with the same headcount?",
+    "Is the productivity gain large enough to justify the implementation cost?"
+  ],
+  "variables": {
+    "current_output_per_worker": {
+      "min": 10,
+      "max": 500,
+      "step": 10,
+      "unit": "units/day"
+    },
+    "productivity_improvement": {
+      "min": 0.05,
+      "max": 0.4,
+      "step": 0.05,
+      "unit": "%"
+    },
+    "number_of_workers": {
+      "min": 10,
+      "max": 2000,
+      "step": 10,
+      "unit": "workers"
+    },
+    "cost_per_worker_annual": {
+      "min": 25000,
+      "max": 150000,
+      "step": 5000,
+      "unit": "$/year"
+    },
+    "value_per_unit": {
+      "min": 2,
+      "max": 100,
+      "step": 2,
+      "unit": "$/unit"
+    },
+    "working_days_per_year": {
+      "min": 220,
+      "max": 260,
+      "step": 5,
+      "unit": "days"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate new output per worker = current_output \u00d7 (1 + productivity_improvement)",
+    "Step 2: Calculate total additional output = (new_output - current_output) \u00d7 number_of_workers \u00d7 working_days",
+    "Step 3: Calculate revenue value of additional output = additional_output \u00d7 value_per_unit",
+    "Step 4: Calculate equivalent headcount saving = improvement_pct \u00d7 number_of_workers",
+    "Step 5: Calculate annual labor cost saving = headcount_saving \u00d7 cost_per_worker_annual"
+  ],
+  "key_insight": "Productivity gains can be captured as either more output with the same headcount, or the same output with fewer people. Which the client wants determines the recommendation.",
+  "common_mistakes": [
+    "Applying productivity improvement to revenue directly instead of output units",
+    "Forgetting to multiply by working days to get annual figures",
+    "Not distinguishing between output gains and cost savings \u2014 they're different recommendations"
+  ],
+  "framework_soundbite": "Productivity improvement has two levers: you can take it as volume or as cost. The right answer depends on whether demand exceeds supply.",
+  "archetype_tags": [
+    "manufacturing",
+    "logistics",
+    "services",
+    "healthcare",
+    "retail operations"
+  ],
+  "display_context": "Operations \u2022 Productivity"
+}

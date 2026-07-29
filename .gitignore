@@ -1,0 +1,14 @@
+# cursor/ is its own separate git repository (nested) — never track it here
+cursor/
+
+# OS cruft
+.DS_Store
+
+# Secrets — never commit
+assets/secrets/
+
+# Large/unreviewed content not yet scoped for version control
+junk/
+poses_yellow.png
+spreadsheets/
+supabase/.temp/

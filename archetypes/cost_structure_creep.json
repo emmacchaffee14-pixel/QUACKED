@@ -1,0 +1,90 @@
+{
+  "id": "cost_structure_creep",
+  "name": "Cost Structure Creep",
+  "description": "Per-unit costs have quietly risen over time, eroding profit even though price and volume held steady.",
+  "archetype": "cost_structure_creep",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "duckling",
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Profit = (Price - Variable Cost per Unit) \u00d7 Volume - Fixed Costs (price, volume, and fixed costs held constant) = Profit_current vs Profit_prior",
+  "skills_tested": [
+    "profitability",
+    "margin_math",
+    "cost_structure",
+    "revenue_decomposition"
+  ],
+  "business_contexts": [
+    "apparel retailer with flat sales but shrinking store-level profit",
+    "regional airline with rising fuel and maintenance cost per flight",
+    "coffee chain facing higher input costs per cup",
+    "industrial parts distributor with rising per-order fulfillment cost",
+    "electronics manufacturer with rising per-unit assembly cost"
+  ],
+  "question_patterns": [
+    "Why has profit declined even though revenue held steady?",
+    "How much of the profit change is driven by rising per-unit costs?",
+    "If costs had stayed at prior-period levels, what would profit be today?",
+    "What is the total dollar impact of the cost structure shift?"
+  ],
+  "variables": {
+    "price_per_unit": {
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "$"
+    },
+    "volume": {
+      "min": 20000,
+      "max": 80000,
+      "step": 2000,
+      "unit": "units"
+    },
+    "variable_cost_per_unit_prior": {
+      "min": 8,
+      "max": 55,
+      "step": 1,
+      "unit": "$"
+    },
+    "variable_cost_per_unit_current": {
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "$"
+    },
+    "fixed_costs": {
+      "min": 200000,
+      "max": 1000000,
+      "step": 50000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate prior profit = (price_per_unit - variable_cost_per_unit_prior) \u00d7 volume - fixed_costs",
+    "Step 2: Calculate current profit = (price_per_unit - variable_cost_per_unit_current) \u00d7 volume - fixed_costs",
+    "Step 3: Calculate profit delta = current profit - prior profit"
+  ],
+  "key_insight": "Stable revenue can mask real profit erosion \u2014 always check per-unit costs, not just totals, before concluding the business is healthy.",
+  "common_mistakes": [
+    "Assuming flat revenue means flat profit",
+    "Comparing total costs instead of per-unit costs",
+    "Forgetting that price and volume are unchanged, so the entire delta is cost-driven"
+  ],
+  "framework_soundbite": "Flat revenue can still hide a profit problem \u2014 check per-unit costs before you diagnose.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "airlines",
+    "consumer goods",
+    "industrials"
+  ],
+  "display_context": "Manufacturing \u2022 Cost Creep"
+}

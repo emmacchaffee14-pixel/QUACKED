@@ -1,0 +1,92 @@
+{
+  "id": "ltv_horizon",
+  "name": "Lifetime Value Over a Fixed Horizon",
+  "description": "Value a customer over a defined contract or planning window rather than their full expected lifetime.",
+  "archetype": "ltv_horizon",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Months retained = min(1 / Churn Rate, Horizon); LTV = ARPU x Gross Margin x Months Retained",
+  "skills_tested": [
+    "unit_economics",
+    "LTV",
+    "customer_economics",
+    "margin_math",
+    "time_horizon"
+  ],
+  "business_contexts": [
+    "a B2B software vendor valuing customers over a three-year contract",
+    "a telecom operator assessing value within a fixed handset contract",
+    "a private equity buyer valuing a subscription base over its hold period",
+    "an insurance provider modelling policyholder value across a renewal window",
+    "a gym chain valuing members over an annual membership term"
+  ],
+  "question_patterns": [
+    "What is the value of a customer over the stated horizon?",
+    "How much gross profit does a customer generate within the analysis window?",
+    "What is the lifetime value of a customer across the contract period?",
+    "Over the planning horizon, what is each customer worth?"
+  ],
+  "variables": {
+    "cac": {
+      "max": 1500,
+      "min": 200,
+      "step": 50,
+      "unit": "$/customer"
+    },
+    "arpu_monthly": {
+      "max": 120,
+      "min": 40,
+      "step": 5,
+      "unit": "$/month"
+    },
+    "horizon_months": {
+      "max": 24,
+      "min": 6,
+      "step": 3,
+      "unit": "months"
+    },
+    "gross_margin_pct": {
+      "max": 0.9,
+      "min": 0.65,
+      "step": 0.05,
+      "unit": "% of revenue"
+    },
+    "monthly_churn_rate": {
+      "max": 0.08,
+      "min": 0.02,
+      "step": 0.01,
+      "unit": "% of base"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Monthly gross profit per customer = arpu_monthly x gross_margin_pct",
+    "Step 2: Average customer lifetime in months = 1 / monthly_churn_rate",
+    "Step 3: Months retained = the smaller of average lifetime and horizon_months",
+    "Step 4: Lifetime value over horizon = monthly gross profit x months retained"
+  ],
+  "key_insight": "A customer cannot be worth more than the window you are valuing them over. When the horizon is shorter than the average lifetime, the horizon caps the value.",
+  "common_mistakes": [
+    "Applying the infinite-horizon formula when the question specifies a fixed window",
+    "Failing to compare average lifetime against the horizon before multiplying",
+    "Using revenue rather than gross profit per month"
+  ],
+  "framework_soundbite": "Value the customer over the window you actually have. Take the shorter of average lifetime and the horizon.",
+  "archetype_tags": [
+    "SaaS",
+    "subscriptions",
+    "telecoms",
+    "insurance",
+    "private_equity",
+    "B2B"
+  ],
+  "display_context": "Private Equity \u2022 Hold-Period Valuation"
+}

@@ -1,0 +1,98 @@
+{
+  "id": "profitability_decline",
+  "name": "Profitability Decline",
+  "description": "Revenue, costs, or margins are deteriorating.",
+  "archetype": "profitability_decline",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "duckling",
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "duckling",
+  "formula": "Profit = Revenue - Fixed Costs - Variable Costs = (Price \u00d7 Volume) - Fixed - (Variable_cost_per_unit \u00d7 Volume)",
+  "skills_tested": [
+    "profitability",
+    "margin_math",
+    "cost_structure",
+    "revenue_decomposition"
+  ],
+  "business_contexts": [
+    "retail chain experiencing margin compression",
+    "manufacturer facing rising input costs",
+    "SaaS business with increasing churn",
+    "restaurant group with declining same-store sales",
+    "consumer goods brand losing pricing power"
+  ],
+  "question_patterns": [
+    "Why has profit declined despite stable revenue?",
+    "Is the decline driven by price, volume, or cost?",
+    "How much profit has been lost versus the prior period?",
+    "What is the size of the profitability gap the client needs to close?"
+  ],
+  "variables": {
+    "price_per_unit": {
+      "min": 20,
+      "max": 500,
+      "step": 10,
+      "unit": "$"
+    },
+    "volume_current": {
+      "min": 5000,
+      "max": 80000,
+      "step": 1000,
+      "unit": "units"
+    },
+    "volume_prior": {
+      "min": 6000,
+      "max": 90000,
+      "step": 1000,
+      "unit": "units"
+    },
+    "variable_cost_per_unit": {
+      "min": 8,
+      "max": 300,
+      "step": 5,
+      "unit": "$"
+    },
+    "fixed_costs": {
+      "min": 50000,
+      "max": 800000,
+      "step": 25000,
+      "unit": "$"
+    },
+    "price_prior": {
+      "min": 22,
+      "max": 550,
+      "step": 10,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate current revenue = price_per_unit \u00d7 volume_current",
+    "Step 2: Calculate prior revenue = price_prior \u00d7 volume_prior",
+    "Step 3: Calculate current profit = revenue_current - fixed_costs - (variable_cost_per_unit \u00d7 volume_current)",
+    "Step 4: Calculate prior profit = revenue_prior - fixed_costs - (variable_cost_per_unit \u00d7 volume_prior)",
+    "Step 5: Calculate profit delta and identify whether it is price-driven, volume-driven, or cost-driven"
+  ],
+  "key_insight": "Always decompose profit decline into price \u00d7 volume \u00d7 cost. Never diagnose before you know which lever moved.",
+  "common_mistakes": [
+    "Forgetting fixed costs don't move with volume",
+    "Conflating revenue decline with profit decline",
+    "Not checking if cost per unit changed, not just total costs"
+  ],
+  "framework_soundbite": "Profit = Price \u00d7 Volume \u2212 Costs. One of those three moved. Find which one before recommending anything.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "SaaS",
+    "consumer goods",
+    "industrials"
+  ],
+  "display_context": "Consumer Retail \u2022 Profitability Decline"
+}

@@ -1,0 +1,98 @@
+{
+  "id": "pricing_optimization",
+  "name": "Pricing Optimization",
+  "description": "Determine pricing impact on revenue and profit.",
+  "archetype": "pricing_optimization",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Optimal price tests: Revenue = Price \u00d7 Volume(Price). Profit-maximizing when MR = MC.",
+  "skills_tested": [
+    "pricing",
+    "elasticity",
+    "revenue_math",
+    "margin_math"
+  ],
+  "business_contexts": [
+    "airline evaluating a fare increase on a key route",
+    "SaaS company testing a price rise on its core plan",
+    "hotel group repricing its weekend room rates",
+    "consumer goods brand considering a list price increase",
+    "retailer evaluating promotional discount depth"
+  ],
+  "question_patterns": [
+    "Should the client raise prices, and by how much?",
+    "What is the profit impact of a price increase given expected volume loss?",
+    "At what price does profit begin to decline?",
+    "Does the margin gain per unit outweigh the volume loss?"
+  ],
+  "variables": {
+    "current_price": {
+      "min": 20,
+      "max": 800,
+      "step": 10,
+      "unit": "$"
+    },
+    "current_volume": {
+      "min": 1000,
+      "max": 50000,
+      "step": 500,
+      "unit": "units"
+    },
+    "price_increase_pct": {
+      "min": 0.05,
+      "max": 0.25,
+      "step": 0.05,
+      "unit": "%"
+    },
+    "price_elasticity": {
+      "min": -2,
+      "max": -0.3,
+      "step": 0.1,
+      "unit": "elasticity"
+    },
+    "variable_cost_per_unit": {
+      "min": 8,
+      "max": 400,
+      "step": 10,
+      "unit": "$"
+    },
+    "fixed_costs": {
+      "min": 20000,
+      "max": 500000,
+      "step": 10000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate new price = current_price \u00d7 (1 + price_increase_pct)",
+    "Step 2: Calculate volume change = current_volume \u00d7 (price_elasticity \u00d7 price_increase_pct)",
+    "Step 3: Calculate new volume = current_volume + volume_change",
+    "Step 4: Calculate current profit = (current_price - variable_cost_per_unit) \u00d7 current_volume - fixed_costs",
+    "Step 5: Calculate new profit = (new_price - variable_cost_per_unit) \u00d7 new_volume - fixed_costs",
+    "Step 6: Calculate profit delta to determine if price increase is worthwhile"
+  ],
+  "key_insight": "A price increase only wins if the margin gain per unit outweighs the volume lost. Always check both sides.",
+  "common_mistakes": [
+    "Forgetting that elasticity applies to % change, not absolute change",
+    "Applying elasticity to revenue instead of volume",
+    "Ignoring variable costs when evaluating profit impact"
+  ],
+  "framework_soundbite": "Price up means margin per unit rises but volume falls. The question is always: which effect is bigger?",
+  "archetype_tags": [
+    "retail",
+    "SaaS",
+    "consumer goods",
+    "hospitality",
+    "airlines"
+  ],
+  "display_context": "Consumer Goods \u2022 Pricing"
+}

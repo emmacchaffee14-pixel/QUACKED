@@ -1,0 +1,91 @@
+{
+  "id": "revenue_mix_shift",
+  "name": "Revenue Mix Shift",
+  "description": "Revenue held flat or grew, but profit moved because the mix between higher- and lower-margin products shifted.",
+  "archetype": "revenue_mix_shift",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Profit = Total Volume \u00d7 [(Mix % A \u00d7 Contribution Margin A) + (Mix % B \u00d7 Contribution Margin B)] = Profit_current vs Profit_prior",
+  "skills_tested": [
+    "profitability",
+    "margin_math",
+    "revenue_decomposition",
+    "weighted_average_math"
+  ],
+  "business_contexts": [
+    "grocery chain where private-label sales have grown faster than name-brand sales",
+    "software company where customers have shifted from premium to entry-level tier",
+    "car manufacturer selling more base trims and fewer luxury trims",
+    "restaurant chain where combo-meal orders have displaced a la carte orders",
+    "telecom provider where customers have shifted from postpaid to prepaid plans"
+  ],
+  "question_patterns": [
+    "Revenue is flat year over year \u2014 why did profit change, and by how much?",
+    "How much profit was gained or lost purely from the shift in product mix?",
+    "If the mix had stayed the same as last year, what would profit be this year?",
+    "What is the dollar impact of customers shifting from Product A to Product B?"
+  ],
+  "variables": {
+    "total_volume": {
+      "min": 50000,
+      "max": 300000,
+      "step": 5000,
+      "unit": "units"
+    },
+    "contribution_margin_a": {
+      "min": 45,
+      "max": 80,
+      "step": 5,
+      "unit": "$"
+    },
+    "contribution_margin_b": {
+      "min": 5,
+      "max": 35,
+      "step": 5,
+      "unit": "$"
+    },
+    "mix_pct_a_prior": {
+      "min": 0.3,
+      "max": 0.8,
+      "step": 0.05,
+      "unit": "%"
+    },
+    "mix_pct_a_current": {
+      "min": 0.2,
+      "max": 0.7,
+      "step": 0.05,
+      "unit": "%"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Derive mix_pct_b_prior = 1 - mix_pct_a_prior",
+    "Step 2: Derive mix_pct_b_current = 1 - mix_pct_a_current",
+    "Step 3: Calculate prior profit = total_volume \u00d7 [(mix_pct_a_prior \u00d7 contribution_margin_a) + (mix_pct_b_prior \u00d7 contribution_margin_b)]",
+    "Step 4: Calculate current profit = total_volume \u00d7 [(mix_pct_a_current \u00d7 contribution_margin_a) + (mix_pct_b_current \u00d7 contribution_margin_b)]",
+    "Step 5: Calculate profit delta = current profit - prior profit"
+  ],
+  "key_insight": "A flat top line can hide a real profit story \u2014 always check what's inside the revenue number before assuming stable revenue means a stable business.",
+  "common_mistakes": [
+    "Assuming flat revenue means flat profit",
+    "Averaging the two contribution margins instead of weighting by mix",
+    "Forgetting the two mix percentages must sum to 1"
+  ],
+  "framework_soundbite": "When revenue looks flat, check what's hiding inside it \u2014 mix shifts move profit even when the top line doesn't.",
+  "archetype_tags": [
+    "retail",
+    "SaaS",
+    "automotive",
+    "restaurants",
+    "telecom"
+  ],
+  "display_context": "Retail \u2022 Revenue Mix"
+}

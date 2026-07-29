@@ -1,0 +1,104 @@
+{
+  "id": "supply_chain_efficiency",
+  "name": "Supply Chain Efficiency",
+  "description": "Improve logistics, fulfillment, or operational efficiency.",
+  "archetype": "supply_chain_efficiency",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Total logistics cost = (Units \u00d7 Cost_per_unit_shipped) + Warehousing + Spoilage/waste. Saving = current - optimized.",
+  "skills_tested": [
+    "cost_per_unit",
+    "logistics_math",
+    "efficiency_gains",
+    "operations"
+  ],
+  "business_contexts": [
+    "e-commerce retailer optimizing last-mile delivery costs",
+    "food manufacturer reducing spoilage in cold chain",
+    "pharma distributor consolidating warehouse network",
+    "fast fashion brand renegotiating freight contracts",
+    "grocery chain improving inventory turnover"
+  ],
+  "question_patterns": [
+    "How much can annual logistics costs be reduced through optimization?",
+    "What is the total saving from reducing waste and shipping cost per unit?",
+    "Which part of the supply chain offers the highest cost reduction opportunity?",
+    "What is the annual saving from the proposed network consolidation?"
+  ],
+  "variables": {
+    "units_shipped_per_year": {
+      "min": 10000,
+      "max": 2000000,
+      "step": 10000,
+      "unit": "units"
+    },
+    "current_cost_per_unit": {
+      "min": 2,
+      "max": 50,
+      "step": 1,
+      "unit": "$"
+    },
+    "optimized_cost_per_unit": {
+      "min": 1,
+      "max": 40,
+      "step": 1,
+      "unit": "$"
+    },
+    "warehousing_cost_annual": {
+      "min": 50000,
+      "max": 5000000,
+      "step": 50000,
+      "unit": "$"
+    },
+    "waste_rate_current": {
+      "min": 0.02,
+      "max": 0.15,
+      "step": 0.01,
+      "unit": "%"
+    },
+    "waste_rate_optimized": {
+      "min": 0.005,
+      "max": 0.08,
+      "step": 0.005,
+      "unit": "%"
+    },
+    "unit_value": {
+      "min": 5,
+      "max": 200,
+      "step": 5,
+      "unit": "$/unit"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate current shipping cost = units_shipped \u00d7 current_cost_per_unit",
+    "Step 2: Calculate optimized shipping cost = units_shipped \u00d7 optimized_cost_per_unit",
+    "Step 3: Calculate current waste cost = units_shipped \u00d7 waste_rate_current \u00d7 unit_value",
+    "Step 4: Calculate optimized waste cost = units_shipped \u00d7 waste_rate_optimized \u00d7 unit_value",
+    "Step 5: Calculate total annual saving = (shipping savings) + (waste savings)"
+  ],
+  "key_insight": "Supply chain savings compound across volume. A $2/unit improvement sounds small until you multiply it by 500,000 units.",
+  "common_mistakes": [
+    "Calculating savings on a per-unit basis without scaling to total volume",
+    "Forgetting waste/spoilage as a cost category",
+    "Not separating fixed warehousing from variable shipping costs"
+  ],
+  "framework_soundbite": "Every cost in a supply chain is either fixed or variable. Separate them first, then find which lever moves the most at scale.",
+  "archetype_tags": [
+    "retail",
+    "FMCG",
+    "manufacturing",
+    "e-commerce",
+    "food & beverage",
+    "pharma"
+  ],
+  "display_context": "Logistics \u2022 Supply Chain Efficiency"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "market_sizing",
+  "name": "Market Sizing",
+  "description": "Estimate total market demand or opportunity.",
+  "archetype": "market_sizing",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "TAM = Population \u00d7 Penetration_rate \u00d7 Purchase_frequency \u00d7 Average_spend",
+  "skills_tested": [
+    "market_sizing",
+    "estimation",
+    "segmentation",
+    "order_of_magnitude"
+  ],
+  "business_contexts": [
+    "private equity firm evaluating a new market entry",
+    "startup pitching TAM to investors",
+    "consulting team assessing expansion opportunity",
+    "corporate strategy team sizing an adjacent market",
+    "venture fund screening a potential investment"
+  ],
+  "question_patterns": [
+    "What is the total addressable market for this product?",
+    "How large is the opportunity if the client captures its target share?",
+    "What annual revenue is available in this segment?",
+    "Is this market large enough to justify the investment?"
+  ],
+  "variables": {
+    "target_population": {
+      "min": 500000,
+      "max": 50000000,
+      "step": 500000,
+      "unit": "people"
+    },
+    "penetration_rate": {
+      "min": 0.05,
+      "max": 0.6,
+      "step": 0.05,
+      "unit": "%"
+    },
+    "purchase_frequency": {
+      "min": 1,
+      "max": 52,
+      "step": 1,
+      "unit": "times/year"
+    },
+    "avg_spend_per_purchase": {
+      "min": 10,
+      "max": 500,
+      "step": 10,
+      "unit": "$"
+    },
+    "addressable_segment": {
+      "min": 0.3,
+      "max": 0.85,
+      "step": 0.05,
+      "unit": "% of population"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Identify addressable population = target_population \u00d7 addressable_segment",
+    "Step 2: Apply penetration rate = addressable_population \u00d7 penetration_rate",
+    "Step 3: Calculate annual spend per user = purchase_frequency \u00d7 avg_spend_per_purchase",
+    "Step 4: Calculate TAM = penetrating_users \u00d7 annual_spend_per_user"
+  ],
+  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly \u2014 the interviewer is testing your structure, not your arithmetic.",
+  "common_mistakes": [
+    "Sizing the total population instead of the addressable segment",
+    "Forgetting purchase frequency \u2014 confusing annual vs per-transaction spend",
+    "Not sanity-checking the output against known benchmarks"
+  ],
+  "framework_soundbite": "Top-down or bottom-up \u2014 pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "archetype_tags": [
+    "strategy",
+    "market entry",
+    "new product",
+    "investor pitch",
+    "PE due diligence"
+  ],
+  "display_context": "Market Entry \u2022 Sizing"
+}

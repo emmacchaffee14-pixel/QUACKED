@@ -1,0 +1,92 @@
+{
+  "id": "market_share_shift",
+  "name": "Market Share Shift",
+  "description": "Assess competitive position changes and revenue impact of share gains or losses.",
+  "archetype": "market_share_shift",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "billable_bird",
+  "formula": "Revenue = Market size \u00d7 Market share. Share gain revenue = Market size \u00d7 share_delta. Competitive impact = share_lost \u00d7 competitor_revenue_per_point.",
+  "skills_tested": [
+    "market_share_math",
+    "competitive_dynamics",
+    "revenue_decomposition",
+    "market_sizing"
+  ],
+  "business_contexts": [
+    "consumer goods brand losing shelf space to a new entrant",
+    "telco defending market share against a low-cost disruptor",
+    "automotive OEM gaining share in an emerging segment",
+    "retail bank responding to a fintech competitor",
+    "airline capturing share on a rival's key route"
+  ],
+  "question_patterns": [
+    "What is the revenue impact of gaining X points of market share?",
+    "How much profit is at risk if the client loses share to the competitor?",
+    "What share gain is needed to offset the proposed investment?",
+    "How does the client's revenue change as the market grows and share shifts?"
+  ],
+  "variables": {
+    "total_market_size": {
+      "min": 500000000,
+      "max": 50000000000,
+      "step": 500000000,
+      "unit": "$"
+    },
+    "current_market_share": {
+      "min": 0.05,
+      "max": 0.45,
+      "step": 0.01,
+      "unit": "%"
+    },
+    "share_change": {
+      "min": -0.08,
+      "max": 0.1,
+      "step": 0.01,
+      "unit": "% points"
+    },
+    "market_growth_rate": {
+      "min": -0.05,
+      "max": 0.2,
+      "step": 0.01,
+      "unit": "%"
+    },
+    "contribution_margin_pct": {
+      "min": 0.2,
+      "max": 0.65,
+      "step": 0.05,
+      "unit": "%"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate current revenue = total_market_size \u00d7 current_market_share",
+    "Step 2: Calculate new market size = total_market_size \u00d7 (1 + market_growth_rate)",
+    "Step 3: Calculate new market share = current_market_share + share_change",
+    "Step 4: Calculate new revenue = new_market_size \u00d7 new_market_share",
+    "Step 5: Calculate revenue delta = new_revenue - current_revenue",
+    "Step 6: Calculate profit impact = revenue_delta \u00d7 contribution_margin_pct"
+  ],
+  "key_insight": "Share gains in a growing market compound \u2014 you're gaining on a larger base. Share gains in a shrinking market may still mean absolute revenue decline.",
+  "common_mistakes": [
+    "Calculating share gain on the old market size, not the new (grown) market",
+    "Treating share points as absolute rather than percentage of total",
+    "Forgetting to apply contribution margin to get profit impact from revenue change"
+  ],
+  "framework_soundbite": "Market share tells you your relative position. Multiply by market size to get what actually matters: absolute revenue.",
+  "archetype_tags": [
+    "strategy",
+    "competitive response",
+    "market entry",
+    "pricing",
+    "M&A"
+  ],
+  "display_context": "Competitive Strategy \u2022 Market Share"
+}

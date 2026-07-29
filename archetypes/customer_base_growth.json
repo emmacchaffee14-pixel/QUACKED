@@ -1,0 +1,92 @@
+{
+  "id": "customer_base_growth",
+  "name": "Customer Base Growth",
+  "description": "Project how a customer base changes when acquisition and churn pull in opposite directions.",
+  "archetype": "customer_base_growth",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "duckling",
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "duckling",
+  "formula": "Net monthly change = (Base x Acquisition Rate) - (Base x Churn Rate); Ending Base = Base + (Net x Months)",
+  "skills_tested": [
+    "churn_math",
+    "growth_dynamics",
+    "customer_economics",
+    "rate_math"
+  ],
+  "business_contexts": [
+    "a streaming service tracking subscriber momentum after a price change",
+    "a gym chain modelling membership over the next year",
+    "a mobile carrier projecting its prepaid subscriber base",
+    "a subscription box company planning warehouse capacity",
+    "a digital bank forecasting active account growth"
+  ],
+  "question_patterns": [
+    "How many customers will the business have at the end of the period?",
+    "What is the ending customer base after the analysis period?",
+    "Where does the customer base land once acquisition and churn are netted out?",
+    "How large is the customer base at the end of the projection window?"
+  ],
+  "variables": {
+    "arpu_monthly": {
+      "max": 100,
+      "min": 20,
+      "step": 5,
+      "unit": "$/month"
+    },
+    "analysis_months": {
+      "max": 24,
+      "min": 6,
+      "step": 3,
+      "unit": "months"
+    },
+    "monthly_churn_rate": {
+      "max": 0.08,
+      "min": 0.01,
+      "step": 0.01,
+      "unit": "% of base"
+    },
+    "starting_customer_base": {
+      "max": 200000,
+      "min": 20000,
+      "step": 1000,
+      "unit": "customers"
+    },
+    "monthly_acquisition_rate": {
+      "max": 0.12,
+      "min": 0.03,
+      "step": 0.01,
+      "unit": "% of base"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Monthly new customers = starting_customer_base x monthly_acquisition_rate",
+    "Step 2: Monthly churned customers = starting_customer_base x monthly_churn_rate",
+    "Step 3: Net monthly change = new customers - churned customers",
+    "Step 4: Ending base = starting base + (net monthly change x analysis_months)"
+  ],
+  "key_insight": "Growth is the gap between acquisition and churn. A large acquisition number means nothing if churn is close behind it.",
+  "common_mistakes": [
+    "Reading the acquisition rate as growth and ignoring churn entirely",
+    "Treating churn as a fixed number of customers rather than a rate",
+    "Forgetting to multiply the net monthly change across the full period"
+  ],
+  "framework_soundbite": "Net growth is acquisition minus churn. If churn is close to acquisition, the bucket leaks as fast as it fills.",
+  "archetype_tags": [
+    "SaaS",
+    "subscriptions",
+    "telecoms",
+    "fitness",
+    "fintech",
+    "media"
+  ],
+  "display_context": "Subscription Business \u2022 Net Customer Growth"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "break_even_investment",
+  "name": "Break-Even Investment",
+  "description": "Determine whether an investment pays off financially.",
+  "archetype": "break_even_investment",
+  "content_type": "drill",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "duckling",
+    "billable_bird",
+    "fully_quacked"
+  ],
+  "recommended_difficulty": "duckling",
+  "formula": "Break-even units = Fixed investment / Contribution margin per unit. Break-even time = Investment / Annual profit uplift.",
+  "skills_tested": [
+    "break_even_analysis",
+    "contribution_margin",
+    "payback_period",
+    "investment_math"
+  ],
+  "business_contexts": [
+    "retailer evaluating a new store opening",
+    "manufacturer assessing a new product launch",
+    "restaurant group opening a new location",
+    "tech company launching a new feature requiring engineering investment",
+    "gym operator considering a new equipment purchase"
+  ],
+  "question_patterns": [
+    "How many units must be sold for this investment to break even?",
+    "How long until the investment pays for itself?",
+    "At what volume does this project become profitable?",
+    "Does the expected volume clear the break-even threshold?"
+  ],
+  "variables": {
+    "investment_cost": {
+      "min": 100000,
+      "max": 10000000,
+      "step": 100000,
+      "unit": "$"
+    },
+    "revenue_per_unit": {
+      "min": 15,
+      "max": 600,
+      "step": 5,
+      "unit": "$"
+    },
+    "variable_cost_per_unit": {
+      "min": 5,
+      "max": 400,
+      "step": 5,
+      "unit": "$"
+    },
+    "additional_fixed_costs_pa": {
+      "min": 10000,
+      "max": 1000000,
+      "step": 10000,
+      "unit": "$/year"
+    },
+    "expected_units_per_year": {
+      "min": 1000,
+      "max": 200000,
+      "step": 1000,
+      "unit": "units/year"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate contribution margin = revenue_per_unit - variable_cost_per_unit",
+    "Step 2: Calculate annual profit from investment = (expected_units \u00d7 contribution_margin) - additional_fixed_costs_pa",
+    "Step 3: Calculate break-even units = investment_cost / contribution_margin",
+    "Step 4: Calculate break-even time = investment_cost / annual_profit_from_investment",
+    "Step 5: Assess viability \u2014 payback under 3 years is typically acceptable in most industries"
+  ],
+  "key_insight": "Break-even is not the goal \u2014 it's the floor. The real question is how much return exceeds break-even over the investment's life.",
+  "common_mistakes": [
+    "Using revenue instead of contribution margin in the denominator",
+    "Forgetting additional fixed costs that come with the investment",
+    "Confusing break-even units with break-even time"
+  ],
+  "framework_soundbite": "Break-even tells you the minimum \u2014 how long until you stop losing. What matters is the return above break-even.",
+  "archetype_tags": [
+    "manufacturing",
+    "retail",
+    "tech",
+    "real estate",
+    "energy",
+    "healthcare"
+  ],
+  "display_context": "Capital Investment \u2022 Break-Even"
+}
