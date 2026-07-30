@@ -1,0 +1,15 @@
+-- Remove test user profile
+delete from user_profiles 
+where id = '00000000-0000-0000-0000-000000000001';
+
+-- Remove test skill scores
+delete from user_skills
+where user_id = '00000000-0000-0000-0000-000000000001';
+
+-- Remove test skill history
+delete from skill_history
+where user_id = '00000000-0000-0000-0000-000000000001';
+
+-- Set all generated cases back to pending for admin review
+update generated_cases
+set status = 'pending';

@@ -1,0 +1,24 @@
+// Gate A — volume check by tier
+// Free: 5 drills/day, The Pond: 50 drills/day, Big Duck: unlimited
+const getDailyLimit = (xp: number, is_paid: boolean) => {
+  if (!is_paid) return 5;
+  if (xp >= 600) return Infinity;  // Big Duck — unlimited
+  return 50;                        // The Pond — 50/day
+};
+
+const dailyLimit = getDailyLimit(profile.xp, profile.is_paid);
+
+if (daily_count >= dailyLimit) {
+  const isPond = profile.xp < 600;
+  return new Response(
+    JSON.stringify({
+      allowed: false,
+      reason: "daily_limit_reached",
+      message: isPond
+        ? "You've used your 50 drills today. Upgrade to Big Duck for unlimited drilling."
+        : "You've used your 5 free drills today. Upgrade to The Pond to keep drilling.",
+      upgrade_prompt: true,
+    }),
+    { headers: { "Content-Type": "application/json" } }
+  );
+}

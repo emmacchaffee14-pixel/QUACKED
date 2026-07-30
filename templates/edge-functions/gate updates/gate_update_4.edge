@@ -1,0 +1,7 @@
+// Big Duck — unlimited, full access
+if (profile.is_paid && profile.xp >= 600) {
+  return new Response(
+    JSON.stringify({ allowed: true, reason: "big_duck_unlimited" }),
+    { headers: { "Content-Type": "application/json" } }
+  );
+}

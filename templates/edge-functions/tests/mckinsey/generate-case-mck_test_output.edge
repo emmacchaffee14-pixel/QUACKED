@@ -1,0 +1,69 @@
+{
+  "id": "3cc2788c-6e1d-40fb-b628-6f96d547e081",
+  "template_id": "3cc36cc8-a473-449e-96ad-c3b7fa0e5658",
+  "title": "Trans-Atlantic Fare Strategy",
+  "firm": "McKinsey",
+  "difficulty": "billable_bird",
+  "industry": "Airlines",
+  "intro": "The client is a legacy carrier operating a major transatlantic route between New York and London. Load factors have been strong, and the route team is evaluating a modest fare increase to capture additional margin before the summer travel season. The question is whether volume erosion will offset the per-ticket uplift.",
+  "facts": [
+    "Current average fare on the route is $270 per ticket",
+    "Annual passenger volume is 47,500 travelers",
+    "Variable cost per passenger (fuel, catering, fees) is $18",
+    "Fixed costs for operating this route are $110,000 annually",
+    "Price elasticity of demand on this route is estimated at -0.6",
+    "Proposed fare increase is 5%"
+  ],
+  "question": "What is the profit impact in dollars of implementing the 5% fare increase?",
+  "guiding_nudge": "Calculate the new price and new volume separately, then compare total profit before and after the increase.",
+  "framework_soundbite": "Price up means margin per unit rises but volume falls — the question is always which effect is bigger.",
+  "worked_solution": [
+    {
+      "calc": "$270 × (1 + 0.05)",
+      "step": 1,
+      "label": "New price",
+      "result": 283.5
+    },
+    {
+      "calc": "47500 × (-0.6 × 0.05)",
+      "step": 2,
+      "label": "Volume change",
+      "result": -1425
+    },
+    {
+      "calc": "47500 + -1425",
+      "step": 3,
+      "label": "New volume",
+      "result": 46075
+    },
+    {
+      "calc": "($270 − $18) × 47500 − $110000",
+      "step": 4,
+      "label": "Current profit",
+      "result": 11860000
+    },
+    {
+      "calc": "($283.5 − $18) × 46075 − $110000",
+      "step": 5,
+      "label": "New profit",
+      "result": 12122913
+    },
+    {
+      "calc": "$12122913 − $11860000",
+      "step": 6,
+      "label": "Profit delta",
+      "result": 262913
+    }
+  ],
+  "final_answer": 262913,
+  "business_interpretation": "A profit gain of approximately $263K suggests the route has pricing power and the increase should proceed before competitive response erodes the opportunity.",
+  "skills_tested": [
+    "pricing",
+    "elasticity",
+    "revenue_math",
+    "margin_math"
+  ],
+  "content_type": "drill",
+  "status": "pending",
+  "created_at": "2026-05-28T14:40:57.057326+00:00"
+}

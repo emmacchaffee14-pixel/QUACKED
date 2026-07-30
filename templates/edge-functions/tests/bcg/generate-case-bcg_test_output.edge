@@ -1,0 +1,61 @@
+{
+  "id": "92a40d95-e098-425e-a876-93158fa18337",
+  "template_id": "514aae64-08f9-497b-b927-028214de9426",
+  "title": "Regional Grocer Margin Collapse",
+  "firm": "BCG",
+  "difficulty": "duckling",
+  "industry": "Retail",
+  "intro": "Initial data suggests a regional grocery chain's profitability has deteriorated sharply over the past 18 months. Store-level economics that were previously stable now show significant strain, and the executive team needs to isolate the root cause before committing capital to a turnaround.",
+  "facts": [
+    "Prior period: average transaction price was $252, with 86,000 transactions",
+    "Current period: average transaction price is $60, with 26,000 transactions",
+    "Variable cost per transaction remains steady at $88",
+    "Fixed costs total $700,000"
+  ],
+  "question": "What is the change in profit from the prior period to the current period?",
+  "guiding_nudge": "Start by calculating profit in each period using the same structure, then find the difference.",
+  "framework_soundbite": "Profit equals price times volume minus costs—one of those three moved, so find which one before diagnosing anything.",
+  "worked_solution": [
+    {
+      "calc": "$60 × 26000",
+      "step": 1,
+      "label": "Current revenue",
+      "result": 1560000
+    },
+    {
+      "calc": "$252 × 86000",
+      "step": 2,
+      "label": "Prior revenue",
+      "result": 21672000
+    },
+    {
+      "calc": "$1560000 − $700000 − $2288000",
+      "step": 3,
+      "label": "Current profit",
+      "result": -1428000
+    },
+    {
+      "calc": "$21672000 − $700000 − $7568000",
+      "step": 4,
+      "label": "Prior profit",
+      "result": 13404000
+    },
+    {
+      "calc": "$-1428000 − $13404000",
+      "step": 5,
+      "label": "Profit delta",
+      "result": -14832000
+    }
+  ],
+  "final_answer": -14832000,
+  "business_interpretation": "A decline of this magnitude signals either a catastrophic pricing event or a structural volume collapse that demands immediate intervention.",
+  "skills_tested": [
+    "profitability",
+    "margin_math",
+    "cost_structure",
+    "revenue_decomposition"
+  ],
+  "content_type": "drill",
+  "status": "pending",
+  "created_at": "2026-05-29T12:45:16.425103+00:00"
+}

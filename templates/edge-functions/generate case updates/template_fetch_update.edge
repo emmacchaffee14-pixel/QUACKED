@@ -1,0 +1,38 @@
+let templateQuery = supabase.from("templates").select("*");
+
+// If skill_target provided — filter to templates that test that skill
+// Used by "Drill this skill" feature on Big Duck dashboard
+if (skill_target) {
+  templateQuery = templateQuery.contains("skills_tested", [skill_target]);
+}
+
+// If industry provided — filter to templates with that industry tag
+if (industry && industry !== "any") {
+  templateQuery = templateQuery.contains("archetype_tags", [industry.toLowerCase()]);
+}
+
+// If template_id provided — use that specific template
+// Otherwise pick a random one from filtered results
+let template;
+if (template_id) {
+  const { data, error: templateError } = await templateQuery
+    .eq("id", template_id)
+    .single();
+  if (templateError || !data) {
+    return new Response(
+      JSON.stringify({ error: "Template not found" }),
+      { status: 404 }
+    );
+  }
+  template = data;
+} else {
+  const { data: templates, error: templateError } = await templateQuery;
+  if (templateError || !templates || templates.length === 0) {
+    return new Response(
+      JSON.stringify({ error: "No matching templates found" }),
+      { status: 404 }
+    );
+  }
+  // Pick randomly from matching templates
+  template = templates[Math.floor(Math.random() * templates.length)];
+}

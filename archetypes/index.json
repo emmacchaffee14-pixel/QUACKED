@@ -1,6 +1,6 @@
 {
   "library_version": "1.2.0",
-  "total_archetypes": 15,
+  "total_archetypes": 26,
   "archetypes": [
     {
       "id": "throughput_bottleneck",
@@ -17,7 +17,7 @@
       "file": "throughput_bottleneck.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Operations \u2022 Capacity Bottleneck",
+      "display_context": "Operations • Capacity Bottleneck",
       "target_label": "Margin lost to bottleneck ($)",
       "primary_variables": [
         "units_demanded_per_day",
@@ -43,7 +43,7 @@
       "file": "profitability_decline.json",
       "recommended_difficulty": "beginner",
       "content_type": "drill",
-      "display_context": "Consumer Retail \u2022 Profitability Decline",
+      "display_context": "Consumer Retail • Profitability Decline",
       "target_label": "Profit change ($)",
       "primary_variables": [
         "price_per_unit",
@@ -69,7 +69,7 @@
       "file": "market_sizing.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Market Entry \u2022 Sizing",
+      "display_context": "Market Entry • Sizing",
       "target_label": "Total addressable market ($)",
       "primary_variables": [
         "target_population",
@@ -96,7 +96,7 @@
       "file": "pricing_optimization.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Consumer Goods \u2022 Pricing",
+      "display_context": "Consumer Goods • Pricing",
       "target_label": "Profit impact of price change ($)",
       "primary_variables": [
         "current_price",
@@ -123,7 +123,7 @@
       "file": "capacity_expansion.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Operations \u2022 Capacity Expansion",
+      "display_context": "Operations • Capacity Expansion",
       "target_label": "Payback period (years)",
       "primary_variables": [
         "capex_required",
@@ -149,7 +149,7 @@
       "file": "supply_chain_efficiency.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Logistics \u2022 Supply Chain Efficiency",
+      "display_context": "Logistics • Supply Chain Efficiency",
       "target_label": "Annual cost saving ($)",
       "primary_variables": [
         "units_shipped_per_year",
@@ -177,7 +177,7 @@
       "file": "break_even_investment.json",
       "recommended_difficulty": "beginner",
       "content_type": "drill",
-      "display_context": "Capital Investment \u2022 Break-Even",
+      "display_context": "Capital Investment • Break-Even",
       "target_label": "Payback period (years)",
       "primary_variables": [
         "investment_cost",
@@ -204,7 +204,7 @@
       "file": "productivity_improvement.json",
       "recommended_difficulty": "beginner",
       "content_type": "drill",
-      "display_context": "Operations \u2022 Productivity",
+      "display_context": "Operations • Productivity",
       "target_label": "Annual labor cost saving ($)",
       "primary_variables": [
         "productivity_improvement",
@@ -228,7 +228,7 @@
       "file": "market_share_shift.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Competitive Strategy \u2022 Market Share",
+      "display_context": "Competitive Strategy • Market Share",
       "target_label": "Competitive impact ($)",
       "primary_variables": [
         "total_market_size",
@@ -255,7 +255,7 @@
       "file": "cost_structure_creep.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Manufacturing \u2022 Cost Creep",
+      "display_context": "Manufacturing • Cost Creep",
       "target_label": "Profit impact of cost creep ($)",
       "primary_variables": [
         "price_per_unit",
@@ -280,7 +280,7 @@
       "file": "revenue_mix_shift.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Retail \u2022 Revenue Mix",
+      "display_context": "Retail • Revenue Mix",
       "target_label": "Profit impact of mix shift ($)",
       "primary_variables": [
         "total_volume",
@@ -305,7 +305,7 @@
       "file": "channel_profitability_divergence.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Retail \u2022 Channel Profitability",
+      "display_context": "Retail • Channel Profitability",
       "target_label": "Profit gap between channels ($)",
       "primary_variables": [
         "channel_a_price",
@@ -334,7 +334,7 @@
       "file": "customer_base_growth.json",
       "recommended_difficulty": "beginner",
       "content_type": "drill",
-      "display_context": "Subscription Business \u2022 Net Customer Growth",
+      "display_context": "Subscription Business • Net Customer Growth",
       "target_label": "Ending customer base",
       "primary_variables": [
         "starting_customer_base",
@@ -360,7 +360,7 @@
       "file": "ltv_cac_ratio.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "SaaS \u2022 Growth Spend ROI",
+      "display_context": "SaaS • Growth Spend ROI",
       "target_label": "LTV to CAC ratio",
       "primary_variables": [
         "arpu_monthly",
@@ -384,7 +384,7 @@
       "file": "ltv_horizon.json",
       "recommended_difficulty": "intermediate",
       "content_type": "drill",
-      "display_context": "Private Equity \u2022 Hold-Period Valuation",
+      "display_context": "Private Equity • Hold-Period Valuation",
       "target_label": "Customer lifetime value ($)",
       "primary_variables": [
         "arpu_monthly",
@@ -393,6 +393,239 @@
         "horizon_months",
         "cac"
       ]
+    },
+    {
+      "id": "percentage_of_base",
+      "name": "Percentage of a Base",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "ratio_math",
+        "rate_math"
+      ],
+      "file": "percentage_of_base.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Percentage of Base",
+      "target_label": "Resulting amount ($)",
+      "primary_variables": [
+        "base_value",
+        "percentage_rate"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "percentage_change",
+      "name": "Percentage Change",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "ratio_math",
+        "rate_math"
+      ],
+      "file": "percentage_change.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Percentage Change",
+      "target_label": "Percentage change (%)",
+      "primary_variables": [
+        "value_before",
+        "value_after"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "margin_percentage",
+      "name": "Margin Percentage",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "margin_math"
+      ],
+      "file": "margin_percentage.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Margin Percentage",
+      "target_label": "Gross margin (%)",
+      "primary_variables": [
+        "price",
+        "cost"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "contribution_per_unit",
+      "name": "Contribution per Unit",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "contribution_margin"
+      ],
+      "file": "contribution_per_unit.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Contribution per Unit",
+      "target_label": "Contribution margin per unit ($)",
+      "primary_variables": [
+        "price_per_unit",
+        "variable_cost_per_unit"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "doubling_time",
+      "name": "Doubling Time (Rule of 72)",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "growth_dynamics",
+        "rate_math"
+      ],
+      "file": "doubling_time.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Doubling Time",
+      "target_label": "Years to double (approx.)",
+      "primary_variables": [
+        "annual_growth_rate_pct"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "required_growth_rate",
+      "name": "Required Growth Rate (Rule of 72)",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "growth_dynamics",
+        "rate_math"
+      ],
+      "file": "required_growth_rate.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Required Growth Rate",
+      "target_label": "Required annual growth rate (%)",
+      "primary_variables": [
+        "target_years"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "pct_change_two_period",
+      "name": "Percentage Change, Two Periods",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "ratio_math",
+        "rate_math"
+      ],
+      "file": "pct_change_two_period.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Two-Period Percentage Change",
+      "target_label": "Overall percentage change (%)",
+      "primary_variables": [
+        "start_value",
+        "rate_period1",
+        "rate_period2"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "margin_dollar_with_volume",
+      "name": "Margin Dollars with Volume",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "margin_math",
+        "revenue_math"
+      ],
+      "file": "margin_dollar_with_volume.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Margin Dollars with Volume",
+      "target_label": "Total margin ($)",
+      "primary_variables": [
+        "price",
+        "cost",
+        "volume"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "growth_projection",
+      "name": "Growth Projection (Simple)",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "growth_dynamics",
+        "rate_math"
+      ],
+      "file": "growth_projection.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Growth Projection",
+      "target_label": "Projected value ($)",
+      "primary_variables": [
+        "starting_value",
+        "growth_rate",
+        "periods"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "breakeven_units",
+      "name": "Breakeven Units",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "break_even_analysis",
+        "contribution_margin"
+      ],
+      "file": "breakeven_units.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Breakeven Units",
+      "target_label": "Breakeven units",
+      "primary_variables": [
+        "fixed_costs",
+        "price_per_unit",
+        "variable_cost_per_unit"
+      ],
+      "waddle_native": true
+    },
+    {
+      "id": "relative_market_share",
+      "name": "Relative Market Share",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "market_share_math",
+        "competitive_dynamics"
+      ],
+      "file": "relative_market_share.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "display_context": "Core Arithmetic • Relative Market Share",
+      "target_label": "Relative market share (x)",
+      "primary_variables": [
+        "client_revenue",
+        "competitor_a_revenue",
+        "competitor_b_revenue",
+        "competitor_c_revenue"
+      ],
+      "waddle_native": true
     }
   ],
   "all_skills": [

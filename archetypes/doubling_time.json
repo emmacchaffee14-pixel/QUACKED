@@ -1,0 +1,42 @@
+{
+  "name": "Doubling Time (Rule of 72)",
+  "description": "Approximate how long a quantity takes to double at a given annual growth rate.",
+  "archetype": "doubling_time",
+  "content_type": "drill",
+  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
+  "difficulty_range": ["beginner"],
+  "recommended_difficulty": "beginner",
+  "formula": "Doubling time (years) ≈ 72 / (Growth rate × 100)",
+  "skills_tested": ["growth_dynamics", "rate_math"],
+  "business_contexts": [
+    "an investor estimating how long a portfolio takes to double",
+    "a company estimating how long revenue takes to double at its current growth rate",
+    "a demographer estimating how long a population takes to double",
+    "a lender estimating how long a balance takes to double at a given rate",
+    "a startup estimating how long its user base takes to double"
+  ],
+  "question_patterns": [
+    "Using the Rule of 72, approximately how many years will it take to double at the growth rate given below?",
+    "Given the annual growth rate below, approximately how long will it take to double?",
+    "Using the Rule of 72, calculate the approximate doubling time for the growth rate shown.",
+    "At the growth rate given below, roughly how many years until the quantity doubles?",
+    "Approximately how many years does the growth rate below take to double a value?"
+  ],
+  "variables": {
+    "annual_growth_rate_pct": { "min": 0.02, "max": 0.24, "step": 0.01, "unit": "%" }
+  },
+  "solution_logic": [
+    "Step 1: Calculate doubling time = 72 / (annual_growth_rate_pct × 100)"
+  ],
+  "key_insight": "The Rule of 72 is a mental-math shortcut, not an exact formula — it trades precision for something you can compute in your head under time pressure.",
+  "common_mistakes": [
+    "Dividing 72 by the decimal rate (e.g. 0.08) instead of the rate expressed as a whole percentage number (8)",
+    "Forgetting the answer is an approximation, not an exact compounding calculation"
+  ],
+  "framework_soundbite": "72 divided by the growth rate — a fast, good-enough answer to 'how long until this doubles?'",
+  "archetype_tags": ["finance", "investing", "corporate", "demographics"],
+  "display_context": "Core Arithmetic • Doubling Time",
+  "target_label": "Years to double (approx.)",
+  "primary_variables": ["annual_growth_rate_pct"],
+  "waddle_native": true
+}

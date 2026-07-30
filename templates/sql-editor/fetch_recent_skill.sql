@@ -1,0 +1,1 @@
+select * from skill_history limit 5;

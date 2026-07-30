@@ -1,0 +1,45 @@
+{
+  "name": "Growth Projection (Simple)",
+  "description": "Project a starting value forward across several periods at a constant simple (non-compounding) growth rate.",
+  "archetype": "growth_projection",
+  "content_type": "drill",
+  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
+  "difficulty_range": ["intermediate"],
+  "recommended_difficulty": "intermediate",
+  "formula": "Projected value = Starting value × (1 + Growth rate × Number of periods)",
+  "skills_tested": ["growth_dynamics", "rate_math"],
+  "business_contexts": [
+    "a company projecting revenue forward at a flat annual growth rate",
+    "a retailer projecting store count forward at a steady pace",
+    "a city projecting population forward at a steady rate",
+    "a nonprofit projecting donor base forward at a flat rate",
+    "a utility projecting demand forward at a steady rate"
+  ],
+  "question_patterns": [
+    "Given the starting value, growth rate, and number of periods below, what is the projected value?",
+    "Calculate the projected value after the number of periods shown, at the growth rate given.",
+    "What value results from applying the growth rate below across the number of periods shown?",
+    "Calculate the projected value using simple (non-compounding) growth applied across the periods given.",
+    "Using the figures below, project the starting value forward across the periods shown."
+  ],
+  "variables": {
+    "starting_value": { "min": 5000, "max": 50000, "step": 1000, "unit": "$" },
+    "growth_rate": { "min": 0.03, "max": 0.15, "step": 0.01, "unit": "% per period" },
+    "periods": { "min": 2, "max": 6, "step": 1, "unit": "periods" }
+  },
+  "solution_logic": [
+    "Step 1: Calculate total growth factor = growth_rate × periods",
+    "Step 2: Calculate projected value = starting_value × (1 + total growth factor)"
+  ],
+  "key_insight": "Simple growth applies the rate to the original base every period, unlike compound growth, which applies it to the already-grown value — the two diverge quickly as periods stack up.",
+  "common_mistakes": [
+    "Compounding the rate period over period instead of applying it as simple growth against the original base",
+    "Forgetting to multiply the rate by the number of periods before adding it to 1"
+  ],
+  "framework_soundbite": "Simple growth is rate times periods, applied once to the starting base — not compounded step by step.",
+  "archetype_tags": ["corporate", "retail", "demographics", "nonprofit"],
+  "display_context": "Core Arithmetic • Growth Projection",
+  "target_label": "Projected value ($)",
+  "primary_variables": ["starting_value", "growth_rate", "periods"],
+  "waddle_native": true
+}

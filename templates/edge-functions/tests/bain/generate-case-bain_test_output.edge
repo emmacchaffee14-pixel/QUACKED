@@ -1,0 +1,68 @@
+{
+  "id": "11d3c943-d2b6-450d-90da-1cf8129bd7a7",
+  "template_id": "3cc36cc8-a473-449e-96ad-c3b7fa0e5658",
+  "title": "Shampoo Shelf Price Test",
+  "firm": "Bain",
+  "difficulty": "billable_bird",
+  "industry": "Consumer Goods",
+  "intro": "Your client manufactures a mid-tier shampoo brand sold through major retailers. Volume has been steady, but input costs are climbing and the team is debating whether to push through a 25% list price increase. The concern is obvious: will the margin lift justify the customers you'll lose?",
+  "facts": [
+    "Current retail price: $490 per case (24 bottles)",
+    "Current annual volume: 38,000 cases",
+    "Variable cost per case: $338",
+    "Fixed costs: $320,000 annually",
+    "Price elasticity of demand: -0.5"
+  ],
+  "question": "What is the total profit impact of implementing the 25% price increase?",
+  "guiding_nudge": "Start by figuring out the new price and how volume reacts, then compare profit before and after the change.",
+  "framework_soundbite": "Price up means margin per unit rises but volume falls — the question is always which effect is bigger.",
+  "worked_solution": [
+    {
+      "calc": "$490 × (1 + 0.25)",
+      "step": 1,
+      "label": "New price",
+      "result": 612.5
+    },
+    {
+      "calc": "38000 × (-0.5 × 0.25)",
+      "step": 2,
+      "label": "Volume change",
+      "result": -4750
+    },
+    {
+      "calc": "38000 + -4750",
+      "step": 3,
+      "label": "New volume",
+      "result": 33250
+    },
+    {
+      "calc": "($490 − $338) × 38000 − $320000",
+      "step": 4,
+      "label": "Current profit",
+      "result": 5456000
+    },
+    {
+      "calc": "($612.5 − $338) × 33250 − $320000",
+      "step": 5,
+      "label": "New profit",
+      "result": 8807125
+    },
+    {
+      "calc": "$8807125 − $5456000",
+      "step": 6,
+      "label": "Profit delta",
+      "result": 3351125
+    }
+  ],
+  "final_answer": 3351125,
+  "business_interpretation": "A profit gain of over $3.3 million suggests this brand has enough pricing power to absorb significant volume loss and still come out ahead.",
+  "skills_tested": [
+    "pricing",
+    "elasticity",
+    "revenue_math",
+    "margin_math"
+  ],
+  "content_type": "drill",
+  "status": "pending",
+  "created_at": "2026-05-29T12:40:03.649866+00:00"
+}

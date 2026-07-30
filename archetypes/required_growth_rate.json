@@ -1,0 +1,42 @@
+{
+  "name": "Required Growth Rate (Rule of 72)",
+  "description": "Approximate the annual growth rate needed to double a value within a target number of years.",
+  "archetype": "required_growth_rate",
+  "content_type": "drill",
+  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
+  "difficulty_range": ["beginner"],
+  "recommended_difficulty": "beginner",
+  "formula": "Required growth rate ≈ 72 / Target years",
+  "skills_tested": ["growth_dynamics", "rate_math"],
+  "business_contexts": [
+    "a board setting a growth target to double revenue within a set window",
+    "an investor setting a return target to double a portfolio within a set window",
+    "a startup setting a user-growth target to double its base within a set window",
+    "a lender setting a target doubling window on a balance",
+    "a planner setting a target doubling window for a population"
+  ],
+  "question_patterns": [
+    "Using the Rule of 72, what annual growth rate is needed to double a value within the target number of years below?",
+    "Given the target doubling period below, approximately what growth rate is required?",
+    "Using the Rule of 72, calculate the growth rate needed to double within the number of years shown.",
+    "What annual growth rate approximately doubles a value within the target period given below?",
+    "To double within the target years shown, approximately what growth rate is required?"
+  ],
+  "variables": {
+    "target_years": { "min": 3, "max": 24, "step": 1, "unit": "years" }
+  },
+  "solution_logic": [
+    "Step 1: Calculate required growth rate = 72 / target_years"
+  ],
+  "key_insight": "The Rule of 72 runs in both directions — the same shortcut that estimates time-to-double from a rate also estimates the rate needed for a target doubling time.",
+  "common_mistakes": [
+    "Reporting the result as a decimal fraction instead of a percentage (e.g. 0.09 instead of 9%)",
+    "Confusing this with the reverse question — this gives the rate required, not the time required"
+  ],
+  "framework_soundbite": "Flip the Rule of 72 around — 72 divided by the years you have gives the rate you need.",
+  "archetype_tags": ["finance", "investing", "corporate", "demographics"],
+  "display_context": "Core Arithmetic • Required Growth Rate",
+  "target_label": "Required annual growth rate (%)",
+  "primary_variables": ["target_years"],
+  "waddle_native": true
+}

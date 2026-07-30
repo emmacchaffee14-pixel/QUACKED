@@ -1,0 +1,45 @@
+{
+  "name": "Percentage Change, Two Periods",
+  "description": "Calculate the overall percentage change after a value moves through two consecutive periods of change.",
+  "archetype": "pct_change_two_period",
+  "content_type": "drill",
+  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
+  "difficulty_range": ["intermediate"],
+  "recommended_difficulty": "intermediate",
+  "formula": "Final value = Start value × (1 + Rate period 1) × (1 + Rate period 2); Overall % change = (Final value − Start value) / Start value × 100",
+  "skills_tested": ["ratio_math", "rate_math"],
+  "business_contexts": [
+    "a retailer whose sales rose one quarter and fell the next",
+    "a company whose costs rose two years running at different rates",
+    "an investment that gained one year and lost the next",
+    "a market that grew in one period and contracted in the next",
+    "a subscription base that grew one month and shrank the next"
+  ],
+  "question_patterns": [
+    "Given the starting value and the two period-over-period rates below, what is the overall percentage change?",
+    "Calculate the overall percentage change after both periods of change shown below.",
+    "What is the combined percentage change across the two periods given?",
+    "Applying both rates in sequence to the starting value below, what is the total percentage change?",
+    "Calculate the net percentage change after the value moves through both periods shown."
+  ],
+  "variables": {
+    "start_value": { "min": 5000, "max": 50000, "step": 1000, "unit": "$" },
+    "rate_period1": { "min": -0.15, "max": 0.20, "step": 0.05, "unit": "%" },
+    "rate_period2": { "min": -0.15, "max": 0.20, "step": 0.05, "unit": "%" }
+  },
+  "solution_logic": [
+    "Step 1: Calculate final value = start_value × (1 + rate_period1) × (1 + rate_period2)",
+    "Step 2: Calculate overall percentage change = (final_value − start_value) / start_value × 100"
+  ],
+  "key_insight": "Two sequential percentage changes don't add — they compound. A 10% rise followed by a 10% fall does not return you to where you started.",
+  "common_mistakes": [
+    "Adding the two rates together instead of applying them sequentially",
+    "Applying both rates to the original start value instead of applying the second rate to the already-changed value"
+  ],
+  "framework_soundbite": "Sequential percentages multiply, they don't add — chain the multipliers, not the rates.",
+  "archetype_tags": ["finance", "retail", "corporate", "investing"],
+  "display_context": "Core Arithmetic • Two-Period Percentage Change",
+  "target_label": "Overall percentage change (%)",
+  "primary_variables": ["start_value", "rate_period1", "rate_period2"],
+  "waddle_native": true
+}

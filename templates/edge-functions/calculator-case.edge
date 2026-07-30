@@ -1,0 +1,236 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+Deno.serve(async (req) => {
+  try {
+    const { template_id, firm, difficulty } = await req.json();
+
+    // Connect to Supabase
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
+    // Fetch the template
+    const { data: template, error } = await supabase
+      .from("templates")
+      .select("*")
+      .eq("id", template_id)
+      .single();
+
+    if (error || !template) {
+      return new Response(
+        JSON.stringify({ error: "Template not found" }),
+        { status: 404 }
+      );
+    }
+
+    // Randomize variables within ranges
+    const variables: Record<string, number> = {};
+    for (const [key, cfg] of Object.entries(template.variables) as any) {
+      const steps = Math.round((cfg.max - cfg.min) / cfg.step);
+      const pick = Math.floor(Math.random() * (steps + 1));
+      const raw = cfg.min + pick * cfg.step;
+      variables[key] = Math.round(raw * 1000) / 1000;
+    }
+
+    // Calculate answer + worked solution by archetype
+    let final_answer = 0;
+    let worked_solution: { step: number; label: string; calc: string; result: number }[] = [];
+
+    const v = variables;
+
+    switch (template.archetype) {
+
+      case "throughput_bottleneck": {
+        const effective = v.bottleneck_capacity * v.utilization_rate;
+        const unmet = Math.max(0, v.units_demanded_per_day - effective);
+        const lost = unmet * v.unit_contribution_margin;
+        final_answer = Math.round(lost);
+        worked_solution = [
+          { step: 1, label: "Effective capacity", calc: `${v.bottleneck_capacity} × ${v.utilization_rate}`, result: Math.round(effective) },
+          { step: 2, label: "Unmet demand", calc: `${v.units_demanded_per_day} − ${Math.round(effective)}`, result: Math.round(unmet) },
+          { step: 3, label: "Daily margin lost", calc: `${Math.round(unmet)} × $${v.unit_contribution_margin}`, result: Math.round(lost) },
+        ];
+        break;
+      }
+
+      case "profitability_decline": {
+        const rev_current = v.price_per_unit * v.volume_current;
+        const rev_prior = v.price_prior * v.volume_prior;
+        const profit_current = rev_current - v.fixed_costs - (v.variable_cost_per_unit * v.volume_current);
+        const profit_prior = rev_prior - v.fixed_costs - (v.variable_cost_per_unit * v.volume_prior);
+        final_answer = Math.round(profit_current - profit_prior);
+        worked_solution = [
+          { step: 1, label: "Current revenue", calc: `$${v.price_per_unit} × ${v.volume_current}`, result: Math.round(rev_current) },
+          { step: 2, label: "Prior revenue", calc: `$${v.price_prior} × ${v.volume_prior}`, result: Math.round(rev_prior) },
+          { step: 3, label: "Current profit", calc: `$${Math.round(rev_current)} − $${v.fixed_costs} − $${Math.round(v.variable_cost_per_unit * v.volume_current)}`, result: Math.round(profit_current) },
+          { step: 4, label: "Prior profit", calc: `$${Math.round(rev_prior)} − $${v.fixed_costs} − $${Math.round(v.variable_cost_per_unit * v.volume_prior)}`, result: Math.round(profit_prior) },
+          { step: 5, label: "Profit delta", calc: `$${Math.round(profit_current)} − $${Math.round(profit_prior)}`, result: Math.round(profit_current - profit_prior) },
+        ];
+        break;
+      }
+
+      case "market_sizing": {
+        const addressable = v.target_population * v.addressable_segment;
+        const penetrating = addressable * v.penetration_rate;
+        const annual_spend = v.purchase_frequency * v.avg_spend_per_purchase;
+        const tam = penetrating * annual_spend;
+        final_answer = Math.round(tam);
+        worked_solution = [
+          { step: 1, label: "Addressable population", calc: `${v.target_population.toLocaleString()} × ${v.addressable_segment}`, result: Math.round(addressable) },
+          { step: 2, label: "Penetrating users", calc: `${Math.round(addressable).toLocaleString()} × ${v.penetration_rate}`, result: Math.round(penetrating) },
+          { step: 3, label: "Annual spend per user", calc: `${v.purchase_frequency} × $${v.avg_spend_per_purchase}`, result: Math.round(annual_spend) },
+          { step: 4, label: "Total market (TAM)", calc: `${Math.round(penetrating).toLocaleString()} × $${Math.round(annual_spend)}`, result: Math.round(tam) },
+        ];
+        break;
+      }
+
+      case "pricing_optimization": {
+        const new_price = v.current_price * (1 + v.price_increase_pct);
+        const volume_change = v.current_volume * (v.price_elasticity * v.price_increase_pct);
+        const new_volume = v.current_volume + volume_change;
+        const profit_current = (v.current_price - v.variable_cost_per_unit) * v.current_volume - v.fixed_costs;
+        const profit_new = (new_price - v.variable_cost_per_unit) * new_volume - v.fixed_costs;
+        final_answer = Math.round(profit_new - profit_current);
+        worked_solution = [
+          { step: 1, label: "New price", calc: `$${v.current_price} × (1 + ${v.price_increase_pct})`, result: Math.round(new_price * 100) / 100 },
+          { step: 2, label: "Volume change", calc: `${v.current_volume} × (${v.price_elasticity} × ${v.price_increase_pct})`, result: Math.round(volume_change) },
+          { step: 3, label: "New volume", calc: `${v.current_volume} + ${Math.round(volume_change)}`, result: Math.round(new_volume) },
+          { step: 4, label: "Current profit", calc: `($${v.current_price} − $${v.variable_cost_per_unit}) × ${v.current_volume} − $${v.fixed_costs}`, result: Math.round(profit_current) },
+          { step: 5, label: "New profit", calc: `($${Math.round(new_price * 100) / 100} − $${v.variable_cost_per_unit}) × ${Math.round(new_volume)} − $${v.fixed_costs}`, result: Math.round(profit_new) },
+          { step: 6, label: "Profit delta", calc: `$${Math.round(profit_new)} − $${Math.round(profit_current)}`, result: Math.round(profit_new - profit_current) },
+        ];
+        break;
+      }
+
+      case "capacity_expansion": {
+        const effective_units = v.additional_capacity_units * v.expected_utilization;
+        const annual_profit = effective_units * v.contribution_margin - v.additional_fixed_costs;
+        const total_profit = annual_profit * v.analysis_years;
+        const net_return = total_profit - v.capex_required;
+        const payback = v.capex_required / annual_profit;
+        final_answer = Math.round(payback * 10) / 10;
+        worked_solution = [
+          { step: 1, label: "Effective additional units", calc: `${v.additional_capacity_units} × ${v.expected_utilization}`, result: Math.round(effective_units) },
+          { step: 2, label: "Annual incremental profit", calc: `${Math.round(effective_units)} × $${v.contribution_margin} − $${v.additional_fixed_costs}`, result: Math.round(annual_profit) },
+          { step: 3, label: "Total profit over period", calc: `$${Math.round(annual_profit)} × ${v.analysis_years} years`, result: Math.round(total_profit) },
+          { step: 4, label: "Net return", calc: `$${Math.round(total_profit)} − $${v.capex_required}`, result: Math.round(net_return) },
+          { step: 5, label: "Payback period", calc: `$${v.capex_required} ÷ $${Math.round(annual_profit)}`, result: Math.round(payback * 10) / 10 },
+        ];
+        break;
+      }
+
+      case "customer_growth": {
+        const monthly_new = v.starting_customer_base * v.monthly_acquisition_rate;
+        const monthly_churned = v.starting_customer_base * v.monthly_churn_rate;
+        const net_monthly = monthly_new - monthly_churned;
+        const ending_base = v.starting_customer_base + net_monthly * v.analysis_months;
+        const ltv = v.arpu_monthly / v.monthly_churn_rate;
+        const ltv_cac = ltv / v.cac;
+        final_answer = Math.round(ltv_cac * 10) / 10;
+        worked_solution = [
+          { step: 1, label: "Monthly new customers", calc: `${v.starting_customer_base.toLocaleString()} × ${v.monthly_acquisition_rate}`, result: Math.round(monthly_new) },
+          { step: 2, label: "Monthly churned", calc: `${v.starting_customer_base.toLocaleString()} × ${v.monthly_churn_rate}`, result: Math.round(monthly_churned) },
+          { step: 3, label: "Net monthly growth", calc: `${Math.round(monthly_new)} − ${Math.round(monthly_churned)}`, result: Math.round(net_monthly) },
+          { step: 4, label: "Ending customer base", calc: `${v.starting_customer_base.toLocaleString()} + (${Math.round(net_monthly)} × ${v.analysis_months} months)`, result: Math.round(ending_base) },
+          { step: 5, label: "Customer LTV", calc: `$${v.arpu_monthly} ÷ ${v.monthly_churn_rate}`, result: Math.round(ltv) },
+          { step: 6, label: "LTV:CAC ratio", calc: `$${Math.round(ltv)} ÷ $${v.cac}`, result: Math.round(ltv_cac * 10) / 10 },
+        ];
+        break;
+      }
+
+      case "supply_chain_efficiency": {
+        const shipping_current = v.units_shipped_per_year * v.current_cost_per_unit;
+        const shipping_optimized = v.units_shipped_per_year * v.optimized_cost_per_unit;
+        const waste_current = v.units_shipped_per_year * v.waste_rate_current * v.unit_value;
+        const waste_optimized = v.units_shipped_per_year * v.waste_rate_optimized * v.unit_value;
+        const total_saving = (shipping_current - shipping_optimized) + (waste_current - waste_optimized);
+        final_answer = Math.round(total_saving);
+        worked_solution = [
+          { step: 1, label: "Current shipping cost", calc: `${v.units_shipped_per_year.toLocaleString()} × $${v.current_cost_per_unit}`, result: Math.round(shipping_current) },
+          { step: 2, label: "Optimized shipping cost", calc: `${v.units_shipped_per_year.toLocaleString()} × $${v.optimized_cost_per_unit}`, result: Math.round(shipping_optimized) },
+          { step: 3, label: "Current waste cost", calc: `${v.units_shipped_per_year.toLocaleString()} × ${v.waste_rate_current} × $${v.unit_value}`, result: Math.round(waste_current) },
+          { step: 4, label: "Optimized waste cost", calc: `${v.units_shipped_per_year.toLocaleString()} × ${v.waste_rate_optimized} × $${v.unit_value}`, result: Math.round(waste_optimized) },
+          { step: 5, label: "Total annual saving", calc: `$${Math.round(shipping_current - shipping_optimized)} + $${Math.round(waste_current - waste_optimized)}`, result: Math.round(total_saving) },
+        ];
+        break;
+      }
+
+      case "break_even_investment": {
+        const contribution_margin = v.revenue_per_unit - v.variable_cost_per_unit;
+        const annual_profit = v.expected_units_per_year * contribution_margin - v.additional_fixed_costs_pa;
+        const break_even_units = v.investment_cost / contribution_margin;
+        const payback_years = v.investment_cost / annual_profit;
+        final_answer = Math.round(payback_years * 10) / 10;
+        worked_solution = [
+          { step: 1, label: "Contribution margin", calc: `$${v.revenue_per_unit} − $${v.variable_cost_per_unit}`, result: Math.round(contribution_margin * 100) / 100 },
+          { step: 2, label: "Annual profit from investment", calc: `${v.expected_units_per_year.toLocaleString()} × $${Math.round(contribution_margin)} − $${v.additional_fixed_costs_pa}`, result: Math.round(annual_profit) },
+          { step: 3, label: "Break-even units", calc: `$${v.investment_cost.toLocaleString()} ÷ $${Math.round(contribution_margin)}`, result: Math.round(break_even_units) },
+          { step: 4, label: "Payback period (years)", calc: `$${v.investment_cost.toLocaleString()} ÷ $${Math.round(annual_profit)}`, result: Math.round(payback_years * 10) / 10 },
+        ];
+        break;
+      }
+
+      case "productivity_improvement": {
+        const new_output = v.current_output_per_worker * (1 + v.productivity_improvement);
+        const additional_output = (new_output - v.current_output_per_worker) * v.number_of_workers * v.working_days_per_year;
+        const revenue_value = additional_output * v.value_per_unit;
+        const headcount_saving = v.productivity_improvement * v.number_of_workers;
+        const labor_saving = headcount_saving * v.cost_per_worker_annual;
+        final_answer = Math.round(labor_saving);
+        worked_solution = [
+          { step: 1, label: "New output per worker", calc: `${v.current_output_per_worker} × (1 + ${v.productivity_improvement})`, result: Math.round(new_output * 10) / 10 },
+          { step: 2, label: "Total additional output", calc: `(${Math.round(new_output * 10) / 10} − ${v.current_output_per_worker}) × ${v.number_of_workers} × ${v.working_days_per_year} days`, result: Math.round(additional_output) },
+          { step: 3, label: "Revenue value of output gain", calc: `${Math.round(additional_output).toLocaleString()} × $${v.value_per_unit}`, result: Math.round(revenue_value) },
+          { step: 4, label: "Equivalent headcount saving", calc: `${v.productivity_improvement} × ${v.number_of_workers} workers`, result: Math.round(headcount_saving * 10) / 10 },
+          { step: 5, label: "Annual labor cost saving", calc: `${Math.round(headcount_saving * 10) / 10} × $${v.cost_per_worker_annual}`, result: Math.round(labor_saving) },
+        ];
+        break;
+      }
+
+      case "market_share_shift": {
+        const current_revenue = v.total_market_size * v.current_market_share;
+        const new_market_size = v.total_market_size * (1 + v.market_growth_rate);
+        const new_share = v.current_market_share + v.share_change;
+        const new_revenue = new_market_size * new_share;
+        const revenue_delta = new_revenue - current_revenue;
+        const profit_impact = revenue_delta * v.contribution_margin_pct;
+        final_answer = Math.round(profit_impact);
+        worked_solution = [
+          { step: 1, label: "Current revenue", calc: `$${(v.total_market_size / 1000000).toFixed(0)}M × ${v.current_market_share}`, result: Math.round(current_revenue) },
+          { step: 2, label: "New market size", calc: `$${(v.total_market_size / 1000000).toFixed(0)}M × (1 + ${v.market_growth_rate})`, result: Math.round(new_market_size) },
+          { step: 3, label: "New market share", calc: `${v.current_market_share} + ${v.share_change}`, result: Math.round(new_share * 1000) / 1000 },
+          { step: 4, label: "New revenue", calc: `$${(Math.round(new_market_size) / 1000000).toFixed(0)}M × ${Math.round(new_share * 1000) / 1000}`, result: Math.round(new_revenue) },
+          { step: 5, label: "Revenue delta", calc: `$${Math.round(new_revenue).toLocaleString()} − $${Math.round(current_revenue).toLocaleString()}`, result: Math.round(revenue_delta) },
+          { step: 6, label: "Profit impact", calc: `$${Math.round(revenue_delta).toLocaleString()} × ${v.contribution_margin_pct}`, result: Math.round(profit_impact) },
+        ];
+        break;
+      }
+
+      default:
+        return new Response(
+          JSON.stringify({ error: `Unknown archetype: ${template.archetype}` }),
+          { status: 400 }
+        );
+    }
+
+    return new Response(
+      JSON.stringify({
+        template_id,
+        archetype: template.archetype,
+        firm: firm || "McKinsey",
+        difficulty: difficulty || template.recommended_difficulty,
+        variables,
+        final_answer,
+        worked_solution,
+      }),
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+  } catch (err) {
+    return new Response(
+      JSON.stringify({ error: String(err) }),
+      { status: 500 }
+    );
+  }
+});

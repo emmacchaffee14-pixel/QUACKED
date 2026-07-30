@@ -1,0 +1,200 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const MASTER_PROMPT = `You are the content engine for Quacked — an MBB consulting interview prep platform built for candidates preparing alone, without a consulting club, coach, or structured program.
+
+Your job is to wrap a pre-calculated math problem in a vivid, realistic business scenario. You are NOT doing any math. All numbers are provided to you. You wrap them in a story.
+
+RULES:
+- Never change, invent, or reframe any number provided to you. Use ONLY the values given.
+- Tone: sharp, slightly dry, MBB-authentic. Not academic. Not cheerful. Not generic.
+- The scenario must feel like it could appear in a real McKinsey, Bain, or BCG first round.
+- Intros are 2-3 sentences. Set the scene. Don't over-explain.
+- Facts are 3-4 bullet points. Include only what's needed to solve the problem.
+- The question is one clean sentence ending in a specific number ask.
+- Guiding nudge: one sentence. The setup hint a good interviewer would give if the candidate was stuck.
+- Framework soundbite: one sentence. The mental shortcut a consultant uses for this archetype.
+- Business interpretation: one sentence. What the number MEANS for the business — not just what it is.
+
+FIRM TONE GUIDE:
+- McKinsey: precise, structured, serious. "The client is a..."
+- Bain: warmer, commercial lens. "Your client has noticed..."
+- BCG: analytical, hypothesis-driven. "Initial data suggests..."
+
+DIFFICULTY TONE GUIDE:
+- duckling: straightforward setup, clean numbers, minimal ambiguity
+- billable_bird: moderate complexity, one or two steps that require careful sequencing
+- fully_quacked: tight numbers, higher stakes framing, no hand-holding
+
+OUTPUT FORMAT — respond with valid JSON only. No preamble, no explanation, no markdown:
+{
+  "title": "3-5 words, evocative, specific — not generic",
+  "industry": "single industry label",
+  "intro": "2-3 sentence scene-setter",
+  "facts": ["fact 1", "fact 2", "fact 3", "fact 4"],
+  "question": "single sentence ending in a number ask",
+  "guiding_nudge": "one sentence setup hint",
+  "framework_soundbite": "one sentence mental shortcut",
+  "business_interpretation": "one sentence — what the answer means for the business"
+}`;
+
+Deno.serve(async (req) => {
+  try {
+    const { template_id, firm, difficulty } = await req.json();
+
+    // Connect to Supabase
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
+    // Step 1 — Fetch template
+    const { data: template, error: templateError } = await supabase
+      .from("templates")
+      .select("*")
+      .eq("id", template_id)
+      .single();
+
+    if (templateError || !template) {
+      return new Response(
+        JSON.stringify({ error: "Template not found" }),
+        { status: 404 }
+      );
+    }
+
+    // Step 2 — Call calculate-case to get deterministic numbers
+    const calcRes = await fetch(
+  `${Deno.env.get("SUPABASE_URL")}/functions/v1/calculate-case`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": req.headers.get("Authorization") ?? "",
+    },
+    body: JSON.stringify({ template_id, firm, difficulty }),
+  }
+    );
+
+    const calcData = await calcRes.json();
+
+    if (!calcData.final_answer) {
+      return new Response(
+        JSON.stringify({ error: "Calculator failed", details: calcData }),
+        { status: 500 }
+      );
+    }
+
+    const { variables, final_answer, worked_solution } = calcData;
+
+    // Step 3 — Pick a business context from the template
+    const contexts = template.business_contexts || [];
+    const context = contexts[Math.floor(Math.random() * contexts.length)] || "a large multinational corporation";
+
+    // Pick a question pattern
+    const patterns = template.question_patterns || [];
+    const pattern = patterns[Math.floor(Math.random() * patterns.length)] || "";
+
+    // Step 4 — Call Claude API for wrapper only
+    const aiRes = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": Deno.env.get("ANTHROPIC_API_KEY")!,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-5",
+        max_tokens: 1000,
+        system: MASTER_PROMPT,
+        messages: [
+          {
+            role: "user",
+            content: `Generate a ${firm} case drill using these exact details:
+
+Archetype: ${template.archetype}
+Business context: ${context}
+Firm: ${firm}
+Difficulty: ${difficulty}
+Question pattern to follow: ${pattern}
+
+Calculated variables (use these exact numbers):
+${JSON.stringify(variables, null, 2)}
+
+Final answer: ${final_answer}
+Key insight for this archetype: ${template.key_insight}
+Framework soundbite to adapt: ${template.framework_soundbite}
+
+Remember: output valid JSON only. No markdown. No preamble.`,
+          },
+        ],
+      }),
+    });
+
+    const aiData = await aiRes.json();
+
+    if (!aiData.content || !aiData.content[0]) {
+      return new Response(
+        JSON.stringify({ error: "AI wrapper failed", details: aiData }),
+        { status: 500 }
+      );
+    }
+
+    // Step 5 — Parse AI response
+    let wrapper;
+    try {
+      const rawText = aiData.content[0].text.trim();
+      const cleaned = rawText.replace(/```json|```/g, "").trim();
+      wrapper = JSON.parse(cleaned);
+    } catch (parseErr) {
+      return new Response(
+        JSON.stringify({ error: "Failed to parse AI response", raw: aiData.content[0].text }),
+        { status: 500 }
+      );
+    }
+
+    // Step 6 — Merge: AI wrapper + deterministic math
+    // Math always wins — AI cannot override these fields
+    const finalCase = {
+      template_id,
+      title: wrapper.title,
+      firm,
+      difficulty,
+      industry: wrapper.industry,
+      intro: wrapper.intro,
+      facts: wrapper.facts,
+      question: wrapper.question,
+      guiding_nudge: wrapper.guiding_nudge,
+      framework_soundbite: wrapper.framework_soundbite,
+      worked_solution,        // always from calculator
+      final_answer,           // always from calculator
+      business_interpretation: wrapper.business_interpretation,
+      skills_tested: template.skills_tested,
+      content_type: "drill",
+      status: "pending",
+    };
+
+    // Step 7 — Save to generated_cases
+    const { data: saved, error: saveError } = await supabase
+      .from("generated_cases")
+      .insert(finalCase)
+      .select()
+      .single();
+
+    if (saveError) {
+      return new Response(
+        JSON.stringify({ error: "Failed to save case", details: saveError }),
+        { status: 500 }
+      );
+    }
+
+    return new Response(
+      JSON.stringify(saved),
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+  } catch (err) {
+    return new Response(
+      JSON.stringify({ error: String(err) }),
+      { status: 500 }
+    );
+  }
+});

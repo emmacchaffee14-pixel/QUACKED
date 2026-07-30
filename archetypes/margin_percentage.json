@@ -1,0 +1,43 @@
+{
+  "name": "Margin Percentage",
+  "description": "Calculate gross margin as a percentage of price.",
+  "archetype": "margin_percentage",
+  "content_type": "drill",
+  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
+  "difficulty_range": ["beginner"],
+  "recommended_difficulty": "beginner",
+  "formula": "Margin % = (Price − Cost) / Price × 100",
+  "skills_tested": ["margin_math"],
+  "business_contexts": [
+    "a retailer pricing a product against its wholesale cost",
+    "a restaurant pricing a dish against ingredient cost",
+    "a manufacturer pricing a component against production cost",
+    "a service firm pricing an engagement against delivery cost",
+    "an e-commerce brand pricing an item against landed cost"
+  ],
+  "question_patterns": [
+    "Given the price and cost below, what is the gross margin percentage?",
+    "Calculate margin as a percentage of price from the figures given.",
+    "What percentage of price is margin, given the price and cost shown?",
+    "Calculate the gross margin rate from the price and cost given.",
+    "What gross margin percentage results from the price and cost below?"
+  ],
+  "variables": {
+    "price": { "min": 100, "max": 250, "step": 10, "unit": "$" },
+    "cost": { "min": 30, "max": 150, "step": 10, "unit": "$" }
+  },
+  "solution_logic": [
+    "Step 1: Calculate margin percentage = (price − cost) / price × 100"
+  ],
+  "key_insight": "Margin percentage is always taken as a share of price, not of cost — mixing the two up is the single most common margin-math error.",
+  "common_mistakes": [
+    "Dividing by cost instead of price",
+    "Reporting the dollar margin as if it were the percentage"
+  ],
+  "framework_soundbite": "Margin is the gap over price — cost is what you subtract, price is what you divide by.",
+  "archetype_tags": ["retail", "manufacturing", "food service", "e-commerce"],
+  "display_context": "Core Arithmetic • Margin Percentage",
+  "target_label": "Gross margin (%)",
+  "primary_variables": ["price", "cost"],
+  "waddle_native": true
+}

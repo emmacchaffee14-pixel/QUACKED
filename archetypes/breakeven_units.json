@@ -1,0 +1,45 @@
+{
+  "name": "Breakeven Units",
+  "description": "Calculate the sales volume required to cover fixed costs.",
+  "archetype": "breakeven_units",
+  "content_type": "drill",
+  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
+  "difficulty_range": ["intermediate"],
+  "recommended_difficulty": "intermediate",
+  "formula": "Breakeven units = Fixed costs / (Price − Variable cost per unit)",
+  "skills_tested": ["break_even_analysis", "contribution_margin"],
+  "business_contexts": [
+    "a startup determining how many units it must sell to cover its fixed overhead",
+    "a restaurant determining how many covers it needs to break even each month",
+    "a manufacturer determining the volume needed to cover plant fixed costs",
+    "a software company determining how many seats it needs to cover fixed hosting and support costs",
+    "an event organizer determining how many tickets must sell to break even"
+  ],
+  "question_patterns": [
+    "Given the fixed costs, price, and variable cost per unit below, how many units must be sold to break even?",
+    "Calculate the breakeven volume from the figures given.",
+    "How many units are needed to cover the fixed costs shown, at the price and cost given?",
+    "Calculate the sales volume required to break even, given the figures below.",
+    "Using the fixed costs and per-unit economics given, what is the breakeven unit volume?"
+  ],
+  "variables": {
+    "fixed_costs": { "min": 20000, "max": 200000, "step": 5000, "unit": "$" },
+    "price_per_unit": { "min": 20, "max": 200, "step": 5, "unit": "$" },
+    "variable_cost_per_unit": { "min": 5, "max": 150, "step": 5, "unit": "$" }
+  },
+  "solution_logic": [
+    "Step 1: Calculate contribution margin per unit = price_per_unit − variable_cost_per_unit",
+    "Step 2: Calculate breakeven units = fixed_costs / contribution margin per unit"
+  ],
+  "key_insight": "Breakeven volume is fixed costs divided by contribution margin, never by price — the variable cost per unit has to come out first.",
+  "common_mistakes": [
+    "Dividing fixed costs by price instead of by contribution margin",
+    "Forgetting to subtract variable cost per unit before dividing"
+  ],
+  "framework_soundbite": "Fixed costs over contribution margin — the denominator is what's left after variable cost, not the sticker price.",
+  "archetype_tags": ["startups", "food service", "manufacturing", "software", "events"],
+  "display_context": "Core Arithmetic • Breakeven Units",
+  "target_label": "Breakeven units",
+  "primary_variables": ["fixed_costs", "price_per_unit", "variable_cost_per_unit"],
+  "waddle_native": true
+}

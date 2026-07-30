@@ -1,0 +1,13 @@
+const isFree = !profile.is_paid;
+const isPond = profile.is_paid && profile.xp < 600;
+return new Response(
+  JSON.stringify({
+    allowed: false,
+    reason: "daily_limit_reached",
+    message: isFree
+      ? "You've used your 5 free drills today. Upgrade to The Pond to keep drilling."
+      : isPond
+      ? "You've used your 50 drills today. Upgrade to Big Duck for unlimited drilling."
+      : "You've reached your daily limit.",
+    upgrade_prompt: true,
+  }),

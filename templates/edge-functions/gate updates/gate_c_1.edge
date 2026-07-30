@@ -1,0 +1,23 @@
+if (user_tier_level < case_tier_level) {
+  const tierDisplay: Record<string, string> = {
+    duckling:      "Free",
+    billable_bird: "The Pond",
+    fully_quacked: "Big Duck"
+  };
+  const difficultyDisplay: Record<string, string> = {
+    duckling:      "Duckling",
+    billable_bird: "Billable Bird",
+    fully_quacked: "Fully Quacked"
+  };
+  return new Response(
+    JSON.stringify({
+      allowed: false,
+      reason: "tier_locked",
+      message: `${difficultyDisplay[case_difficulty]} difficulty requires ${tierDisplay[case_difficulty]} or above. Upgrade to unlock.`,
+      upgrade_prompt: true,
+      user_tier,
+      user_tier_display: tierDisplay[user_tier],
+    }),
+    { headers: { "Content-Type": "application/json" } }
+  );
+}

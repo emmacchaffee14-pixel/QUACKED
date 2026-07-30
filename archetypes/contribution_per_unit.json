@@ -1,0 +1,43 @@
+{
+  "name": "Contribution per Unit",
+  "description": "Calculate the contribution margin earned on each unit sold.",
+  "archetype": "contribution_per_unit",
+  "content_type": "drill",
+  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
+  "difficulty_range": ["beginner"],
+  "recommended_difficulty": "beginner",
+  "formula": "Contribution per unit = Price per unit − Variable cost per unit",
+  "skills_tested": ["contribution_margin"],
+  "business_contexts": [
+    "a manufacturer pricing a unit sold to distributors",
+    "a food truck pricing a menu item against ingredient cost",
+    "a hardware brand pricing a device against its bill of materials",
+    "a print shop pricing a job against material cost",
+    "a bottler pricing a case against production cost"
+  ],
+  "question_patterns": [
+    "Given the price and variable cost per unit below, what is the contribution margin per unit?",
+    "Calculate the per-unit contribution margin from the figures given.",
+    "What is the profit contributed by each unit sold, given the price and cost below?",
+    "Calculate the margin earned on each unit from the values shown.",
+    "Using the price and variable cost given, what does each unit contribute?"
+  ],
+  "variables": {
+    "price_per_unit": { "min": 20, "max": 300, "step": 5, "unit": "$" },
+    "variable_cost_per_unit": { "min": 10, "max": 200, "step": 5, "unit": "$" }
+  },
+  "solution_logic": [
+    "Step 1: Calculate contribution per unit = price_per_unit − variable_cost_per_unit"
+  ],
+  "key_insight": "Contribution per unit is the foundation under breakeven, capacity, and pricing math — every one of those formulas starts by subtracting variable cost from price.",
+  "common_mistakes": [
+    "Subtracting fixed costs, which don't belong at the per-unit level",
+    "Reversing the subtraction and reporting a negative contribution"
+  ],
+  "framework_soundbite": "Contribution is what's left after the unit pays for itself — price minus variable cost, nothing else.",
+  "archetype_tags": ["manufacturing", "food service", "retail", "consumer goods"],
+  "display_context": "Core Arithmetic • Contribution per Unit",
+  "target_label": "Contribution margin per unit ($)",
+  "primary_variables": ["price_per_unit", "variable_cost_per_unit"],
+  "waddle_native": true
+}

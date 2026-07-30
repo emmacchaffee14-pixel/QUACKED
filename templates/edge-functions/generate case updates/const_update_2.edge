@@ -1,0 +1,11 @@
+const calcRes = await fetch(
+  `${Deno.env.get("SUPABASE_URL")}/functions/v1/calculate-case`,
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": req.headers.get("Authorization") ?? "",
+    },
+    body: JSON.stringify({ template_id: template.id, firm, difficulty }),
+  }
+);

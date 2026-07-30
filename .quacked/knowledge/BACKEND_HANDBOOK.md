@@ -1,6 +1,6 @@
 # Quacked Backend Handbook
 
-**Last verified against live code + live database: 2026-07-29.**
+**Last verified against live code + live database: 2026-07-30.**
 
 This is the canonical, ground-truth reference for Quacked's Supabase backend —
 every Edge Function, the real database schema (pulled live via
@@ -189,6 +189,8 @@ Read only by `generate-case` and `calculate-case` via the service-role key.
 | framework_soundbite | text | YES | — |
 | archetype_tags | ARRAY | YES | — |
 | display_context | text | YES | — |
+| target_label | text | YES | — |
+| primary_variables | ARRAY | YES | — |
 
 CHECK constraints: none
 RLS: enabled=true; policies: none
@@ -204,6 +206,77 @@ below). Also mirrored in the repo's `archetypes/*.json` source files and
 `archetypes/index.json` (both live at the QUACKED project root, not inside
 `cursor/`) and in `supabase/seed_templates.sql` — keep all three in sync if
 you ever change one archetype's `display_context`.
+
+**⚠️ Sprint 02 follow-up 2 (2026-07-29) — Waddle target clarity**: added two
+more archetype-level fields, populated for all 15 rows (same three places to
+keep in sync: `archetypes/*.json`, `archetypes/index.json`, `seed_templates.sql`):
+- **`target_label`** (text) — one short, unambiguous phrase naming the single
+  quantity `final_answer` represents (e.g. `"Competitive impact ($)"` for
+  `market_share_shift`, `"Total addressable market ($)"` for `market_sizing`).
+  Hand-authored once per archetype, not generated per case.
+- **`primary_variables`** (text[]) — the exact `variables` keys that
+  actually feed the specific calculation step that produces `final_answer`,
+  **derived by reading each archetype's `calculate-case` switch-case branch
+  directly** (not parsed from `formula`, not guessed). For 13 of 15
+  archetypes this is the archetype's full variable set (every variable
+  really is used). Two exceptions where variables are randomized but never
+  actually feed `final_answer` at any difficulty, so are correctly excluded:
+  `capacity_expansion` (excludes `analysis_years` — only feeds an unused
+  `net_return`/`total_profit` display path, not the `payback`/`ramp_payback`
+  that's actually returned) and `productivity_improvement` (excludes
+  `current_output_per_worker`, `value_per_unit`, `working_days_per_year` —
+  only feed an unused `revenue_value` display path, not the
+  `labor_saving`/`first_year_saving` that's actually returned).
+
+  **Per-difficulty nuance, not a clean 1:1 mapping in two cases** (this
+  archetype's calculation branches by `difficulty`, and `primary_variables`
+  is the union across branches, not conditional on difficulty):
+  - `ltv_cac_ratio`: `monthly_churn_rate` is in `primary_variables` (needed
+    for the ratio at beginner/intermediate) but the `advanced` branch's
+    actual `final_answer` (`cac_payback_months`) doesn't use it at all.
+  - `profitability_decline`: the `advanced` branch's actual
+    `final_answer` (`price_effect`) only depends on
+    `{price_per_unit, price_prior, volume_current}` — a strict subset of the
+    base branch's `{price_per_unit, volume_current, price_prior, volume_prior, fixed_costs, variable_cost_per_unit}`.
+
+  Net effect of both: `primary_variables` is a safe **superset** for every
+  difficulty (never hides a variable actually needed at some tier) but isn't
+  minimal for every tier — an acceptable tradeoff since the original bug was
+  "too many/wrong variables shown," not "one extra harmless variable shown."
+
+  **✅ Fixed (2026-07-29, Waddle bug cleanup pass)**: `market_share_shift.formula`'s
+  text was wrong — it read `"Competitive impact = share_lost × competitor_revenue_per_point"`,
+  neither of which are real variables for this archetype, and didn't match
+  what `calculate-case` actually computes. Confirmed `market_share_shift` IS
+  selectable under `mode=waddle` (template selection in `generate-case` never
+  filters by `mode` — only `template_id`/`skill_target`/`archetype`/`industry`),
+  so this was a live correctness bug reachable through Waddle, not just a
+  documentation issue. Corrected to: `"Revenue delta = (Total market size ×
+  (1 + Market growth rate) × (Current market share + Share change)) − (Total
+  market size × Current market share). Profit impact = Revenue delta ×
+  Contribution margin %. At advanced: After-tax impact = Profit impact ×
+  (1 − Tax rate)."` — matches `computeArchetype`'s actual variables and logic.
+  Updated in the live `templates` table, `archetypes/market_share_shift.json`,
+  and `seed_templates.sql` (not `index.json`, which never stored `formula`).
+  `calculate-case`/`generate-case` code was untouched — only the `formula`
+  text data changed, since `calculate-case` never reads that field (it's
+  presentation-only); regression-tested clean on both `dive` and a separate
+  unrelated archetype via `calculate-case` directly.
+
+  **Also note**: `archetypes/*.json`'s own `variables` configs are stale for
+  several archetypes relative to the live `templates` table (missing
+  `tax_rate`/`ramp_utilization`/`cost_inflation_pct`/`training_cost`/
+  `segment_a_pct`+`segment_b_penetration` on the relevant files, plus
+  `throughput_bottleneck` has `operating_hours_per_day` locally vs. the live
+  `operating_days_per_year`, and `supply_chain_efficiency` has
+  `warehousing_cost_annual` locally vs. the live `implementation_cost`).
+  `primary_variables` was derived from the **live DB's real variable names**,
+  not the stale local JSON — so on the 8 affected archetypes,
+  `primary_variables` correctly references variables that don't appear in
+  that same file's own (stale) `variables` object. This is a pre-existing
+  gap, same category as the `customer_growth` split noted above — flagging,
+  not fixing, since correcting `variables` configs would mean inventing
+  min/max/step values without authorization.
 
 ### `generated_cases`
 Written only by `generate-case`. Read by `get-skills` (pond+ recent history),
@@ -359,9 +432,9 @@ see "Tier gating" below, this was a real double-counting bug fixed
 2026-07-28).
 
 **⚠️ Sprint 02 (2026-07-29)**: the case-drill path's **difficulty gate was
-removed entirely.** Previously free tier was locked to `duckling` only; now
-every tier can request any difficulty (`duckling`/`billable_bird`/
-`fully_quacked`) — difficulty is a free user choice, not a tier-gated
+removed entirely.** Previously free tier was locked to `beginner` only; now
+every tier can request any difficulty (`beginner`/`intermediate`/
+`advanced`) — difficulty is a free user choice, not a tier-gated
 feature. `case_difficulty` is still accepted in the body but is no longer
 read for gating purposes (kept for backward compatibility, harmless to send
 or omit). The `tier_locked`/`DIFFICULTY_DISPLAY` response path no longer
@@ -417,7 +490,7 @@ one `skill_history` row per skill, updates `user_profiles.streak_days`/`last_act
 **Purpose**: **sole gate + increment owner** for the arithmetic daily
 counter (dual-mode).
 
-**Body**: `{ user_id, check_only?: boolean, operation?, difficulty?, problem?, correct_answer?, user_answer?, correct?, response_time?, rigor?, timed_out? }`.
+**Body**: `{ user_id, check_only?: boolean, operation?, difficulty?, problem?, correct_answer?, user_answer?, correct?, response_time?, rigor?, timed_out?, skipped? }`.
 
 **Mode 1** (`check_only: true`): read-only peek, no writes. Returns
 `{ allowed, tier, remaining, message?, upgrade_prompt }`.
@@ -426,6 +499,13 @@ counter (dual-mode).
 `ARITHMETIC_LIMITS`, force-resets `rigor` to `"practice"` server-side for
 non-paid/non-admin users regardless of what the client sent (anti-tamper —
 timed modes are paid-only), updates `user_profiles.daily_arithmetic_count`/`last_arithmetic_date`/`streak_days`/`last_active_date` (arithmetic feeds the daily streak too, same as drills).
+
+**✅ Fixed (2026-07-29)**: `Arithmetic.jsx` has always sent `skipped` in the
+attempt body, but this function never destructured or inserted it — silently
+dropped on every call, `arithmetic_attempts.skipped` was always `false`
+regardless of what the client sent. Now destructured and inserted as
+`skipped === true`. Found during an Arithmetic Engine audit; unrelated to
+Waddle, but cheap and real, fixed alongside.
 
 **Response**: `{ recorded, correct, stored_rigor, streak_days, remaining }`.
 
@@ -454,22 +534,67 @@ just unused response fields.
   `title`/`intro`/`guiding_nudge`/`framework_soundbite`/
   `business_interpretation`/`industry` stay `null` — genuinely not needed for
   swim's screen.
-- `waddle`: no AI call, and no facts/question/context narrative at all (pure
-  calculation-speed drill). Response adds `formula` (the archetype's raw
-  `formula` string) and `variables` (every randomized variable as
-  `{ value, unit }`, unit from `template.variables[key].unit`) — deliberately
-  NOT a pre-rendered arithmetic expression string (e.g. `"75 × 0.75 × 15"`),
-  since building that would require parsing `formula`/`solution_logic` to
-  infer operator order, which is fragile. The frontend gets the structured
-  parts and formats them however the (not-yet-built) Waddle screen needs.
-  `title`/`intro`/`facts`/`question`/`guiding_nudge`/`framework_soundbite`/
-  `business_interpretation`/`industry` all stay `null`.
+- `waddle`: no AI call, no context/narrative fields (pure calculation-speed
+  drill) — but **⚠️ Waddle question-text pass (2026-07-30): `question` and
+  `facts` are no longer `null`.** Populated using the exact same mechanism as
+  `swim` (see above): `question` is one of `template.question_patterns`
+  picked at random and used verbatim (no interpolation exists anywhere in
+  this codebase — see the caveat below). `facts` is the humanized/
+  unit-formatted bullet list, same `humanizeVarKey`/`formatVarValue` helpers
+  swim uses — **but deliberately built from only `primary_variables`, not
+  the full variable set swim uses** — showing the unfiltered set here would
+  reintroduce the exact ambiguity the `primary_variables` filter (follow-up
+  2, below) exists to remove. `title`/`intro`/`guiding_nudge`/
+  `framework_soundbite`/`business_interpretation`/`industry` remain `null` —
+  out of scope for this pass, not needed for Waddle's screen per the design
+  brief.
+
+  Response also adds `target_label` (from `template.target_label`),
+  `formula` (the archetype's raw `formula` string), and `variables` —
+  **⚠️ Sprint 02 follow-up 2 (2026-07-29): `variables` is filtered to only
+  the keys in `template.primary_variables`**, each as `{ value, unit }` (unit
+  from `template.variables[key].unit`). Previously showed every randomized
+  variable, which for multi-quantity archetypes (`market_share_shift`'s
+  `formula` names three distinct quantities) left no way to tell which
+  variables fed the one number actually being asked for — see the
+  `templates` schema section above for the fix and its known per-difficulty
+  limitations. `variables` is deliberately NOT a pre-rendered arithmetic
+  expression string (e.g. `"75 × 0.75 × 15"`) — building that would require
+  parsing `formula`/`solution_logic` to infer operator order, which is
+  fragile.
+
+  **⚠️ Pre-existing caveat, affects both `swim` and `waddle` equally (not
+  introduced by either)**: `question_patterns` are used 100% verbatim —
+  there is no interpolation/substitution mechanism anywhere in this
+  codebase, confirmed by checking every archetype's patterns for
+  placeholder-like syntax. Two archetypes' patterns use a bare literal `"X"`
+  as rhetorical phrasing that was presumably meant to be substituted but
+  never is: `market_share_shift` (`"What is the revenue impact of gaining X
+  points of market share?"`) and `productivity_improvement` (`"How many FTEs
+  could be redeployed if productivity increases by X%?"`). If either pattern
+  gets picked, the learner sees a literal "X" in the question. Not fixed
+  here (out of scope for this pass — flagging only); a real fix would need
+  either rewriting those two patterns to be X-free, or building an actual
+  interpolation mechanism (bigger scope, affects swim too).
+- `swim` is unaffected by the follow-up 2 filtering — still intentionally
+  uses all variables for its facts list (separate prior decision, don't
+  conflate the two).
+- `dive` — **⚠️ Sprint 02 follow-up 2 (2026-07-29)**: now also adds
+  `target_label` and `primary_variables` (the array itself, from
+  `template.primary_variables`) to the response, **unfiltered** — for a
+  frontend "Formula Builder" feature to use selectively. Unlike waddle,
+  dive's own `worked_solution`/prose already reflect the full variable set,
+  so nothing about dive's existing fields is filtered or removed — this is
+  purely additive. `fly` does not get these two fields (only `dive` does).
 - Both waddle and swim add `display_context` to the response (from
   `templates.display_context`, plain read passthrough) — **only present for
-  waddle/swim**; `dive`/`fly` responses don't have `display_context`,
-  `formula`, or `variables` — the exact old response shape is preserved for
-  existing callers.
-- `dive`/`fly`: unchanged — full prose generation exactly as before.
+  waddle/swim**; `fly` responses have none of `display_context`, `formula`,
+  `variables`, `target_label`, or `primary_variables` — the exact original
+  response shape is preserved for existing callers. `dive` has
+  `target_label`/`primary_variables` only (as of follow-up 2), nothing else
+  new.
+- `fly`: unchanged — full prose generation exactly as before, no new fields
+  at all.
 
 **Flow** (dive/fly; waddle/swim skip step 3 and null the fields it would
 have populated):
@@ -477,7 +602,37 @@ have populated):
    filter (`skill_target` → `archetype` → `industry`, dropping filters in
    that order if no matches) using `pickWeightedArchetype` (see
    `_shared/archetype-weights.ts` below) for weighted random selection among
-   matches.
+   matches. **⚠️ Waddle content curation (2026-07-30)**: when `mode ===
+   "waddle"`, candidates from each relaxation attempt are additionally
+   filtered to `WADDLE_DIFFICULTY_POOLS[difficulty]` *before* the "did this
+   attempt find anything" check — so an explicit `archetype` request that's
+   ineligible at the requested difficulty gracefully falls through the same
+   relaxation ladder (drops the archetype filter) rather than erroring; only
+   `template_id` lookups bypass the pool entirely (an explicit-ID request is
+   a different, more direct code path, deliberately left unrestricted).
+   `swim`/`dive`/`fly` never consult this pool — full 15-archetype selection,
+   unchanged.
+
+   Audit finding behind this: **zero of the 15 archetypes have ≤3
+   `primary_variables`** (true minimum is 4), and three are genuinely
+   diagnostic/attribution-framed (`cost_structure_creep`,
+   `profitability_decline`, `revenue_mix_shift` — "why did X happen" /
+   "which of three drivers," not direct formula execution), several of which
+   also produce large/awkward signed-dollar answers even at beginner
+   (confirmed live, e.g. `profitability_decline` → -7,040,000).
+   `WADDLE_DIFFICULTY_POOLS` (nested: beginner ⊆ intermediate ⊆ implicit
+   advanced-unrestricted):
+   - **beginner** (4, explicit compromise — none truly meet ≤3, chosen for
+     direct framing + small/clean answers despite 4-6 variables):
+     `break_even_investment`, `capacity_expansion`, `ltv_cac_ratio`, `ltv_horizon`.
+   - **intermediate** (7, beginner's 4 + 3 more, still direct-framed,
+     ≤5 variables): adds `customer_base_growth`, `throughput_bottleneck`,
+     `productivity_improvement`.
+   - **advanced**: no entry — all 15 remain eligible, including the 3
+     diagnostic ones and the large-answer ones, unchanged from today.
+   Product decision on record: ship the imperfect beginner compromise now
+   rather than leave beginner waddle empty; genuinely simple (≤3-variable),
+   non-diagnostic archetypes are real future content work, not done here.
 2. Call `calculate-case` internally via HTTP fetch (passing through the
    `Authorization` header) for the deterministic math.
 3. Call Anthropic (`claude-sonnet-4-5`) with `MASTER_PROMPT` + the resolved
@@ -493,7 +648,7 @@ answer, facts must be self-sufficient. A runtime consistency check logs a
 pre-computed math (doesn't block the response, just logs). None of this
 applies to waddle/swim since they skip prompt/model entirely.
 
-**Response**: full case row (as inserted) + `relaxed_filters` (which filters got dropped, if any); waddle/swim also add `display_context`.
+**Response**: full case row (as inserted) + `relaxed_filters` (which filters got dropped, if any); waddle/swim also add `display_context`, and both now populate `question`/`facts` (verbatim `question_patterns` pick + humanized variable bullets — waddle's facts use only `primary_variables`, swim's use the full set); waddle also adds `target_label`/`formula`/filtered `variables`; dive also adds `target_label`/`primary_variables` (unfiltered).
 
 ### `calculate-case`
 **Purpose**: deterministic math engine. **Backend-only — never called from
@@ -505,14 +660,14 @@ via `generate-case`).
 **Reads**: `templates` by id. Writes nothing.
 
 **Flow**: samples `template.variables` (each `{min,max,step,unit}`) scaled by
-`DIFFICULTY_PROFILE[difficulty]` (`duckling: {lo:0, hi:0.45, clean:1.0}`,
-`billable_bird: {lo:0.25, hi:0.75, clean:0.5}`, `fully_quacked: {lo:0.5,
+`DIFFICULTY_PROFILE[difficulty]` (`beginner: {lo:0, hi:0.45, clean:1.0}`,
+`intermediate: {lo:0.25, hi:0.75, clean:0.5}`, `advanced: {lo:0.5,
 hi:1.0, clean:0.0}` — `clean` controls how aggressively sampled values get
 rounded to "nice" numbers), runs the archetype-specific formula
 (`computeArchetype`, one of 15 — see "Archetype coverage"), retries up to
 `MAX_TRIES = 80` times against archetype-specific `isSane()` guardrails
 (e.g. margins must stay positive, price increases must exceed cost inflation
-by ≥3pp) to avoid degenerate cases. `fully_quacked` frequently swaps in a
+by ≥3pp) to avoid degenerate cases. `advanced` frequently swaps in a
 harder secondary calculation (e.g. after-tax payback instead of pre-tax).
 
 **Response**: `{ template_id, archetype, firm, difficulty, variables, final_answer, worked_solution }`, or **422** if no sane case found after `MAX_TRIES`.
@@ -531,7 +686,7 @@ case `case: null`).
 column instead of `tone` — was 500ing on every call. Now correct.
 
 ### `get-recommendation`
-**Body**: `{ user_id, firm?, difficulty? }` (defaults: McKinsey/duckling).
+**Body**: `{ user_id, firm?, difficulty? }` (defaults: McKinsey/beginner).
 
 **Reads**: `user_skills` ordered ascending (weakest first).
 
@@ -598,7 +753,7 @@ in production.
 <!-- AUTO:TIER_GATING:START (regenerated by scripts/update-handbook.mjs from check-gate/arithmetic-attempt source — do not hand-edit inside this block) -->
 | | Free | Pond | Big Duck |
 |---|---|---|---|
-| **Drills/day** | 3 (duckling only) | 25 (all difficulties) | unlimited |
+| **Drills/day** | 3 (all difficulties) | 25 (all difficulties) | unlimited |
 | **Arithmetic/day** | 15 | 40 | unlimited |
 <!-- AUTO:TIER_GATING:END -->
 | **Skill dashboard** | locked | accuracy/streak/history only | full breakdown |
@@ -646,6 +801,26 @@ exists yet): `adjacent_market_sizing`, `bottom_up_demand_sizing`,
 
 ## Known discrepancies / open questions
 
+- **✅ Difficulty terminology renamed (2026-07-30)**: `duckling`/`billable_bird`/`fully_quacked`
+  → `beginner`/`intermediate`/`advanced`, everywhere — labels only, no
+  algorithm/scoring/progression change. Migrated: `templates.difficulty_range`/
+  `recommended_difficulty`, `generated_cases.difficulty`, `arithmetic_attempts.difficulty`
+  (via `supabase/migrations/20260730_difficulty_rename.sql`), all backend
+  Edge Functions (`calculate-case`, `generate-case` incl. `WADDLE_DIFFICULTY_POOLS`
+  keys, `get-recommendation`'s default), `seed_templates.sql`, all frontend
+  constants/components, and `archetypes/*.json`+`index.json`. Found and fixed
+  in passing: 3 pre-existing `arithmetic_attempts` rows had a stray `"easy"`
+  value (not a real canonical difficulty, predates this rename) — normalized
+  to `beginner`. Two things found but deliberately **not** fixed here (out of
+  scope for a labels-only pass):
+  - `AGENTS.md`'s `TIER_DISPLAY` example conflates subscription tier
+    (free/pond/big_duck) with difficulty naming — pre-existing confusion,
+    predates this rename, only mechanically relabeled in place.
+  - `.quacked/agents/quacked_core_loop_qa_agent.md`'s Test Group 1 still
+    describes the `tier_locked`/difficulty-gate behavior on `check-gate` that
+    was **removed** in an earlier pass (Sprint 02, difficulty is no longer
+    tier-gated at all) — stale independent of terminology, only mechanically
+    relabeled in place, not corrected to match current gating.
 - **`username` migration never applied** (see `user_profiles` section above)
   — file exists in `supabase/migrations/`, live table doesn't have the column.
 - **Dual tier-computation paths**: `AGENTS.md` says `xp` is deprecated for
@@ -680,3 +855,28 @@ exists yet): `adjacent_market_sizing`, `bottom_up_demand_sizing`,
   sprint by reconstructing the 3 files from `seed_templates.sql`'s data).
   Keep `archetypes/*.json` + `index.json` + `seed_templates.sql` in sync by
   hand; nothing enforces it.
+- **RLS on `templates` silently returns 0 rows to anon queries — don't read
+  that as "table is empty."** `templates` has `relrowsecurity = true` and
+  zero policies defined (confirmed via `pg_policies`), so PostgREST's
+  default-deny applies: a `select count(*)` (or any select) using the anon/
+  publishable key returns `content-range: */0` — a normal 200 response, not
+  an error. It looks exactly like an empty table. The table actually has 15
+  rows (confirmed via `supabase db query --linked`, which runs with elevated
+  privileges and bypasses RLS, same as edge functions using
+  `getServiceKey()`). Always check row counts against `templates` (and any
+  other RLS-enabled table) with a service-role/CLI-authenticated query, never
+  the anon key, or you'll misdiagnose a permissions gap as missing data.
+- **`seed_templates.sql`'s reset delete is a `NOT IN` whitelist, not a scoped
+  filter — any row not on that literal id list gets deleted, including rows
+  that were never meant to be in its scope.** The statement is `DELETE FROM
+  templates WHERE waddle_native = false AND id NOT IN (<15 case-archetype
+  UUIDs>)`. The `waddle_native = false` guard was added when Waddle-native
+  rows were introduced (`seed_templates_waddle.sql`) — without it, re-running
+  this seed (which happens routinely whenever a case-archetype batch changes)
+  would silently delete every Waddle row, since none of their ids are or ever
+  will be in the case seed's literal list. It would look like the Waddle seed
+  had failed, not that it got clobbered by an unrelated script. **Any future
+  category of non-case `templates` rows needs the same treatment**: either
+  its own exclusion guard added to this delete, or — better — its own
+  dedicated seed file with its own correctly-scoped delete, the pattern
+  `seed_templates_waddle.sql` follows.

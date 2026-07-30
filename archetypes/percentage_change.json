@@ -1,0 +1,43 @@
+{
+  "name": "Percentage Change",
+  "description": "Calculate the percentage change between two values.",
+  "archetype": "percentage_change",
+  "content_type": "drill",
+  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
+  "difficulty_range": ["beginner"],
+  "recommended_difficulty": "beginner",
+  "formula": "Percentage change = (New value − Old value) / Old value × 100",
+  "skills_tested": ["ratio_math", "rate_math"],
+  "business_contexts": [
+    "a company tracking revenue from one quarter to the next",
+    "a retailer comparing foot traffic year over year",
+    "a factory comparing output between two shifts",
+    "an airline comparing ticket prices between two seasons",
+    "a subscription service comparing signups month to month"
+  ],
+  "question_patterns": [
+    "Given the starting and ending values below, what is the percentage change?",
+    "Calculate the percentage change between the two values shown.",
+    "By what percentage did the value change, given the figures below?",
+    "What is the percent change from the first figure to the second, shown below?",
+    "Using the values given, calculate the percentage change."
+  ],
+  "variables": {
+    "value_before": { "min": 2000, "max": 50000, "step": 1000, "unit": "$" },
+    "value_after": { "min": 2000, "max": 50000, "step": 1000, "unit": "$" }
+  },
+  "solution_logic": [
+    "Step 1: Calculate percentage change = (value_after − value_before) / value_before × 100"
+  ],
+  "key_insight": "Percentage change is always measured against the starting value, never the ending value — the base of the fraction never moves.",
+  "common_mistakes": [
+    "Dividing by the ending value instead of the starting value",
+    "Forgetting to multiply by 100 and reporting a decimal fraction as if it were a percentage"
+  ],
+  "framework_soundbite": "Change over start, always — the denominator is where you began, not where you ended up.",
+  "archetype_tags": ["finance", "retail", "operations", "corporate"],
+  "display_context": "Core Arithmetic • Percentage Change",
+  "target_label": "Percentage change (%)",
+  "primary_variables": ["value_before", "value_after"],
+  "waddle_native": true
+}

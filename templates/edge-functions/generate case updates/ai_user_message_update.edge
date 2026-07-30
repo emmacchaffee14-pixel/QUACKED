@@ -1,0 +1,18 @@
+content: `Generate a ${firm} case drill using these exact details:
+
+Archetype: ${template.archetype}
+Business context: ${context}
+Firm: ${firm}
+Difficulty: ${difficulty}
+Question pattern to follow: ${pattern}
+${skill_target ? `Focus skill: ${skill_target} — make sure the core math tests this skill directly.` : ""}
+${industry ? `Industry context: ${industry}` : ""}
+
+Calculated variables (use these exact numbers):
+${JSON.stringify(variables, null, 2)}
+
+Final answer: ${final_answer}
+Key insight for this archetype: ${template.key_insight}
+Framework soundbite to adapt: ${template.framework_soundbite}
+
+Remember: output valid JSON only. No markdown. No preamble.`,

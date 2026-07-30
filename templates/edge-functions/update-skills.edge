@@ -1,0 +1,134 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+Deno.serve(async (req) => {
+  try {
+    const { user_id, case_id, correct } = await req.json();
+
+    if (!user_id || !case_id || correct === undefined) {
+      return new Response(
+        JSON.stringify({ error: "Missing required fields: user_id, case_id, correct" }),
+        { status: 400 }
+      );
+    }
+
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
+    // Fetch the case to get skills_tested
+    const { data: drill, error: caseError } = await supabase
+      .from("generated_cases")
+      .select("skills_tested")
+      .eq("id", case_id)
+      .single();
+
+    if (caseError || !drill) {
+      return new Response(
+        JSON.stringify({ error: "Case not found", details: caseError }),
+        { status: 404 }
+      );
+    }
+
+    const skills: string[] = drill.skills_tested || [];
+
+    if (skills.length === 0) {
+      return new Response(
+        JSON.stringify({ message: "No skills tagged on this case — nothing to update" }),
+        { headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // Score movement rules
+    // Correct: +8 (gains are earned gradually)
+    // Wrong: -12 (losses are felt — forces honest mastery)
+    const delta = correct ? 8 : -12;
+
+    const updates = [];
+    const historyRows = [];
+
+    for (const skill of skills) {
+      // Get current score for this skill
+      const { data: existing } = await supabase
+        .from("user_skills")
+        .select("score")
+        .eq("user_id", user_id)
+        .eq("skill", skill)
+        .single();
+
+      const score_before = existing?.score ?? 50;
+      const score_after = Math.max(0, Math.min(100, score_before + delta));
+
+      // Upsert skill score
+      updates.push(
+        supabase
+          .from("user_skills")
+          .upsert(
+            {
+              user_id,
+              skill,
+              score: score_after,
+              last_updated: new Date().toISOString(),
+            },
+            { onConflict: "user_id,skill" }
+          )
+      );
+
+      // Log to skill_history
+      historyRows.push({
+        user_id,
+        skill,
+        score_before,
+        score_after,
+        delta,
+        correct,
+        case_id,
+      });
+    }
+
+    // Run all skill updates
+    await Promise.all(updates);
+
+    // Insert history rows
+    const { error: historyError } = await supabase
+      .from("skill_history")
+      .insert(historyRows);
+
+    if (historyError) {
+      return new Response(
+        JSON.stringify({ error: "Failed to write skill history", details: historyError }),
+        { status: 500 }
+      );
+    }
+
+    // Also update user_attempts with correct/incorrect
+    await supabase
+      .from("user_attempts")
+      .update({ correct })
+      .eq("id", case_id);
+
+    // Return updated skill scores for the frontend to display
+    const { data: updatedSkills } = await supabase
+      .from("user_skills")
+      .select("skill, score")
+      .eq("user_id", user_id)
+      .in("skill", skills);
+
+    return new Response(
+      JSON.stringify({
+        message: "Skill scores updated",
+        skills_updated: skills,
+        correct,
+        delta,
+        updated_scores: updatedSkills,
+      }),
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+  } catch (err) {
+    return new Response(
+      JSON.stringify({ error: String(err) }),
+      { status: 500 }
+    );
+  }
+});

@@ -1,0 +1,137 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+Deno.serve(async (req) => {
+  try {
+    const { user_id, admin_password } = await req.json();
+
+    const ADMIN_OVERRIDE_PASSWORD = Deno.env.get("ADMIN_OVERRIDE_PASSWORD");
+
+    if (!user_id) {
+      return new Response(
+        JSON.stringify({ error: "Missing required field: user_id" }),
+        { status: 400 }
+      );
+    }
+
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
+    // Check if user is paid or admin — skill dashboard is paid only
+    // Admin override bypasses this check
+    const isAdminOverride = Boolean(ADMIN_OVERRIDE_PASSWORD) && admin_password === ADMIN_OVERRIDE_PASSWORD;
+
+    if (!isAdminOverride) {
+      const { data: profile, error: profileError } = await supabase
+        .from("user_profiles")
+        .select("is_paid, is_admin")
+        .eq("id", user_id)
+        .single();
+
+      if (profileError || !profile) {
+        return new Response(
+          JSON.stringify({ error: "User not found" }),
+          { status: 404 }
+        );
+      }
+
+      if (!profile.is_paid && !profile.is_admin) {
+        return new Response(
+          JSON.stringify({
+            error: "skill_dashboard_locked",
+            message: "Skill tracking is a Billable Bird feature. Upgrade to unlock your full performance dashboard.",
+            upgrade_prompt: true,
+          }),
+          { status: 403 }
+        );
+      }
+    }
+
+    // Fetch all skill scores for this user
+    const { data: skills, error: skillsError } = await supabase
+      .from("user_skills")
+      .select("skill, score, last_updated")
+      .eq("user_id", user_id)
+      .order("score", { ascending: true });
+
+    if (skillsError) {
+      return new Response(
+        JSON.stringify({ error: "Failed to fetch skills", details: skillsError }),
+        { status: 500 }
+      );
+    }
+
+    // Fetch skill history for trend data — last 30 entries per skill
+    const { data: history, error: historyError } = await supabase
+      .from("skill_history")
+      .select("skill, score_before, score_after, delta, correct, created_at")
+      .eq("user_id", user_id)
+      .order("created_at", { ascending: false })
+      .limit(100);
+
+    if (historyError) {
+      return new Response(
+        JSON.stringify({ error: "Failed to fetch skill history", details: historyError }),
+        { status: 500 }
+      );
+    }
+
+    // Categorize skills by strength
+    const categorized = {
+      needs_work: skills?.filter(s => s.score < 50) || [],
+      developing:  skills?.filter(s => s.score >= 50 && s.score < 75) || [],
+      strong:      skills?.filter(s => s.score >= 75) || [],
+    };
+
+    // Find most improved and most struggled skills
+    const skillDeltas: Record<string, number> = {};
+    for (const entry of history || []) {
+      skillDeltas[entry.skill] = (skillDeltas[entry.skill] || 0) + entry.delta;
+    }
+
+    const sortedByDelta = Object.entries(skillDeltas).sort((a, b) => b[1] - a[1]);
+    const most_improved = sortedByDelta[0]?.[0] || null;
+    const most_struggled = sortedByDelta[sortedByDelta.length - 1]?.[0] || null;
+
+    // Total drills and accuracy
+    const { count: total_drills } = await supabase
+      .from("user_attempts")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", user_id);
+
+    const { count: correct_drills } = await supabase
+      .from("user_attempts")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", user_id)
+      .eq("correct", true);
+
+    const accuracy = total_drills
+      ? Math.round(((correct_drills || 0) / total_drills) * 100)
+      : 0;
+
+    return new Response(
+      JSON.stringify({
+        user_id,
+        skills: skills || [],
+        categorized,
+        history: history || [],
+        summary: {
+          total_skills_tracked: skills?.length || 0,
+          most_improved,
+          most_struggled,
+          total_drills: total_drills || 0,
+          correct_drills: correct_drills || 0,
+          accuracy_pct: accuracy,
+        },
+      }),
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+  } catch (err) {
+    return new Response(
+      JSON.stringify({ error: String(err) }),
+      { status: 500 }
+    );
+  }
+});
