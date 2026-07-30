@@ -10,11 +10,11 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
-  "formula": "Revenue = Market size \u00d7 Market share. Share gain revenue = Market size \u00d7 share_delta. Competitive impact = share_lost \u00d7 competitor_revenue_per_point.",
+  "recommended_difficulty": "intermediate",
+  "formula": "Revenue delta = (Total market size \u00d7 (1 + Market growth rate) \u00d7 (Current market share + Share change)) \u2212 (Total market size \u00d7 Current market share). Profit impact = Revenue delta \u00d7 Contribution margin %. At advanced difficulty: After-tax impact = Profit impact \u00d7 (1 \u2212 Tax rate).",
   "skills_tested": [
     "market_share_math",
     "competitive_dynamics",
@@ -88,5 +88,14 @@
     "pricing",
     "M&A"
   ],
-  "display_context": "Competitive Strategy \u2022 Market Share"
+  "display_context": "Competitive Strategy \u2022 Market Share",
+  "target_label": "Competitive impact ($)",
+  "primary_variables": [
+    "total_market_size",
+    "current_market_share",
+    "market_growth_rate",
+    "share_change",
+    "contribution_margin_pct",
+    "tax_rate"
+  ]
 }

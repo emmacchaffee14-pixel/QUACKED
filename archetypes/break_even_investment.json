@@ -10,11 +10,11 @@
     "BCG"
   ],
   "difficulty_range": [
-    "duckling",
-    "billable_bird",
-    "fully_quacked"
+    "beginner",
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "duckling",
+  "recommended_difficulty": "beginner",
   "formula": "Break-even units = Fixed investment / Contribution margin per unit. Break-even time = Investment / Annual profit uplift.",
   "skills_tested": [
     "break_even_analysis",
@@ -89,5 +89,14 @@
     "energy",
     "healthcare"
   ],
-  "display_context": "Capital Investment \u2022 Break-Even"
+  "display_context": "Capital Investment \u2022 Break-Even",
+  "target_label": "Payback period (years)",
+  "primary_variables": [
+    "investment_cost",
+    "expected_units_per_year",
+    "revenue_per_unit",
+    "variable_cost_per_unit",
+    "additional_fixed_costs_pa",
+    "tax_rate"
+  ]
 }

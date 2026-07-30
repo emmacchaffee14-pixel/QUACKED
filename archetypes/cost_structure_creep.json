@@ -10,11 +10,11 @@
     "BCG"
   ],
   "difficulty_range": [
-    "duckling",
-    "billable_bird",
-    "fully_quacked"
+    "beginner",
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "Profit = (Price - Variable Cost per Unit) \u00d7 Volume - Fixed Costs (price, volume, and fixed costs held constant) = Profit_current vs Profit_prior",
   "skills_tested": [
     "profitability",
@@ -86,5 +86,13 @@
     "consumer goods",
     "industrials"
   ],
-  "display_context": "Manufacturing \u2022 Cost Creep"
+  "display_context": "Manufacturing \u2022 Cost Creep",
+  "target_label": "Profit impact of cost creep ($)",
+  "primary_variables": [
+    "price_per_unit",
+    "variable_cost_per_unit_prior",
+    "variable_cost_per_unit_current",
+    "volume",
+    "fixed_costs"
+  ]
 }

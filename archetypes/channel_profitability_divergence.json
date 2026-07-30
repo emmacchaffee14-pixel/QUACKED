@@ -10,10 +10,10 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "Channel Profit = (Price - Variable Cost per Unit) \u00d7 Units - Allocated Fixed Cost = Profit_A vs Profit_B",
   "skills_tested": [
     "profitability",
@@ -103,5 +103,16 @@
     "insurance",
     "e-commerce"
   ],
-  "display_context": "Retail \u2022 Channel Profitability"
+  "display_context": "Retail \u2022 Channel Profitability",
+  "target_label": "Profit gap between channels ($)",
+  "primary_variables": [
+    "channel_a_price",
+    "channel_a_variable_cost",
+    "channel_a_units",
+    "channel_a_fixed_cost",
+    "channel_b_price",
+    "channel_b_variable_cost",
+    "channel_b_units",
+    "channel_b_fixed_cost"
+  ]
 }

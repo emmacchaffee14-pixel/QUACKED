@@ -10,10 +10,10 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "Total logistics cost = (Units \u00d7 Cost_per_unit_shipped) + Warehousing + Spoilage/waste. Saving = current - optimized.",
   "skills_tested": [
     "cost_per_unit",
@@ -100,5 +100,15 @@
     "food & beverage",
     "pharma"
   ],
-  "display_context": "Logistics \u2022 Supply Chain Efficiency"
+  "display_context": "Logistics \u2022 Supply Chain Efficiency",
+  "target_label": "Annual cost saving ($)",
+  "primary_variables": [
+    "units_shipped_per_year",
+    "current_cost_per_unit",
+    "optimized_cost_per_unit",
+    "waste_rate_current",
+    "waste_rate_optimized",
+    "unit_value",
+    "implementation_cost"
+  ]
 }

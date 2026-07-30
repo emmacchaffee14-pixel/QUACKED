@@ -10,10 +10,10 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "Optimal price tests: Revenue = Price \u00d7 Volume(Price). Profit-maximizing when MR = MC.",
   "skills_tested": [
     "pricing",
@@ -94,5 +94,15 @@
     "hospitality",
     "airlines"
   ],
-  "display_context": "Consumer Goods \u2022 Pricing"
+  "display_context": "Consumer Goods \u2022 Pricing",
+  "target_label": "Profit impact of price change ($)",
+  "primary_variables": [
+    "current_price",
+    "variable_cost_per_unit",
+    "current_volume",
+    "fixed_costs",
+    "price_increase_pct",
+    "price_elasticity",
+    "cost_inflation_pct"
+  ]
 }

@@ -10,11 +10,11 @@
     "BCG"
   ],
   "difficulty_range": [
-    "duckling",
-    "billable_bird",
-    "fully_quacked"
+    "beginner",
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "duckling",
+  "recommended_difficulty": "beginner",
   "formula": "Net monthly change = (Base x Acquisition Rate) - (Base x Churn Rate); Ending Base = Base + (Net x Months)",
   "skills_tested": [
     "churn_math",
@@ -88,5 +88,13 @@
     "fintech",
     "media"
   ],
-  "display_context": "Subscription Business \u2022 Net Customer Growth"
+  "display_context": "Subscription Business \u2022 Net Customer Growth",
+  "target_label": "Ending customer base",
+  "primary_variables": [
+    "starting_customer_base",
+    "monthly_acquisition_rate",
+    "monthly_churn_rate",
+    "analysis_months",
+    "arpu_monthly"
+  ]
 }

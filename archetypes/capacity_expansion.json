@@ -10,10 +10,10 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "Net benefit = (Additional units \u00d7 Contribution margin \u00d7 Years) - Capex - (Additional fixed costs \u00d7 Years)",
   "skills_tested": [
     "capex_analysis",
@@ -93,5 +93,14 @@
     "hospitals",
     "energy"
   ],
-  "display_context": "Operations \u2022 Capacity Expansion"
+  "display_context": "Operations \u2022 Capacity Expansion",
+  "target_label": "Payback period (years)",
+  "primary_variables": [
+    "capex_required",
+    "additional_capacity_units",
+    "expected_utilization",
+    "contribution_margin",
+    "additional_fixed_costs",
+    "ramp_utilization"
+  ]
 }

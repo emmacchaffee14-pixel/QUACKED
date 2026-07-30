@@ -10,10 +10,10 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "Months retained = min(1 / Churn Rate, Horizon); LTV = ARPU x Gross Margin x Months Retained",
   "skills_tested": [
     "unit_economics",
@@ -88,5 +88,13 @@
     "private_equity",
     "B2B"
   ],
-  "display_context": "Private Equity \u2022 Hold-Period Valuation"
+  "display_context": "Private Equity \u2022 Hold-Period Valuation",
+  "target_label": "Customer lifetime value ($)",
+  "primary_variables": [
+    "arpu_monthly",
+    "gross_margin_pct",
+    "monthly_churn_rate",
+    "horizon_months",
+    "cac"
+  ]
 }

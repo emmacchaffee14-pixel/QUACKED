@@ -10,10 +10,10 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "Max throughput = min(capacity_per_stage) \u00d7 utilization \u00d7 operating_hours",
   "skills_tested": [
     "throughput",
@@ -86,5 +86,13 @@
     "hospitals",
     "airlines"
   ],
-  "display_context": "Operations \u2022 Capacity Bottleneck"
+  "display_context": "Operations \u2022 Capacity Bottleneck",
+  "target_label": "Margin lost to bottleneck ($)",
+  "primary_variables": [
+    "units_demanded_per_day",
+    "bottleneck_capacity",
+    "utilization_rate",
+    "unit_contribution_margin",
+    "operating_days_per_year"
+  ]
 }

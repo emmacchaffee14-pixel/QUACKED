@@ -10,11 +10,11 @@
     "BCG"
   ],
   "difficulty_range": [
-    "duckling",
-    "billable_bird",
-    "fully_quacked"
+    "beginner",
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "duckling",
+  "recommended_difficulty": "beginner",
   "formula": "Productivity = Output / Input. Gain = (New output - Old output) \u00d7 value per unit. Labor saving = headcount_reduction \u00d7 cost_per_employee.",
   "skills_tested": [
     "productivity_math",
@@ -94,5 +94,12 @@
     "healthcare",
     "retail operations"
   ],
-  "display_context": "Operations \u2022 Productivity"
+  "display_context": "Operations \u2022 Productivity",
+  "target_label": "Annual labor cost saving ($)",
+  "primary_variables": [
+    "productivity_improvement",
+    "number_of_workers",
+    "cost_per_worker_annual",
+    "training_cost"
+  ]
 }

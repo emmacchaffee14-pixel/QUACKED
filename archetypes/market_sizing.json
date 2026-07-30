@@ -10,10 +10,10 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "TAM = Population \u00d7 Penetration_rate \u00d7 Purchase_frequency \u00d7 Average_spend",
   "skills_tested": [
     "market_sizing",
@@ -86,5 +86,15 @@
     "investor pitch",
     "PE due diligence"
   ],
-  "display_context": "Market Entry \u2022 Sizing"
+  "display_context": "Market Entry \u2022 Sizing",
+  "target_label": "Total addressable market ($)",
+  "primary_variables": [
+    "target_population",
+    "addressable_segment",
+    "penetration_rate",
+    "purchase_frequency",
+    "avg_spend_per_purchase",
+    "segment_a_pct",
+    "segment_b_penetration"
+  ]
 }

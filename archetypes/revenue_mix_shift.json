@@ -10,10 +10,10 @@
     "BCG"
   ],
   "difficulty_range": [
-    "billable_bird",
-    "fully_quacked"
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "Profit = Total Volume \u00d7 [(Mix % A \u00d7 Contribution Margin A) + (Mix % B \u00d7 Contribution Margin B)] = Profit_current vs Profit_prior",
   "skills_tested": [
     "profitability",
@@ -87,5 +87,13 @@
     "restaurants",
     "telecom"
   ],
-  "display_context": "Retail \u2022 Revenue Mix"
+  "display_context": "Retail \u2022 Revenue Mix",
+  "target_label": "Profit impact of mix shift ($)",
+  "primary_variables": [
+    "total_volume",
+    "mix_pct_a_prior",
+    "mix_pct_a_current",
+    "contribution_margin_a",
+    "contribution_margin_b"
+  ]
 }

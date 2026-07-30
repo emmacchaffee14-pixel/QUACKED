@@ -10,11 +10,11 @@
     "BCG"
   ],
   "difficulty_range": [
-    "duckling",
-    "billable_bird",
-    "fully_quacked"
+    "beginner",
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "duckling",
+  "recommended_difficulty": "beginner",
   "formula": "Profit = Revenue - Fixed Costs - Variable Costs = (Price \u00d7 Volume) - Fixed - (Variable_cost_per_unit \u00d7 Volume)",
   "skills_tested": [
     "profitability",
@@ -94,5 +94,14 @@
     "consumer goods",
     "industrials"
   ],
-  "display_context": "Consumer Retail \u2022 Profitability Decline"
+  "display_context": "Consumer Retail \u2022 Profitability Decline",
+  "target_label": "Profit change ($)",
+  "primary_variables": [
+    "price_per_unit",
+    "volume_current",
+    "price_prior",
+    "volume_prior",
+    "fixed_costs",
+    "variable_cost_per_unit"
+  ]
 }

@@ -10,11 +10,11 @@
     "BCG"
   ],
   "difficulty_range": [
-    "duckling",
-    "billable_bird",
-    "fully_quacked"
+    "beginner",
+    "intermediate",
+    "advanced"
   ],
-  "recommended_difficulty": "billable_bird",
+  "recommended_difficulty": "intermediate",
   "formula": "LTV = (ARPU x Gross Margin) / Monthly Churn Rate; LTV:CAC = LTV / CAC",
   "skills_tested": [
     "unit_economics",
@@ -83,5 +83,12 @@
     "telecoms",
     "consumer"
   ],
-  "display_context": "SaaS \u2022 Growth Spend ROI"
+  "display_context": "SaaS \u2022 Growth Spend ROI",
+  "target_label": "LTV to CAC ratio",
+  "primary_variables": [
+    "arpu_monthly",
+    "gross_margin_pct",
+    "monthly_churn_rate",
+    "cac"
+  ]
 }
