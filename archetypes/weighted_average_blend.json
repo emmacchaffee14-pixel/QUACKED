@@ -1,0 +1,92 @@
+{
+  "name": "Weighted Average Blend",
+  "description": "Calculate a blended weighted average across three segments given their individual values and mix weights.",
+  "archetype": "weighted_average_blend",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "advanced"
+  ],
+  "recommended_difficulty": "advanced",
+  "formula": "Weighted average = (Value A × Weight A) + (Value B × Weight B) + (Value C × Weight C), where Weight C = 1 − Weight A − Weight B",
+  "skills_tested": [
+    "weighted_average_math"
+  ],
+  "business_contexts": [
+    "a company blending average selling price across three customer segments",
+    "a retailer blending average margin across three product categories",
+    "a bank blending average interest rate across three loan tiers",
+    "an airline blending average fare across three cabin classes",
+    "a service firm blending average bill rate across three consultant levels"
+  ],
+  "question_patterns": [
+    "Given the three segment values and their mix weights below, what is the weighted average?",
+    "Calculate the blended weighted average across the three segments shown.",
+    "What is the overall weighted average, given the segment values and weights below?",
+    "Calculate the weighted average across all three segments, using the mix weights given.",
+    "Using the values and weights below, what is the blended weighted average?"
+  ],
+  "variables": {
+    "value_a": {
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "$"
+    },
+    "value_b": {
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "$"
+    },
+    "value_c": {
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "$"
+    },
+    "weight_a": {
+      "min": 0.1,
+      "max": 0.6,
+      "step": 0.1,
+      "unit": "% of total"
+    },
+    "weight_b": {
+      "min": 0.1,
+      "max": 0.6,
+      "step": 0.1,
+      "unit": "% of total"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate weight_c = 1 − weight_a − weight_b",
+    "Step 2: Calculate weighted average = (value_a × weight_a) + (value_b × weight_b) + (value_c × weight_c)"
+  ],
+  "key_insight": "A weighted average always lands between the smallest and largest segment value — if your answer falls outside that range, the weights are wrong.",
+  "common_mistakes": [
+    "Taking a simple (unweighted) average of the three values instead of applying the mix weights",
+    "Forgetting that the third weight isn't given directly — it's 1 minus the other two"
+  ],
+  "framework_soundbite": "Weighted average is a mix, not a mean — multiply each value by its share of the whole before adding.",
+  "archetype_tags": [
+    "consumer goods",
+    "banking",
+    "airlines",
+    "professional services",
+    "retail"
+  ],
+  "display_context": "Core Arithmetic • Weighted Average Blend",
+  "target_label": "Weighted average ($)",
+  "primary_variables": [
+    "value_a",
+    "value_b",
+    "value_c",
+    "weight_a",
+    "weight_b"
+  ]
+}

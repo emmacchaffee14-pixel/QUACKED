@@ -1,0 +1,87 @@
+{
+  "name": "Market Sizing (Single Funnel)",
+  "description": "Estimate total addressable market by carrying a population through a single penetration-and-spend funnel.",
+  "archetype": "market_sizing_single_funnel",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "advanced"
+  ],
+  "recommended_difficulty": "advanced",
+  "formula": "TAM = Population × Penetration rate × Spend per purchase × Purchase frequency",
+  "skills_tested": [
+    "market_sizing",
+    "estimation"
+  ],
+  "business_contexts": [
+    "a consumer brand sizing the market for a new product category",
+    "a subscription service sizing its addressable market in a region",
+    "a healthcare company sizing demand for a new service",
+    "a fintech sizing the market for a new financial product",
+    "a retailer sizing demand for a new store format in a region"
+  ],
+  "question_patterns": [
+    "Given the population, penetration rate, spend per purchase, and purchase frequency below, what is the total addressable market?",
+    "Calculate the total addressable market from the figures given.",
+    "What is the TAM, given the population and funnel figures below?",
+    "Calculate total addressable market by carrying the population through the funnel shown.",
+    "Using the figures given, what is the total addressable market size?"
+  ],
+  "variables": {
+    "population": {
+      "min": 200000,
+      "max": 1500000,
+      "step": 50000,
+      "unit": "people"
+    },
+    "penetration_rate": {
+      "min": 0.05,
+      "max": 0.2,
+      "step": 0.05,
+      "unit": "%"
+    },
+    "avg_spend_per_purchase": {
+      "min": 20,
+      "max": 120,
+      "step": 10,
+      "unit": "$"
+    },
+    "purchase_frequency": {
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "purchases/year"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate penetrating population = population × penetration_rate",
+    "Step 2: Calculate annual spend per person = avg_spend_per_purchase × purchase_frequency",
+    "Step 3: Calculate TAM = penetrating population × annual spend per person"
+  ],
+  "key_insight": "A market-sizing estimate is a chain of multiplications, not a lookup — the discipline is carrying the population down through each layer of the funnel without skipping one.",
+  "common_mistakes": [
+    "Multiplying spend per purchase by population directly, skipping the penetration rate",
+    "Forgetting purchase frequency and treating spend per purchase as annual spend"
+  ],
+  "framework_soundbite": "Population, times penetration, times spend, times frequency — four multiplications, in that order, nothing skipped.",
+  "archetype_tags": [
+    "consumer goods",
+    "subscriptions",
+    "healthcare",
+    "fintech",
+    "retail"
+  ],
+  "display_context": "Core Arithmetic • Single-Funnel Market Sizing",
+  "target_label": "Total addressable market ($)",
+  "primary_variables": [
+    "population",
+    "penetration_rate",
+    "avg_spend_per_purchase",
+    "purchase_frequency"
+  ]
+}

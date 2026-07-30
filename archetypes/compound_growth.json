@@ -1,0 +1,78 @@
+{
+  "name": "Compound Growth",
+  "description": "Project a starting value forward across several periods of compounding growth.",
+  "archetype": "compound_growth",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "advanced"
+  ],
+  "recommended_difficulty": "advanced",
+  "formula": "Ending value = Starting value × (1 + Growth rate) ^ Number of periods",
+  "skills_tested": [
+    "growth_dynamics",
+    "rate_math"
+  ],
+  "business_contexts": [
+    "a company projecting revenue forward at a compounding annual growth rate",
+    "an investor projecting a portfolio's value forward at a compounding return",
+    "a city projecting population forward at a compounding growth rate",
+    "a startup projecting its user base forward at a compounding growth rate",
+    "a bank projecting a compounding balance forward across several years"
+  ],
+  "question_patterns": [
+    "Given the starting value, growth rate, and number of periods below, what is the ending value under compound growth?",
+    "Calculate the ending value after compounding the growth rate below across the periods shown.",
+    "What value results from compounding the starting value below at the growth rate given, across the periods shown?",
+    "Calculate the compounded ending value using the figures below.",
+    "Using the figures given, project the starting value forward under compound growth."
+  ],
+  "variables": {
+    "starting_value": {
+      "min": 5000,
+      "max": 50000,
+      "step": 1000,
+      "unit": "$"
+    },
+    "growth_rate": {
+      "min": 0.03,
+      "max": 0.2,
+      "step": 0.01,
+      "unit": "% per period"
+    },
+    "periods": {
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "unit": "periods"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate ending value = starting_value × (1 + growth_rate) ^ periods"
+  ],
+  "key_insight": "Compound growth applies the rate to the already-grown value each period, unlike simple growth — the gap between the two widens with every additional period.",
+  "common_mistakes": [
+    "Applying the growth rate as simple growth (rate × periods) instead of raising (1 + rate) to the power of periods",
+    "Forgetting that the exponent is the number of periods, not the growth rate"
+  ],
+  "framework_soundbite": "Compound growth raises (1 + rate) to the power of the periods — each period grows off the last, not off the original base.",
+  "archetype_tags": [
+    "corporate",
+    "investing",
+    "demographics",
+    "startups",
+    "banking"
+  ],
+  "display_context": "Core Arithmetic • Compound Growth",
+  "target_label": "Ending value ($)",
+  "primary_variables": [
+    "starting_value",
+    "growth_rate",
+    "periods"
+  ]
+}

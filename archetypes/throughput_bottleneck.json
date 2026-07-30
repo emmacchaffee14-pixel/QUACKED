@@ -4,6 +4,7 @@
   "description": "Operations cannot support demand growth.",
   "archetype": "throughput_bottleneck",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -14,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Max throughput = min(capacity_per_stage) \u00d7 utilization \u00d7 operating_hours",
+  "formula": "Max throughput = min(capacity_per_stage) × utilization × operating_hours",
   "skills_tested": [
     "throughput",
     "capacity_math",
@@ -67,9 +68,9 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate effective capacity = bottleneck_capacity \u00d7 utilization_rate",
+    "Step 1: Calculate effective capacity = bottleneck_capacity × utilization_rate",
     "Step 2: Calculate unmet demand = units_demanded_per_day - effective_capacity",
-    "Step 3: Calculate daily revenue lost = unmet_demand \u00d7 unit_contribution_margin",
+    "Step 3: Calculate daily revenue lost = unmet_demand × unit_contribution_margin",
     "Step 4: Determine if bottleneck relief (e.g. extra shift) covers the gap"
   ],
   "key_insight": "The system output is always limited by the single slowest stage. Optimizing anything else first is waste.",
@@ -86,7 +87,7 @@
     "hospitals",
     "airlines"
   ],
-  "display_context": "Operations \u2022 Capacity Bottleneck",
+  "display_context": "Operations • Capacity Bottleneck",
   "target_label": "Margin lost to bottleneck ($)",
   "primary_variables": [
     "units_demanded_per_day",

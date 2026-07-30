@@ -4,6 +4,7 @@
   "description": "Per-unit costs have quietly risen over time, eroding profit even though price and volume held steady.",
   "archetype": "cost_structure_creep",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -15,7 +16,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Profit = (Price - Variable Cost per Unit) \u00d7 Volume - Fixed Costs (price, volume, and fixed costs held constant) = Profit_current vs Profit_prior",
+  "formula": "Profit = (Price - Variable Cost per Unit) × Volume - Fixed Costs (price, volume, and fixed costs held constant) = Profit_current vs Profit_prior",
   "skills_tested": [
     "profitability",
     "margin_math",
@@ -68,17 +69,17 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate prior profit = (price_per_unit - variable_cost_per_unit_prior) \u00d7 volume - fixed_costs",
-    "Step 2: Calculate current profit = (price_per_unit - variable_cost_per_unit_current) \u00d7 volume - fixed_costs",
+    "Step 1: Calculate prior profit = (price_per_unit - variable_cost_per_unit_prior) × volume - fixed_costs",
+    "Step 2: Calculate current profit = (price_per_unit - variable_cost_per_unit_current) × volume - fixed_costs",
     "Step 3: Calculate profit delta = current profit - prior profit"
   ],
-  "key_insight": "Stable revenue can mask real profit erosion \u2014 always check per-unit costs, not just totals, before concluding the business is healthy.",
+  "key_insight": "Stable revenue can mask real profit erosion — always check per-unit costs, not just totals, before concluding the business is healthy.",
   "common_mistakes": [
     "Assuming flat revenue means flat profit",
     "Comparing total costs instead of per-unit costs",
     "Forgetting that price and volume are unchanged, so the entire delta is cost-driven"
   ],
-  "framework_soundbite": "Flat revenue can still hide a profit problem \u2014 check per-unit costs before you diagnose.",
+  "framework_soundbite": "Flat revenue can still hide a profit problem — check per-unit costs before you diagnose.",
   "archetype_tags": [
     "retail",
     "manufacturing",
@@ -86,7 +87,7 @@
     "consumer goods",
     "industrials"
   ],
-  "display_context": "Manufacturing \u2022 Cost Creep",
+  "display_context": "Manufacturing • Cost Creep",
   "target_label": "Profit impact of cost creep ($)",
   "primary_variables": [
     "price_per_unit",

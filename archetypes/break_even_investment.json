@@ -4,6 +4,7 @@
   "description": "Determine whether an investment pays off financially.",
   "archetype": "break_even_investment",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -69,18 +70,18 @@
   },
   "solution_logic": [
     "Step 1: Calculate contribution margin = revenue_per_unit - variable_cost_per_unit",
-    "Step 2: Calculate annual profit from investment = (expected_units \u00d7 contribution_margin) - additional_fixed_costs_pa",
+    "Step 2: Calculate annual profit from investment = (expected_units × contribution_margin) - additional_fixed_costs_pa",
     "Step 3: Calculate break-even units = investment_cost / contribution_margin",
     "Step 4: Calculate break-even time = investment_cost / annual_profit_from_investment",
-    "Step 5: Assess viability \u2014 payback under 3 years is typically acceptable in most industries"
+    "Step 5: Assess viability — payback under 3 years is typically acceptable in most industries"
   ],
-  "key_insight": "Break-even is not the goal \u2014 it's the floor. The real question is how much return exceeds break-even over the investment's life.",
+  "key_insight": "Break-even is not the goal — it's the floor. The real question is how much return exceeds break-even over the investment's life.",
   "common_mistakes": [
     "Using revenue instead of contribution margin in the denominator",
     "Forgetting additional fixed costs that come with the investment",
     "Confusing break-even units with break-even time"
   ],
-  "framework_soundbite": "Break-even tells you the minimum \u2014 how long until you stop losing. What matters is the return above break-even.",
+  "framework_soundbite": "Break-even tells you the minimum — how long until you stop losing. What matters is the return above break-even.",
   "archetype_tags": [
     "manufacturing",
     "retail",
@@ -89,7 +90,7 @@
     "energy",
     "healthcare"
   ],
-  "display_context": "Capital Investment \u2022 Break-Even",
+  "display_context": "Capital Investment • Break-Even",
   "target_label": "Payback period (years)",
   "primary_variables": [
     "investment_cost",

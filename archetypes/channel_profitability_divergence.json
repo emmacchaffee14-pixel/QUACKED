@@ -4,6 +4,7 @@
   "description": "One sales channel is quietly profitable while another is dragging down overall performance.",
   "archetype": "channel_profitability_divergence",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -14,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Channel Profit = (Price - Variable Cost per Unit) \u00d7 Units - Allocated Fixed Cost = Profit_A vs Profit_B",
+  "formula": "Channel Profit = (Price - Variable Cost per Unit) × Units - Allocated Fixed Cost = Profit_A vs Profit_B",
   "skills_tested": [
     "profitability",
     "margin_math",
@@ -85,17 +86,17 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate Channel A profit = (channel_a_price - channel_a_variable_cost) \u00d7 channel_a_units - channel_a_fixed_cost",
-    "Step 2: Calculate Channel B profit = (channel_b_price - channel_b_variable_cost) \u00d7 channel_b_units - channel_b_fixed_cost",
+    "Step 1: Calculate Channel A profit = (channel_a_price - channel_a_variable_cost) × channel_a_units - channel_a_fixed_cost",
+    "Step 2: Calculate Channel B profit = (channel_b_price - channel_b_variable_cost) × channel_b_units - channel_b_fixed_cost",
     "Step 3: Calculate profit gap = Channel A profit - Channel B profit"
   ],
-  "key_insight": "Blended, company-wide margins can hide a channel that's actively destroying value \u2014 always break profitability down by channel before recommending a fix.",
+  "key_insight": "Blended, company-wide margins can hide a channel that's actively destroying value — always break profitability down by channel before recommending a fix.",
   "common_mistakes": [
     "Comparing channel revenue instead of channel profit",
     "Treating the given fixed cost figures as needing further allocation instead of taking them as the channel's already-assigned cost",
     "Assuming the higher-revenue channel is automatically the more profitable one"
   ],
-  "framework_soundbite": "A healthy blended margin can hide one channel eating the other's lunch \u2014 split profit by channel before you diagnose.",
+  "framework_soundbite": "A healthy blended margin can hide one channel eating the other's lunch — split profit by channel before you diagnose.",
   "archetype_tags": [
     "retail",
     "consumer goods",
@@ -103,7 +104,7 @@
     "insurance",
     "e-commerce"
   ],
-  "display_context": "Retail \u2022 Channel Profitability",
+  "display_context": "Retail • Channel Profitability",
   "target_label": "Profit gap between channels ($)",
   "primary_variables": [
     "channel_a_price",

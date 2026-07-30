@@ -3,11 +3,20 @@
   "description": "Calculate the contribution margin earned on each unit sold.",
   "archetype": "contribution_per_unit",
   "content_type": "drill",
-  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
-  "difficulty_range": ["beginner"],
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
   "recommended_difficulty": "beginner",
   "formula": "Contribution per unit = Price per unit − Variable cost per unit",
-  "skills_tested": ["contribution_margin"],
+  "skills_tested": [
+    "contribution_margin"
+  ],
   "business_contexts": [
     "a manufacturer pricing a unit sold to distributors",
     "a food truck pricing a menu item against ingredient cost",
@@ -23,8 +32,18 @@
     "Using the price and variable cost given, what does each unit contribute?"
   ],
   "variables": {
-    "price_per_unit": { "min": 20, "max": 300, "step": 5, "unit": "$" },
-    "variable_cost_per_unit": { "min": 10, "max": 200, "step": 5, "unit": "$" }
+    "price_per_unit": {
+      "min": 20,
+      "max": 300,
+      "step": 5,
+      "unit": "$"
+    },
+    "variable_cost_per_unit": {
+      "min": 10,
+      "max": 200,
+      "step": 5,
+      "unit": "$"
+    }
   },
   "solution_logic": [
     "Step 1: Calculate contribution per unit = price_per_unit − variable_cost_per_unit"
@@ -35,9 +54,16 @@
     "Reversing the subtraction and reporting a negative contribution"
   ],
   "framework_soundbite": "Contribution is what's left after the unit pays for itself — price minus variable cost, nothing else.",
-  "archetype_tags": ["manufacturing", "food service", "retail", "consumer goods"],
+  "archetype_tags": [
+    "manufacturing",
+    "food service",
+    "retail",
+    "consumer goods"
+  ],
   "display_context": "Core Arithmetic • Contribution per Unit",
   "target_label": "Contribution margin per unit ($)",
-  "primary_variables": ["price_per_unit", "variable_cost_per_unit"],
-  "waddle_native": true
+  "primary_variables": [
+    "price_per_unit",
+    "variable_cost_per_unit"
+  ]
 }

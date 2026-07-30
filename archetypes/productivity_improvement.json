@@ -4,6 +4,7 @@
   "description": "Increase labor, machine, or asset productivity.",
   "archetype": "productivity_improvement",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -15,7 +16,7 @@
     "advanced"
   ],
   "recommended_difficulty": "beginner",
-  "formula": "Productivity = Output / Input. Gain = (New output - Old output) \u00d7 value per unit. Labor saving = headcount_reduction \u00d7 cost_per_employee.",
+  "formula": "Productivity = Output / Input. Gain = (New output - Old output) × value per unit. Labor saving = headcount_reduction × cost_per_employee.",
   "skills_tested": [
     "productivity_math",
     "labor_economics",
@@ -74,17 +75,17 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate new output per worker = current_output \u00d7 (1 + productivity_improvement)",
-    "Step 2: Calculate total additional output = (new_output - current_output) \u00d7 number_of_workers \u00d7 working_days",
-    "Step 3: Calculate revenue value of additional output = additional_output \u00d7 value_per_unit",
-    "Step 4: Calculate equivalent headcount saving = improvement_pct \u00d7 number_of_workers",
-    "Step 5: Calculate annual labor cost saving = headcount_saving \u00d7 cost_per_worker_annual"
+    "Step 1: Calculate new output per worker = current_output × (1 + productivity_improvement)",
+    "Step 2: Calculate total additional output = (new_output - current_output) × number_of_workers × working_days",
+    "Step 3: Calculate revenue value of additional output = additional_output × value_per_unit",
+    "Step 4: Calculate equivalent headcount saving = improvement_pct × number_of_workers",
+    "Step 5: Calculate annual labor cost saving = headcount_saving × cost_per_worker_annual"
   ],
   "key_insight": "Productivity gains can be captured as either more output with the same headcount, or the same output with fewer people. Which the client wants determines the recommendation.",
   "common_mistakes": [
     "Applying productivity improvement to revenue directly instead of output units",
     "Forgetting to multiply by working days to get annual figures",
-    "Not distinguishing between output gains and cost savings \u2014 they're different recommendations"
+    "Not distinguishing between output gains and cost savings — they're different recommendations"
   ],
   "framework_soundbite": "Productivity improvement has two levers: you can take it as volume or as cost. The right answer depends on whether demand exceeds supply.",
   "archetype_tags": [
@@ -94,7 +95,7 @@
     "healthcare",
     "retail operations"
   ],
-  "display_context": "Operations \u2022 Productivity",
+  "display_context": "Operations • Productivity",
   "target_label": "Annual labor cost saving ($)",
   "primary_variables": [
     "productivity_improvement",

@@ -3,11 +3,21 @@
   "description": "Calculate total gross margin dollars generated across a given sales volume.",
   "archetype": "margin_dollar_with_volume",
   "content_type": "drill",
-  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
-  "difficulty_range": ["intermediate"],
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
   "recommended_difficulty": "intermediate",
   "formula": "Total margin dollars = (Price − Cost) × Volume",
-  "skills_tested": ["margin_math", "revenue_math"],
+  "skills_tested": [
+    "margin_math",
+    "revenue_math"
+  ],
   "business_contexts": [
     "a retailer totaling margin dollars across units sold in a period",
     "a manufacturer totaling margin dollars across a production run",
@@ -23,9 +33,24 @@
     "Using the figures given, what is the total margin earned across the full volume?"
   ],
   "variables": {
-    "price": { "min": 50, "max": 300, "step": 10, "unit": "$" },
-    "cost": { "min": 20, "max": 200, "step": 10, "unit": "$" },
-    "volume": { "min": 500, "max": 5000, "step": 100, "unit": "units" }
+    "price": {
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "$"
+    },
+    "cost": {
+      "min": 20,
+      "max": 200,
+      "step": 10,
+      "unit": "$"
+    },
+    "volume": {
+      "min": 500,
+      "max": 5000,
+      "step": 100,
+      "unit": "units"
+    }
   },
   "solution_logic": [
     "Step 1: Calculate per-unit margin = price − cost",
@@ -37,9 +62,17 @@
     "Multiplying price (not the price-cost gap) by volume"
   ],
   "framework_soundbite": "Per-unit margin times volume — the two numbers only mean something once multiplied together.",
-  "archetype_tags": ["retail", "manufacturing", "distribution", "consumer goods"],
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "distribution",
+    "consumer goods"
+  ],
   "display_context": "Core Arithmetic • Margin Dollars with Volume",
   "target_label": "Total margin ($)",
-  "primary_variables": ["price", "cost", "volume"],
-  "waddle_native": true
+  "primary_variables": [
+    "price",
+    "cost",
+    "volume"
+  ]
 }

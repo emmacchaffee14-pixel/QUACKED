@@ -3,11 +3,21 @@
   "description": "Calculate the amount represented by a percentage of a base value.",
   "archetype": "percentage_of_base",
   "content_type": "drill",
-  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
-  "difficulty_range": ["beginner"],
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
   "recommended_difficulty": "beginner",
   "formula": "Amount = Base value × Percentage rate",
-  "skills_tested": ["ratio_math", "rate_math"],
+  "skills_tested": [
+    "ratio_math",
+    "rate_math"
+  ],
   "business_contexts": [
     "a company allocating a percentage of revenue to a bonus pool",
     "a retailer applying a discount rate to a listed price",
@@ -23,8 +33,18 @@
     "Applying the percentage rate to the base value below, what is the result?"
   ],
   "variables": {
-    "base_value": { "min": 2000, "max": 60000, "step": 1000, "unit": "$" },
-    "percentage_rate": { "min": 0.05, "max": 0.40, "step": 0.05, "unit": "%" }
+    "base_value": {
+      "min": 2000,
+      "max": 60000,
+      "step": 1000,
+      "unit": "$"
+    },
+    "percentage_rate": {
+      "min": 0.05,
+      "max": 0.4,
+      "step": 0.05,
+      "unit": "%"
+    }
   },
   "solution_logic": [
     "Step 1: Calculate resulting amount = base_value × percentage_rate"
@@ -35,9 +55,16 @@
     "Confusing the base value with the resulting amount"
   ],
   "framework_soundbite": "A percentage is just a rate — multiply it straight through the base.",
-  "archetype_tags": ["finance", "retail", "corporate", "budgeting"],
+  "archetype_tags": [
+    "finance",
+    "retail",
+    "corporate",
+    "budgeting"
+  ],
   "display_context": "Core Arithmetic • Percentage of Base",
   "target_label": "Resulting amount ($)",
-  "primary_variables": ["base_value", "percentage_rate"],
-  "waddle_native": true
+  "primary_variables": [
+    "base_value",
+    "percentage_rate"
+  ]
 }

@@ -3,11 +3,20 @@
   "description": "Calculate gross margin as a percentage of price.",
   "archetype": "margin_percentage",
   "content_type": "drill",
-  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
-  "difficulty_range": ["beginner"],
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
   "recommended_difficulty": "beginner",
   "formula": "Margin % = (Price − Cost) / Price × 100",
-  "skills_tested": ["margin_math"],
+  "skills_tested": [
+    "margin_math"
+  ],
   "business_contexts": [
     "a retailer pricing a product against its wholesale cost",
     "a restaurant pricing a dish against ingredient cost",
@@ -23,8 +32,18 @@
     "What gross margin percentage results from the price and cost below?"
   ],
   "variables": {
-    "price": { "min": 100, "max": 250, "step": 10, "unit": "$" },
-    "cost": { "min": 30, "max": 150, "step": 10, "unit": "$" }
+    "price": {
+      "min": 100,
+      "max": 250,
+      "step": 10,
+      "unit": "$"
+    },
+    "cost": {
+      "min": 30,
+      "max": 150,
+      "step": 10,
+      "unit": "$"
+    }
   },
   "solution_logic": [
     "Step 1: Calculate margin percentage = (price − cost) / price × 100"
@@ -35,9 +54,16 @@
     "Reporting the dollar margin as if it were the percentage"
   ],
   "framework_soundbite": "Margin is the gap over price — cost is what you subtract, price is what you divide by.",
-  "archetype_tags": ["retail", "manufacturing", "food service", "e-commerce"],
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "food service",
+    "e-commerce"
+  ],
   "display_context": "Core Arithmetic • Margin Percentage",
   "target_label": "Gross margin (%)",
-  "primary_variables": ["price", "cost"],
-  "waddle_native": true
+  "primary_variables": [
+    "price",
+    "cost"
+  ]
 }

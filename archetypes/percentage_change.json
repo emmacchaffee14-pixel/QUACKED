@@ -3,11 +3,21 @@
   "description": "Calculate the percentage change between two values.",
   "archetype": "percentage_change",
   "content_type": "drill",
-  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
-  "difficulty_range": ["beginner"],
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
   "recommended_difficulty": "beginner",
   "formula": "Percentage change = (New value − Old value) / Old value × 100",
-  "skills_tested": ["ratio_math", "rate_math"],
+  "skills_tested": [
+    "ratio_math",
+    "rate_math"
+  ],
   "business_contexts": [
     "a company tracking revenue from one quarter to the next",
     "a retailer comparing foot traffic year over year",
@@ -23,8 +33,18 @@
     "Using the values given, calculate the percentage change."
   ],
   "variables": {
-    "value_before": { "min": 2000, "max": 50000, "step": 1000, "unit": "$" },
-    "value_after": { "min": 2000, "max": 50000, "step": 1000, "unit": "$" }
+    "value_before": {
+      "min": 2000,
+      "max": 50000,
+      "step": 1000,
+      "unit": "$"
+    },
+    "value_after": {
+      "min": 2000,
+      "max": 50000,
+      "step": 1000,
+      "unit": "$"
+    }
   },
   "solution_logic": [
     "Step 1: Calculate percentage change = (value_after − value_before) / value_before × 100"
@@ -35,9 +55,16 @@
     "Forgetting to multiply by 100 and reporting a decimal fraction as if it were a percentage"
   ],
   "framework_soundbite": "Change over start, always — the denominator is where you began, not where you ended up.",
-  "archetype_tags": ["finance", "retail", "operations", "corporate"],
+  "archetype_tags": [
+    "finance",
+    "retail",
+    "operations",
+    "corporate"
+  ],
   "display_context": "Core Arithmetic • Percentage Change",
   "target_label": "Percentage change (%)",
-  "primary_variables": ["value_before", "value_after"],
-  "waddle_native": true
+  "primary_variables": [
+    "value_before",
+    "value_after"
+  ]
 }

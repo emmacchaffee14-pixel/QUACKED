@@ -4,6 +4,7 @@
   "description": "Determine whether the lifetime value of a customer justifies what it costs to acquire them.",
   "archetype": "ltv_cac_ratio",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -83,7 +84,7 @@
     "telecoms",
     "consumer"
   ],
-  "display_context": "SaaS \u2022 Growth Spend ROI",
+  "display_context": "SaaS • Growth Spend ROI",
   "target_label": "LTV to CAC ratio",
   "primary_variables": [
     "arpu_monthly",

@@ -3,11 +3,21 @@
   "description": "Calculate a client's market share relative to its largest competitor.",
   "archetype": "relative_market_share",
   "content_type": "drill",
-  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
-  "difficulty_range": ["intermediate"],
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
   "recommended_difficulty": "intermediate",
   "formula": "Relative market share = Client revenue / Largest competitor's revenue",
-  "skills_tested": ["market_share_math", "competitive_dynamics"],
+  "skills_tested": [
+    "market_share_math",
+    "competitive_dynamics"
+  ],
   "business_contexts": [
     "a consumer brand benchmarked against its top three rivals",
     "a regional bank benchmarked against its top three competitors",
@@ -23,10 +33,30 @@
     "Using the revenues below, calculate relative market share against the largest competitor."
   ],
   "variables": {
-    "client_revenue": { "min": 20, "max": 500, "step": 10, "unit": "$M" },
-    "competitor_a_revenue": { "min": 20, "max": 500, "step": 10, "unit": "$M" },
-    "competitor_b_revenue": { "min": 20, "max": 500, "step": 10, "unit": "$M" },
-    "competitor_c_revenue": { "min": 20, "max": 500, "step": 10, "unit": "$M" }
+    "client_revenue": {
+      "min": 20,
+      "max": 500,
+      "step": 10,
+      "unit": "$M"
+    },
+    "competitor_a_revenue": {
+      "min": 20,
+      "max": 500,
+      "step": 10,
+      "unit": "$M"
+    },
+    "competitor_b_revenue": {
+      "min": 20,
+      "max": 500,
+      "step": 10,
+      "unit": "$M"
+    },
+    "competitor_c_revenue": {
+      "min": 20,
+      "max": 500,
+      "step": 10,
+      "unit": "$M"
+    }
   },
   "solution_logic": [
     "Step 1: Identify the largest competitor revenue = max(competitor_a_revenue, competitor_b_revenue, competitor_c_revenue)",
@@ -38,9 +68,19 @@
     "Dividing by the wrong competitor after misidentifying which revenue figure is largest"
   ],
   "framework_soundbite": "Relative share is always against the biggest rival — find the largest number first, then divide.",
-  "archetype_tags": ["consumer goods", "banking", "software", "airlines", "retail"],
+  "archetype_tags": [
+    "consumer goods",
+    "banking",
+    "software",
+    "airlines",
+    "retail"
+  ],
   "display_context": "Core Arithmetic • Relative Market Share",
   "target_label": "Relative market share (x)",
-  "primary_variables": ["client_revenue", "competitor_a_revenue", "competitor_b_revenue", "competitor_c_revenue"],
-  "waddle_native": true
+  "primary_variables": [
+    "client_revenue",
+    "competitor_a_revenue",
+    "competitor_b_revenue",
+    "competitor_c_revenue"
+  ]
 }

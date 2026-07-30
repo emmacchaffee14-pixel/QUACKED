@@ -1,0 +1,87 @@
+{
+  "name": "Net Margin After Fixed Costs",
+  "description": "Calculate net margin dollars after covering fixed costs, given price, cost, and volume.",
+  "archetype": "margin_net_with_fixed",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "advanced"
+  ],
+  "recommended_difficulty": "advanced",
+  "formula": "Net margin = (Price − Cost) × Volume − Fixed costs",
+  "skills_tested": [
+    "margin_math",
+    "cost_structure"
+  ],
+  "business_contexts": [
+    "a manufacturer assessing net profitability of a product line after overhead",
+    "a retailer assessing net margin of a store after fixed operating costs",
+    "a software company assessing net margin of a product after fixed hosting and support costs",
+    "a restaurant assessing net margin after rent and fixed labor",
+    "a distributor assessing net margin of a contract after fixed warehousing costs"
+  ],
+  "question_patterns": [
+    "Given the price, cost, volume, and fixed costs below, what is the net margin?",
+    "Calculate net margin after fixed costs, using the figures given.",
+    "What is the net margin, in dollars, once fixed costs are covered, given the figures below?",
+    "Calculate the net margin remaining after fixed costs are subtracted from gross margin.",
+    "Using the price, cost, volume, and fixed costs shown, what is the net margin?"
+  ],
+  "variables": {
+    "price": {
+      "min": 100,
+      "max": 250,
+      "step": 10,
+      "unit": "$"
+    },
+    "cost": {
+      "min": 40,
+      "max": 150,
+      "step": 10,
+      "unit": "$"
+    },
+    "volume": {
+      "min": 2000,
+      "max": 6000,
+      "step": 200,
+      "unit": "units"
+    },
+    "fixed_costs": {
+      "min": 80000,
+      "max": 250000,
+      "step": 10000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate per-unit margin = price − cost",
+    "Step 2: Calculate gross margin = per-unit margin × volume",
+    "Step 3: Calculate net margin = gross margin − fixed_costs"
+  ],
+  "key_insight": "Gross margin only tells half the story — fixed costs have to come out before you know whether volume actually clears the bar.",
+  "common_mistakes": [
+    "Reporting gross margin (before fixed costs) as if it were net margin",
+    "Subtracting fixed costs per unit instead of subtracting the total fixed cost once from the total gross margin"
+  ],
+  "framework_soundbite": "Gross margin minus fixed costs, once — not per unit, and not skipped.",
+  "archetype_tags": [
+    "manufacturing",
+    "retail",
+    "software",
+    "food service",
+    "distribution"
+  ],
+  "display_context": "Core Arithmetic • Net Margin After Fixed Costs",
+  "target_label": "Net margin ($)",
+  "primary_variables": [
+    "price",
+    "cost",
+    "volume",
+    "fixed_costs"
+  ]
+}

@@ -4,6 +4,7 @@
   "description": "Determine pricing impact on revenue and profit.",
   "archetype": "pricing_optimization",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -14,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Optimal price tests: Revenue = Price \u00d7 Volume(Price). Profit-maximizing when MR = MC.",
+  "formula": "Optimal price tests: Revenue = Price × Volume(Price). Profit-maximizing when MR = MC.",
   "skills_tested": [
     "pricing",
     "elasticity",
@@ -73,11 +74,11 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate new price = current_price \u00d7 (1 + price_increase_pct)",
-    "Step 2: Calculate volume change = current_volume \u00d7 (price_elasticity \u00d7 price_increase_pct)",
+    "Step 1: Calculate new price = current_price × (1 + price_increase_pct)",
+    "Step 2: Calculate volume change = current_volume × (price_elasticity × price_increase_pct)",
     "Step 3: Calculate new volume = current_volume + volume_change",
-    "Step 4: Calculate current profit = (current_price - variable_cost_per_unit) \u00d7 current_volume - fixed_costs",
-    "Step 5: Calculate new profit = (new_price - variable_cost_per_unit) \u00d7 new_volume - fixed_costs",
+    "Step 4: Calculate current profit = (current_price - variable_cost_per_unit) × current_volume - fixed_costs",
+    "Step 5: Calculate new profit = (new_price - variable_cost_per_unit) × new_volume - fixed_costs",
     "Step 6: Calculate profit delta to determine if price increase is worthwhile"
   ],
   "key_insight": "A price increase only wins if the margin gain per unit outweighs the volume lost. Always check both sides.",
@@ -94,7 +95,7 @@
     "hospitality",
     "airlines"
   ],
-  "display_context": "Consumer Goods \u2022 Pricing",
+  "display_context": "Consumer Goods • Pricing",
   "target_label": "Profit impact of price change ($)",
   "primary_variables": [
     "current_price",

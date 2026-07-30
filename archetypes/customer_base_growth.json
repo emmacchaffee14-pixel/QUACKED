@@ -4,6 +4,7 @@
   "description": "Project how a customer base changes when acquisition and churn pull in opposite directions.",
   "archetype": "customer_base_growth",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -88,7 +89,7 @@
     "fintech",
     "media"
   ],
-  "display_context": "Subscription Business \u2022 Net Customer Growth",
+  "display_context": "Subscription Business • Net Customer Growth",
   "target_label": "Ending customer base",
   "primary_variables": [
     "starting_customer_base",

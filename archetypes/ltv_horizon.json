@@ -4,6 +4,7 @@
   "description": "Value a customer over a defined contract or planning window rather than their full expected lifetime.",
   "archetype": "ltv_horizon",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -88,7 +89,7 @@
     "private_equity",
     "B2B"
   ],
-  "display_context": "Private Equity \u2022 Hold-Period Valuation",
+  "display_context": "Private Equity • Hold-Period Valuation",
   "target_label": "Customer lifetime value ($)",
   "primary_variables": [
     "arpu_monthly",

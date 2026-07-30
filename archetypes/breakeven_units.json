@@ -3,11 +3,21 @@
   "description": "Calculate the sales volume required to cover fixed costs.",
   "archetype": "breakeven_units",
   "content_type": "drill",
-  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
-  "difficulty_range": ["intermediate"],
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
   "recommended_difficulty": "intermediate",
   "formula": "Breakeven units = Fixed costs / (Price − Variable cost per unit)",
-  "skills_tested": ["break_even_analysis", "contribution_margin"],
+  "skills_tested": [
+    "break_even_analysis",
+    "contribution_margin"
+  ],
   "business_contexts": [
     "a startup determining how many units it must sell to cover its fixed overhead",
     "a restaurant determining how many covers it needs to break even each month",
@@ -23,9 +33,24 @@
     "Using the fixed costs and per-unit economics given, what is the breakeven unit volume?"
   ],
   "variables": {
-    "fixed_costs": { "min": 20000, "max": 200000, "step": 5000, "unit": "$" },
-    "price_per_unit": { "min": 20, "max": 200, "step": 5, "unit": "$" },
-    "variable_cost_per_unit": { "min": 5, "max": 150, "step": 5, "unit": "$" }
+    "fixed_costs": {
+      "min": 20000,
+      "max": 200000,
+      "step": 5000,
+      "unit": "$"
+    },
+    "price_per_unit": {
+      "min": 20,
+      "max": 200,
+      "step": 5,
+      "unit": "$"
+    },
+    "variable_cost_per_unit": {
+      "min": 5,
+      "max": 150,
+      "step": 5,
+      "unit": "$"
+    }
   },
   "solution_logic": [
     "Step 1: Calculate contribution margin per unit = price_per_unit − variable_cost_per_unit",
@@ -37,9 +62,18 @@
     "Forgetting to subtract variable cost per unit before dividing"
   ],
   "framework_soundbite": "Fixed costs over contribution margin — the denominator is what's left after variable cost, not the sticker price.",
-  "archetype_tags": ["startups", "food service", "manufacturing", "software", "events"],
+  "archetype_tags": [
+    "startups",
+    "food service",
+    "manufacturing",
+    "software",
+    "events"
+  ],
   "display_context": "Core Arithmetic • Breakeven Units",
   "target_label": "Breakeven units",
-  "primary_variables": ["fixed_costs", "price_per_unit", "variable_cost_per_unit"],
-  "waddle_native": true
+  "primary_variables": [
+    "fixed_costs",
+    "price_per_unit",
+    "variable_cost_per_unit"
+  ]
 }

@@ -4,6 +4,7 @@
   "description": "Revenue, costs, or margins are deteriorating.",
   "archetype": "profitability_decline",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -15,7 +16,7 @@
     "advanced"
   ],
   "recommended_difficulty": "beginner",
-  "formula": "Profit = Revenue - Fixed Costs - Variable Costs = (Price \u00d7 Volume) - Fixed - (Variable_cost_per_unit \u00d7 Volume)",
+  "formula": "Profit = Revenue - Fixed Costs - Variable Costs = (Price × Volume) - Fixed - (Variable_cost_per_unit × Volume)",
   "skills_tested": [
     "profitability",
     "margin_math",
@@ -74,19 +75,19 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate current revenue = price_per_unit \u00d7 volume_current",
-    "Step 2: Calculate prior revenue = price_prior \u00d7 volume_prior",
-    "Step 3: Calculate current profit = revenue_current - fixed_costs - (variable_cost_per_unit \u00d7 volume_current)",
-    "Step 4: Calculate prior profit = revenue_prior - fixed_costs - (variable_cost_per_unit \u00d7 volume_prior)",
+    "Step 1: Calculate current revenue = price_per_unit × volume_current",
+    "Step 2: Calculate prior revenue = price_prior × volume_prior",
+    "Step 3: Calculate current profit = revenue_current - fixed_costs - (variable_cost_per_unit × volume_current)",
+    "Step 4: Calculate prior profit = revenue_prior - fixed_costs - (variable_cost_per_unit × volume_prior)",
     "Step 5: Calculate profit delta and identify whether it is price-driven, volume-driven, or cost-driven"
   ],
-  "key_insight": "Always decompose profit decline into price \u00d7 volume \u00d7 cost. Never diagnose before you know which lever moved.",
+  "key_insight": "Always decompose profit decline into price × volume × cost. Never diagnose before you know which lever moved.",
   "common_mistakes": [
     "Forgetting fixed costs don't move with volume",
     "Conflating revenue decline with profit decline",
     "Not checking if cost per unit changed, not just total costs"
   ],
-  "framework_soundbite": "Profit = Price \u00d7 Volume \u2212 Costs. One of those three moved. Find which one before recommending anything.",
+  "framework_soundbite": "Profit = Price × Volume − Costs. One of those three moved. Find which one before recommending anything.",
   "archetype_tags": [
     "retail",
     "manufacturing",
@@ -94,7 +95,7 @@
     "consumer goods",
     "industrials"
   ],
-  "display_context": "Consumer Retail \u2022 Profitability Decline",
+  "display_context": "Consumer Retail • Profitability Decline",
   "target_label": "Profit change ($)",
   "primary_variables": [
     "price_per_unit",

@@ -4,6 +4,7 @@
   "description": "Improve logistics, fulfillment, or operational efficiency.",
   "archetype": "supply_chain_efficiency",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -14,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Total logistics cost = (Units \u00d7 Cost_per_unit_shipped) + Warehousing + Spoilage/waste. Saving = current - optimized.",
+  "formula": "Total logistics cost = (Units × Cost_per_unit_shipped) + Warehousing + Spoilage/waste. Saving = current - optimized.",
   "skills_tested": [
     "cost_per_unit",
     "logistics_math",
@@ -79,10 +80,10 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate current shipping cost = units_shipped \u00d7 current_cost_per_unit",
-    "Step 2: Calculate optimized shipping cost = units_shipped \u00d7 optimized_cost_per_unit",
-    "Step 3: Calculate current waste cost = units_shipped \u00d7 waste_rate_current \u00d7 unit_value",
-    "Step 4: Calculate optimized waste cost = units_shipped \u00d7 waste_rate_optimized \u00d7 unit_value",
+    "Step 1: Calculate current shipping cost = units_shipped × current_cost_per_unit",
+    "Step 2: Calculate optimized shipping cost = units_shipped × optimized_cost_per_unit",
+    "Step 3: Calculate current waste cost = units_shipped × waste_rate_current × unit_value",
+    "Step 4: Calculate optimized waste cost = units_shipped × waste_rate_optimized × unit_value",
     "Step 5: Calculate total annual saving = (shipping savings) + (waste savings)"
   ],
   "key_insight": "Supply chain savings compound across volume. A $2/unit improvement sounds small until you multiply it by 500,000 units.",
@@ -100,7 +101,7 @@
     "food & beverage",
     "pharma"
   ],
-  "display_context": "Logistics \u2022 Supply Chain Efficiency",
+  "display_context": "Logistics • Supply Chain Efficiency",
   "target_label": "Annual cost saving ($)",
   "primary_variables": [
     "units_shipped_per_year",

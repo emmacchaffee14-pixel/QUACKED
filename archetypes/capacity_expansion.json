@@ -4,6 +4,7 @@
   "description": "Evaluate whether investment in expansion makes financial sense.",
   "archetype": "capacity_expansion",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -14,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Net benefit = (Additional units \u00d7 Contribution margin \u00d7 Years) - Capex - (Additional fixed costs \u00d7 Years)",
+  "formula": "Net benefit = (Additional units × Contribution margin × Years) - Capex - (Additional fixed costs × Years)",
   "skills_tested": [
     "capex_analysis",
     "payback_period",
@@ -73,9 +74,9 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate effective additional units = additional_capacity_units \u00d7 expected_utilization",
-    "Step 2: Calculate annual incremental profit = effective_units \u00d7 contribution_margin - additional_fixed_costs",
-    "Step 3: Calculate total profit over period = annual_incremental_profit \u00d7 analysis_years",
+    "Step 1: Calculate effective additional units = additional_capacity_units × expected_utilization",
+    "Step 2: Calculate annual incremental profit = effective_units × contribution_margin - additional_fixed_costs",
+    "Step 3: Calculate total profit over period = annual_incremental_profit × analysis_years",
     "Step 4: Calculate net return = total_profit - capex_required",
     "Step 5: Calculate payback period = capex_required / annual_incremental_profit"
   ],
@@ -83,7 +84,7 @@
   "common_mistakes": [
     "Using full capacity instead of expected utilization",
     "Forgetting additional fixed costs that come with expansion (staff, rent, maintenance)",
-    "Not calculating payback period \u2014 just total return"
+    "Not calculating payback period — just total return"
   ],
   "framework_soundbite": "Capex only makes sense if payback period is acceptable and incremental returns exceed cost of capital. Start with payback.",
   "archetype_tags": [
@@ -93,7 +94,7 @@
     "hospitals",
     "energy"
   ],
-  "display_context": "Operations \u2022 Capacity Expansion",
+  "display_context": "Operations • Capacity Expansion",
   "target_label": "Payback period (years)",
   "primary_variables": [
     "capex_required",

@@ -4,6 +4,7 @@
   "description": "Assess competitive position changes and revenue impact of share gains or losses.",
   "archetype": "market_share_shift",
   "content_type": "drill",
+  "content_category": "case",
   "firm_compatibility": [
     "McKinsey",
     "Bain",
@@ -14,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Revenue delta = (Total market size \u00d7 (1 + Market growth rate) \u00d7 (Current market share + Share change)) \u2212 (Total market size \u00d7 Current market share). Profit impact = Revenue delta \u00d7 Contribution margin %. At advanced difficulty: After-tax impact = Profit impact \u00d7 (1 \u2212 Tax rate).",
+  "formula": "Revenue delta = (Total market size × (1 + Market growth rate) × (Current market share + Share change)) − (Total market size × Current market share). Profit impact = Revenue delta × Contribution margin %. At advanced difficulty: After-tax impact = Profit impact × (1 − Tax rate).",
   "skills_tested": [
     "market_share_math",
     "competitive_dynamics",
@@ -67,14 +68,14 @@
     }
   },
   "solution_logic": [
-    "Step 1: Calculate current revenue = total_market_size \u00d7 current_market_share",
-    "Step 2: Calculate new market size = total_market_size \u00d7 (1 + market_growth_rate)",
+    "Step 1: Calculate current revenue = total_market_size × current_market_share",
+    "Step 2: Calculate new market size = total_market_size × (1 + market_growth_rate)",
     "Step 3: Calculate new market share = current_market_share + share_change",
-    "Step 4: Calculate new revenue = new_market_size \u00d7 new_market_share",
+    "Step 4: Calculate new revenue = new_market_size × new_market_share",
     "Step 5: Calculate revenue delta = new_revenue - current_revenue",
-    "Step 6: Calculate profit impact = revenue_delta \u00d7 contribution_margin_pct"
+    "Step 6: Calculate profit impact = revenue_delta × contribution_margin_pct"
   ],
-  "key_insight": "Share gains in a growing market compound \u2014 you're gaining on a larger base. Share gains in a shrinking market may still mean absolute revenue decline.",
+  "key_insight": "Share gains in a growing market compound — you're gaining on a larger base. Share gains in a shrinking market may still mean absolute revenue decline.",
   "common_mistakes": [
     "Calculating share gain on the old market size, not the new (grown) market",
     "Treating share points as absolute rather than percentage of total",
@@ -88,7 +89,7 @@
     "pricing",
     "M&A"
   ],
-  "display_context": "Competitive Strategy \u2022 Market Share",
+  "display_context": "Competitive Strategy • Market Share",
   "target_label": "Competitive impact ($)",
   "primary_variables": [
     "total_market_size",

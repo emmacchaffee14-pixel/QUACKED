@@ -3,11 +3,21 @@
   "description": "Approximate how long a quantity takes to double at a given annual growth rate.",
   "archetype": "doubling_time",
   "content_type": "drill",
-  "firm_compatibility": ["McKinsey", "Bain", "BCG"],
-  "difficulty_range": ["beginner"],
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
   "recommended_difficulty": "beginner",
   "formula": "Doubling time (years) ≈ 72 / (Growth rate × 100)",
-  "skills_tested": ["growth_dynamics", "rate_math"],
+  "skills_tested": [
+    "growth_dynamics",
+    "rate_math"
+  ],
   "business_contexts": [
     "an investor estimating how long a portfolio takes to double",
     "a company estimating how long revenue takes to double at its current growth rate",
@@ -23,7 +33,12 @@
     "Approximately how many years does the growth rate below take to double a value?"
   ],
   "variables": {
-    "annual_growth_rate_pct": { "min": 0.02, "max": 0.24, "step": 0.01, "unit": "%" }
+    "annual_growth_rate_pct": {
+      "min": 0.02,
+      "max": 0.24,
+      "step": 0.01,
+      "unit": "%"
+    }
   },
   "solution_logic": [
     "Step 1: Calculate doubling time = 72 / (annual_growth_rate_pct × 100)"
@@ -34,9 +49,15 @@
     "Forgetting the answer is an approximation, not an exact compounding calculation"
   ],
   "framework_soundbite": "72 divided by the growth rate — a fast, good-enough answer to 'how long until this doubles?'",
-  "archetype_tags": ["finance", "investing", "corporate", "demographics"],
+  "archetype_tags": [
+    "finance",
+    "investing",
+    "corporate",
+    "demographics"
+  ],
   "display_context": "Core Arithmetic • Doubling Time",
   "target_label": "Years to double (approx.)",
-  "primary_variables": ["annual_growth_rate_pct"],
-  "waddle_native": true
+  "primary_variables": [
+    "annual_growth_rate_pct"
+  ]
 }
