@@ -1,0 +1,100 @@
+{
+  "id": "market_sizing_ebike_sharing",
+  "name": "Electric Bike Sharing",
+  "description": "Size the market for electric bike sharing in urban areas.",
+  "archetype": "market_sizing",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "TAM = Population x Penetration_rate x Purchase_frequency x Average_spend",
+  "skills_tested": [
+    "market_sizing",
+    "estimation",
+    "segmentation",
+    "order_of_magnitude"
+  ],
+  "solution_logic": [
+    "Step 1: Identify addressable population = target_population x addressable_segment",
+    "Step 2: Apply penetration rate = addressable_population x penetration_rate",
+    "Step 3: Calculate annual spend per user = purchase_frequency x avg_spend_per_purchase",
+    "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user"
+  ],
+  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "common_mistakes": [
+    "Sizing the total population instead of the addressable segment",
+    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
+    "Not sanity-checking the output against known benchmarks"
+  ],
+  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "business_contexts": [
+    "a micromobility operator evaluating a new city launch",
+    "a city transit authority sizing demand for e-bike sharing"
+  ],
+  "question_patterns": [
+    "A micromobility operator is deciding whether to launch e-bike sharing in a new city and wants to size annual ridership revenue."
+  ],
+  "variables": {
+    "target_population": {
+      "min": 2000000,
+      "max": 5000000,
+      "step": 100000,
+      "unit": "urban residents"
+    },
+    "addressable_segment": {
+      "min": 0.2,
+      "max": 0.4,
+      "step": 0.05,
+      "unit": "% within service zone"
+    },
+    "penetration_rate": {
+      "min": 0.03,
+      "max": 0.1,
+      "step": 0.01,
+      "unit": "%"
+    },
+    "purchase_frequency": {
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "rides/year"
+    },
+    "avg_spend_per_purchase": {
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "unit": "$"
+    }
+  },
+  "archetype_tags": [
+    "mobility",
+    "urban",
+    "sustainability",
+    "consumer"
+  ],
+  "display_context": "Urban Mobility \u2022 E-Bike Sharing Sizing",
+  "target_label": "Total addressable market ($)",
+  "primary_variables": [
+    "target_population",
+    "addressable_segment",
+    "penetration_rate",
+    "purchase_frequency",
+    "avg_spend_per_purchase"
+  ],
+  "market_sizing_scenario": {
+    "prompts": {
+      "beginner": "Estimate the total addressable market for electric bike sharing rides in a major city.",
+      "intermediate": "A micromobility operator is deciding whether to launch e-bike sharing in a new city and wants to size annual ridership revenue.",
+      "advanced": "A city transit authority is considering subsidizing an e-bike sharing operator whose ridership projections rely on adoption assumptions borrowed from a much denser peer city. Build an independent estimate before the subsidy is approved."
+    }
+  }
+}

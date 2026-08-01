@@ -1,0 +1,100 @@
+{
+  "id": "market_sizing_phone_cases",
+  "name": "Phone Cases",
+  "description": "Size the market for smartphone protective cases.",
+  "archetype": "market_sizing",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "TAM = Population x Penetration_rate x Purchase_frequency x Average_spend",
+  "skills_tested": [
+    "market_sizing",
+    "estimation",
+    "segmentation",
+    "order_of_magnitude"
+  ],
+  "solution_logic": [
+    "Step 1: Identify addressable population = target_population x addressable_segment",
+    "Step 2: Apply penetration rate = addressable_population x penetration_rate",
+    "Step 3: Calculate annual spend per user = purchase_frequency x avg_spend_per_purchase",
+    "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user"
+  ],
+  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "common_mistakes": [
+    "Sizing the total population instead of the addressable segment",
+    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
+    "Not sanity-checking the output against known benchmarks"
+  ],
+  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "business_contexts": [
+    "an accessories brand evaluating entry into the phone case market",
+    "a retailer sizing demand for a private-label phone case line"
+  ],
+  "question_patterns": [
+    "A consumer accessories brand is deciding whether to launch a phone case line and wants to size the annual market opportunity first."
+  ],
+  "variables": {
+    "target_population": {
+      "min": 250000000,
+      "max": 300000000,
+      "step": 5000000,
+      "unit": "smartphone owners"
+    },
+    "addressable_segment": {
+      "min": 0.5,
+      "max": 0.8,
+      "step": 0.05,
+      "unit": "% who buy cases"
+    },
+    "penetration_rate": {
+      "min": 0.02,
+      "max": 0.08,
+      "step": 0.01,
+      "unit": "%"
+    },
+    "purchase_frequency": {
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "unit": "cases/year"
+    },
+    "avg_spend_per_purchase": {
+      "min": 15,
+      "max": 35,
+      "step": 5,
+      "unit": "$"
+    }
+  },
+  "archetype_tags": [
+    "consumer electronics",
+    "retail",
+    "e-commerce",
+    "accessories"
+  ],
+  "display_context": "Consumer Electronics \u2022 Accessories Sizing",
+  "target_label": "Total addressable market ($)",
+  "primary_variables": [
+    "target_population",
+    "addressable_segment",
+    "penetration_rate",
+    "purchase_frequency",
+    "avg_spend_per_purchase"
+  ],
+  "market_sizing_scenario": {
+    "prompts": {
+      "beginner": "Estimate the total addressable market for smartphone protective cases.",
+      "intermediate": "A consumer accessories brand is deciding whether to launch a phone case line and wants to size the annual market opportunity first.",
+      "advanced": "A private-label accessories manufacturer has been offered exclusive shelf space by a major retailer, contingent on committing to a phone case line within the quarter. Leadership needs a credible size-of-prize estimate before agreeing to the terms."
+    }
+  }
+}
