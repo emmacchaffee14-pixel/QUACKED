@@ -103,5 +103,11 @@
     "contribution_margin",
     "additional_fixed_costs",
     "ramp_utilization"
+  ],
+  "acceptable_structures": [
+    {
+      "components": ["Capex Required", "Additional Capacity Units", "Expected Utilization", "Contribution Margin", "Additional Fixed Costs", "Analysis Years"],
+      "distractor_components": ["Tax Rate", "Churn Rate", "ARPU (Monthly)", "Market Growth Rate"]
+    }
   ]
 }

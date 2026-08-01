@@ -97,5 +97,11 @@
     "avg_spend_per_purchase",
     "segment_a_pct",
     "segment_b_penetration"
+  ],
+  "acceptable_structures": [
+    {
+      "components": ["Target Population", "Addressable Segment %", "Penetration Rate", "Purchase Frequency", "Average Spend per Purchase"],
+      "distractor_components": ["Customer Acquisition Cost", "Churn Rate", "Gross Margin", "Market Growth Rate"]
+    }
   ]
 }

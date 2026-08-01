@@ -95,5 +95,11 @@
     "utilization_rate",
     "unit_contribution_margin",
     "operating_days_per_year"
+  ],
+  "acceptable_structures": [
+    {
+      "components": ["Bottleneck Capacity", "Utilization Rate", "Units Demanded per Day", "Unit Contribution Margin"],
+      "distractor_components": ["Investment Cost", "Tax Rate", "Customer Churn Rate", "Market Share"]
+    }
   ]
 }

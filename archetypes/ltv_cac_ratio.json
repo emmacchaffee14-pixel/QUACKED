@@ -91,5 +91,11 @@
     "gross_margin_pct",
     "monthly_churn_rate",
     "cac"
+  ],
+  "acceptable_structures": [
+    {
+      "components": ["ARPU (Monthly)", "Gross Margin %", "Monthly Churn Rate", "CAC"],
+      "distractor_components": ["Fixed Costs", "Units Demanded per Day", "Bottleneck Capacity", "Investment Cost"]
+    }
   ]
 }

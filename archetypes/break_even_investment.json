@@ -99,5 +99,11 @@
     "variable_cost_per_unit",
     "additional_fixed_costs_pa",
     "tax_rate"
+  ],
+  "acceptable_structures": [
+    {
+      "components": ["Revenue per Unit", "Variable Cost per Unit", "Expected Units per Year", "Additional Fixed Costs", "Investment Cost"],
+      "distractor_components": ["Customer Acquisition Cost", "Market Growth Rate", "Customer Lifetime Value", "Headcount"]
+    }
   ]
 }

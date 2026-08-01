@@ -104,5 +104,11 @@
     "volume_prior",
     "fixed_costs",
     "variable_cost_per_unit"
+  ],
+  "acceptable_structures": [
+    {
+      "components": ["Current Revenue", "Prior Revenue", "Fixed Costs", "Current Variable Costs", "Prior Variable Costs"],
+      "distractor_components": ["Tax Rate", "Marketing Spend", "Headcount", "Customer Churn Rate"]
+    }
   ]
 }
