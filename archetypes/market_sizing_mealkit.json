@@ -16,7 +16,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "TAM = Population x Penetration_rate x Purchase_frequency x Average_spend",
+  "formula": "SOM = Population x Penetration Rate x Purchase Frequency x Average Spend x Serviceable % x Obtainable Share %",
   "skills_tested": [
     "market_sizing",
     "estimation",
@@ -27,7 +27,9 @@
     "Step 1: Identify addressable population = target_population x addressable_segment",
     "Step 2: Apply penetration rate = addressable_population x penetration_rate",
     "Step 3: Calculate annual spend per user = purchase_frequency x avg_spend_per_purchase",
-    "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user"
+    "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user",
+    "Step 5: Calculate SAM = TAM x serviceable_pct",
+    "Step 6: Calculate SOM = SAM x obtainable_share_pct"
   ],
   "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
   "common_mistakes": [
@@ -41,36 +43,48 @@
     "a grocery chain considering a meal-kit private-label launch"
   ],
   "question_patterns": [
-    "A meal-kit startup is deciding whether to expand nationally and wants to size the annual subscription revenue opportunity."
+    "A meal-kit startup is deciding whether to expand nationally and wants to size the annual subscription revenue it could realistically capture against established competitors."
   ],
   "variables": {
-    "target_population": {
-      "min": 100000000,
-      "max": 130000000,
-      "step": 2000000,
-      "unit": "households"
-    },
-    "addressable_segment": {
-      "min": 0.15,
-      "max": 0.3,
+    "serviceable_pct": {
+      "max": 0.55,
+      "min": 0.25,
       "step": 0.05,
-      "unit": "% time-constrained cooks"
+      "unit": "% within national fulfillment reach"
     },
     "penetration_rate": {
-      "min": 0.03,
       "max": 0.1,
+      "min": 0.03,
       "step": 0.01,
       "unit": "%"
     },
+    "target_population": {
+      "max": 130000000,
+      "min": 100000000,
+      "step": 2000000,
+      "unit": "households"
+    },
     "purchase_frequency": {
-      "min": 20,
       "max": 45,
+      "min": 20,
       "step": 5,
       "unit": "boxes/year"
     },
+    "addressable_segment": {
+      "max": 0.3,
+      "min": 0.15,
+      "step": 0.05,
+      "unit": "% time-constrained cooks"
+    },
+    "obtainable_share_pct": {
+      "max": 0.25,
+      "min": 0.05,
+      "step": 0.01,
+      "unit": "% realistically obtainable given competition"
+    },
     "avg_spend_per_purchase": {
-      "min": 50,
       "max": 90,
+      "min": 50,
       "step": 10,
       "unit": "$"
     }
@@ -81,20 +95,22 @@
     "e-commerce",
     "consumer"
   ],
-  "display_context": "Subscription Commerce \u2022 Meal-Kit Sizing",
-  "target_label": "Total addressable market ($)",
+  "display_context": "Subscription Commerce • Meal-Kit Sizing",
+  "target_label": "Serviceable obtainable market ($)",
   "primary_variables": [
     "target_population",
     "addressable_segment",
     "penetration_rate",
     "purchase_frequency",
-    "avg_spend_per_purchase"
+    "avg_spend_per_purchase",
+    "serviceable_pct",
+    "obtainable_share_pct"
   ],
   "market_sizing_scenario": {
     "prompts": {
-      "beginner": "Estimate the total addressable market for subscription meal-kit delivery.",
-      "intermediate": "A meal-kit startup is deciding whether to expand nationally and wants to size the annual subscription revenue opportunity.",
-      "advanced": "A grocery chain is evaluating a private-label meal-kit launch after a rival's high-profile meal-kit partnership underperformed. Leadership wants an independent market size estimate before repeating the experiment."
+      "advanced": "A grocery chain is evaluating a private-label meal-kit launch after a rival's high-profile meal-kit partnership underperformed. Leadership wants an independent serviceable-obtainable-market estimate before repeating the experiment.",
+      "beginner": "Estimate the serviceable obtainable market for subscription meal-kit delivery, accounting for realistic competitive capture.",
+      "intermediate": "A meal-kit startup is deciding whether to expand nationally and wants to size the annual subscription revenue it could realistically capture against established competitors."
     }
   }
 }

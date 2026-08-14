@@ -1,0 +1,69 @@
+{
+  "name": "Utilization Rate",
+  "description": "Calculate utilization as actual output over maximum possible output.",
+  "archetype": "utilization_rate",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Utilization = Actual Output / Maximum Possible Output",
+  "skills_tested": [
+    "capacity_math"
+  ],
+  "business_contexts": [
+    "a factory assessing utilization of its production line",
+    "a hotel assessing utilization of available rooms",
+    "a call center assessing utilization of available agent hours",
+    "a hospital assessing utilization of available beds",
+    "a warehouse assessing utilization of available storage capacity"
+  ],
+  "question_patterns": [
+    "Given the actual output and maximum possible output below, what is the utilization rate?",
+    "Calculate the utilization rate from the figures given.",
+    "What percentage of capacity is being used, given the figures below?",
+    "Calculate utilization by dividing actual output by maximum output given.",
+    "Using the figures below, what is the utilization rate?"
+  ],
+  "variables": {
+    "actual_output": {
+      "min": 500,
+      "max": 9000,
+      "step": 100,
+      "unit": "units"
+    },
+    "maximum_output": {
+      "min": 1000,
+      "max": 10000,
+      "step": 100,
+      "unit": "units"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate utilization rate = actual_output / maximum_output"
+  ],
+  "key_insight": "Utilization can never exceed 100% by definition — actual output is always bounded by the maximum the system can physically produce.",
+  "common_mistakes": [
+    "Dividing maximum output by actual output instead of the other way around",
+    "Reporting a utilization rate above 100%, which signals the maximum figure was misread"
+  ],
+  "framework_soundbite": "Utilization is actual over maximum — it can approach 100% but never pass it.",
+  "archetype_tags": [
+    "manufacturing",
+    "hospitality",
+    "operations",
+    "healthcare"
+  ],
+  "display_context": "Core Arithmetic • Utilization Rate",
+  "target_label": "Utilization rate (%)",
+  "primary_variables": [
+    "actual_output",
+    "maximum_output"
+  ]
+}

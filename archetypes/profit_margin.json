@@ -1,0 +1,69 @@
+{
+  "name": "Profit Margin",
+  "description": "Calculate profit margin as a percentage of revenue.",
+  "archetype": "profit_margin",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Profit margin = (Revenue − Cost) / Revenue",
+  "skills_tested": [
+    "margin_math"
+  ],
+  "business_contexts": [
+    "a retailer assessing profit margin across total revenue and cost",
+    "a manufacturer assessing profit margin on a product line",
+    "a service firm assessing profit margin on a book of business",
+    "an e-commerce brand assessing profit margin across a season",
+    "a software company assessing profit margin on total bookings"
+  ],
+  "question_patterns": [
+    "Given the revenue and cost below, what is the profit margin?",
+    "Calculate the profit margin from the figures given.",
+    "What percentage of revenue is profit, given the values below?",
+    "Calculate profit margin as a percentage of revenue from the figures shown.",
+    "Using the revenue and cost given, what is the profit margin?"
+  ],
+  "variables": {
+    "revenue": {
+      "min": 20000,
+      "max": 500000,
+      "step": 5000,
+      "unit": "$"
+    },
+    "cost": {
+      "min": 10000,
+      "max": 400000,
+      "step": 5000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate profit margin = (revenue − cost) / revenue"
+  ],
+  "key_insight": "Profit margin is the same calculation as profit divided by revenue — profit is just revenue minus cost, so the margin is that gap expressed as a share of revenue.",
+  "common_mistakes": [
+    "Dividing by cost instead of revenue",
+    "Reporting the dollar profit instead of converting it to a percentage of revenue"
+  ],
+  "framework_soundbite": "Profit margin is profit over revenue — the gap expressed as a share of the top line.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "professional services",
+    "e-commerce"
+  ],
+  "display_context": "Core Arithmetic • Profit Margin",
+  "target_label": "Profit margin (%)",
+  "primary_variables": [
+    "revenue",
+    "cost"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Gross Profit",
+  "description": "Calculate gross profit as revenue minus cost of goods sold.",
+  "archetype": "gross_profit",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Gross Profit = Revenue − COGS",
+  "skills_tested": [
+    "margin_math"
+  ],
+  "business_contexts": [
+    "a retailer calculating gross profit after cost of goods sold",
+    "a manufacturer calculating gross profit on a product line",
+    "an e-commerce brand calculating gross profit after landed cost",
+    "a consumer goods company calculating gross profit across a quarter",
+    "a distributor calculating gross profit on a shipment"
+  ],
+  "question_patterns": [
+    "Given the revenue and cost of goods sold below, what is gross profit?",
+    "Calculate gross profit from the figures given.",
+    "What is gross profit, given the revenue and COGS shown below?",
+    "Calculate gross profit by subtracting COGS from revenue given.",
+    "Using the revenue and COGS below, what is gross profit?"
+  ],
+  "variables": {
+    "revenue": {
+      "min": 20000,
+      "max": 500000,
+      "step": 5000,
+      "unit": "$"
+    },
+    "cogs": {
+      "min": 10000,
+      "max": 350000,
+      "step": 5000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate gross profit = revenue − cogs"
+  ],
+  "key_insight": "Gross profit only nets out the direct cost of producing what was sold — operating expenses like overhead and salaries still sit below it.",
+  "common_mistakes": [
+    "Subtracting operating expenses along with COGS, which belongs at the operating profit line instead",
+    "Reporting COGS itself as if it were the gross profit figure"
+  ],
+  "framework_soundbite": "Gross profit is revenue minus COGS — nothing else has come out yet.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "e-commerce",
+    "distribution"
+  ],
+  "display_context": "Core Arithmetic • Gross Profit",
+  "target_label": "Gross profit ($)",
+  "primary_variables": [
+    "revenue",
+    "cogs"
+  ]
+}

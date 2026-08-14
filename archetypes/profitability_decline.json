@@ -16,7 +16,7 @@
     "advanced"
   ],
   "recommended_difficulty": "beginner",
-  "formula": "Profit = Revenue - Fixed Costs - Variable Costs = (Price × Volume) - Fixed - (Variable_cost_per_unit × Volume)",
+  "formula": "Profit = Revenue - Fixed Costs - Variable Costs = (Price × Volume) - Fixed - (Variable Cost Per Unit × Volume)",
   "skills_tested": [
     "profitability",
     "margin_math",
@@ -110,5 +110,14 @@
       "components": ["Current Revenue", "Prior Revenue", "Fixed Costs", "Current Variable Costs", "Prior Variable Costs"],
       "distractor_components": ["Tax Rate", "Marketing Spend", "Headcount", "Customer Churn Rate"]
     }
+  ],
+  "formula_structure": [
+    { "type": "term", "id": "current_revenue", "label": "Current Revenue" },
+    { "type": "operator", "value": "−" },
+    { "type": "term", "id": "current_variable_costs", "label": "Current Variable Costs" },
+    { "type": "operator", "value": "−" },
+    { "type": "term", "id": "prior_revenue", "label": "Prior Revenue" },
+    { "type": "operator", "value": "+" },
+    { "type": "term", "id": "prior_variable_costs", "label": "Prior Variable Costs" }
   ]
 }

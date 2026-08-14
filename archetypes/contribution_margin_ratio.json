@@ -1,0 +1,69 @@
+{
+  "name": "Contribution Margin Ratio",
+  "description": "Calculate contribution margin as a percentage of price.",
+  "archetype": "contribution_margin_ratio",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Contribution margin ratio = (Price − Variable cost per unit) / Price",
+  "skills_tested": [
+    "contribution_margin"
+  ],
+  "business_contexts": [
+    "a manufacturer assessing what share of price covers fixed costs and profit",
+    "a subscription business assessing contribution margin ratio per plan",
+    "a retailer assessing contribution margin ratio across a product line",
+    "a food truck assessing contribution margin ratio per menu item",
+    "a hardware brand assessing contribution margin ratio per device"
+  ],
+  "question_patterns": [
+    "Given the price and variable cost per unit below, what is the contribution margin ratio?",
+    "Calculate the contribution margin ratio from the figures given.",
+    "What percentage of price is contribution margin, given the values below?",
+    "Calculate contribution margin as a ratio of price from the figures shown.",
+    "Using the price and variable cost given, what is the contribution margin ratio?"
+  ],
+  "variables": {
+    "price": {
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "$"
+    },
+    "variable_cost_per_unit": {
+      "min": 10,
+      "max": 200,
+      "step": 10,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate contribution margin ratio = (price − variable_cost_per_unit) / price"
+  ],
+  "key_insight": "The contribution margin ratio turns a per-unit dollar margin into a percentage that scales across any volume — it answers 'how much of each sales dollar is left after variable cost.'",
+  "common_mistakes": [
+    "Dividing by variable cost instead of price",
+    "Reporting the dollar contribution margin instead of converting it to a ratio"
+  ],
+  "framework_soundbite": "Contribution ratio is the per-unit margin expressed as a share of price, not a dollar figure.",
+  "archetype_tags": [
+    "manufacturing",
+    "subscription",
+    "retail",
+    "consumer goods"
+  ],
+  "display_context": "Core Arithmetic • Contribution Margin Ratio",
+  "target_label": "Contribution margin ratio (%)",
+  "primary_variables": [
+    "price",
+    "variable_cost_per_unit"
+  ]
+}

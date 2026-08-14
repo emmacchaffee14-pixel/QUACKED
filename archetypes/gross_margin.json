@@ -1,0 +1,69 @@
+{
+  "name": "Gross Margin",
+  "description": "Calculate gross margin as a percentage of revenue.",
+  "archetype": "gross_margin",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Gross Margin = (Revenue − COGS) / Revenue",
+  "skills_tested": [
+    "margin_math"
+  ],
+  "business_contexts": [
+    "a retailer assessing gross margin percentage on total sales",
+    "a manufacturer assessing gross margin percentage on a product line",
+    "an e-commerce brand assessing gross margin percentage after landed cost",
+    "a consumer goods company assessing gross margin percentage across a quarter",
+    "a distributor assessing gross margin percentage on a shipment"
+  ],
+  "question_patterns": [
+    "Given the revenue and cost of goods sold below, what is the gross margin percentage?",
+    "Calculate gross margin as a percentage of revenue from the figures given.",
+    "What percentage of revenue is gross profit, given the values below?",
+    "Calculate the gross margin percentage from the revenue and COGS shown.",
+    "Using the revenue and COGS given, what is the gross margin percentage?"
+  ],
+  "variables": {
+    "revenue": {
+      "min": 20000,
+      "max": 500000,
+      "step": 5000,
+      "unit": "$"
+    },
+    "cogs": {
+      "min": 10000,
+      "max": 350000,
+      "step": 5000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate gross margin = (revenue − cogs) / revenue"
+  ],
+  "key_insight": "Gross margin is gross profit expressed as a percentage of revenue, so it stays comparable across businesses of very different sizes.",
+  "common_mistakes": [
+    "Dividing by COGS instead of revenue",
+    "Reporting the gross profit dollar figure instead of converting it to a percentage"
+  ],
+  "framework_soundbite": "Gross margin is gross profit over revenue — the percentage that lets you compare businesses of different sizes.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "e-commerce",
+    "distribution"
+  ],
+  "display_context": "Core Arithmetic • Gross Margin",
+  "target_label": "Gross margin (%)",
+  "primary_variables": [
+    "revenue",
+    "cogs"
+  ]
+}

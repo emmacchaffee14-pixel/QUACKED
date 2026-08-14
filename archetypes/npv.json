@@ -1,0 +1,85 @@
+{
+  "name": "Net Present Value (NPV)",
+  "description": "Calculate the net present value of a single future cash flow discounted back to today.",
+  "archetype": "npv",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "NPV = −Initial Investment + Future Cash Flow / (1 + Discount Rate)^Years",
+  "skills_tested": [
+    "investment_math"
+  ],
+  "business_contexts": [
+    "an investor assessing NPV of a single future payout",
+    "a company assessing NPV of a capital project with one future cash inflow",
+    "a private equity firm assessing NPV of a planned exit",
+    "a real estate investor assessing NPV of a planned property sale",
+    "a manufacturer assessing NPV of a one-time equipment payoff"
+  ],
+  "question_patterns": [
+    "Given the initial investment, future cash flow, discount rate, and years below, what is the NPV?",
+    "Calculate NPV from the figures given, discounting the single future cash flow back to today.",
+    "What is the net present value of this investment, given the figures below?",
+    "Calculate NPV by discounting the future cash flow and netting out the initial investment given.",
+    "Using the figures below, what is the NPV?"
+  ],
+  "variables": {
+    "initial_investment": {
+      "min": 20000,
+      "max": 500000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "future_cash_flow": {
+      "min": 30000,
+      "max": 900000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "discount_rate": {
+      "min": 0.05,
+      "max": 0.15,
+      "step": 0.01,
+      "unit": "% per year"
+    },
+    "years": {
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "unit": "years"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate the discount factor = (1 + discount_rate)^years",
+    "Step 2: Calculate present value of future cash flow = future_cash_flow / discount factor",
+    "Step 3: Calculate NPV = present value of future cash flow − initial_investment"
+  ],
+  "key_insight": "NPV can legitimately come out negative — that's not an error, it means the discounted future cash flow doesn't cover the upfront investment.",
+  "common_mistakes": [
+    "Forgetting to discount the future cash flow and simply subtracting the initial investment from its face value",
+    "Applying the discount rate as simple division (rate × years) instead of compounding it as (1 + rate)^years"
+  ],
+  "framework_soundbite": "NPV discounts the future cash flow back to today, then nets out what it cost to get there — a negative result means the deal doesn't clear the bar.",
+  "archetype_tags": [
+    "investing",
+    "private equity",
+    "real estate",
+    "manufacturing"
+  ],
+  "display_context": "Core Arithmetic • Net Present Value",
+  "target_label": "NPV ($)",
+  "primary_variables": [
+    "initial_investment",
+    "future_cash_flow",
+    "discount_rate",
+    "years"
+  ]
+}

@@ -15,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "TAM = Population × Penetration_rate × Purchase_frequency × Average_spend",
+  "formula": "TAM = Population × Penetration Rate × Purchase Frequency × Average Spend",
   "skills_tested": [
     "market_sizing",
     "estimation",
@@ -103,5 +103,16 @@
       "components": ["Target Population", "Addressable Segment %", "Penetration Rate", "Purchase Frequency", "Average Spend per Purchase"],
       "distractor_components": ["Customer Acquisition Cost", "Churn Rate", "Gross Margin", "Market Growth Rate"]
     }
+  ],
+  "formula_structure": [
+    { "type": "term", "id": "target_population", "label": "Population", "chain_group": 1 },
+    { "type": "operator", "value": "×" },
+    { "type": "term", "id": "addressable_segment", "label": "Addressable Segment %", "chain_group": 1 },
+    { "type": "operator", "value": "×" },
+    { "type": "term", "id": "penetration_rate", "label": "Penetration Rate", "chain_group": 1 },
+    { "type": "operator", "value": "×" },
+    { "type": "term", "id": "purchase_frequency", "label": "Purchase Frequency", "chain_group": 1 },
+    { "type": "operator", "value": "×" },
+    { "type": "term", "id": "avg_spend_per_purchase", "label": "Average Spend", "chain_group": 1 }
   ]
 }

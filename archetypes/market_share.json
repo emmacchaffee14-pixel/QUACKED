@@ -1,0 +1,69 @@
+{
+  "name": "Market Share",
+  "description": "Calculate a company's market share as a percentage of total market revenue.",
+  "archetype": "market_share",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Market Share = Company Revenue / Total Market Revenue",
+  "skills_tested": [
+    "market_share_math"
+  ],
+  "business_contexts": [
+    "a consumer brand assessing its market share within a category",
+    "a bank assessing its market share within a regional market",
+    "a software vendor assessing its market share within a segment",
+    "an airline assessing its market share on a route network",
+    "a retailer assessing its market share within a category"
+  ],
+  "question_patterns": [
+    "Given the company's revenue and total market revenue below, what is market share?",
+    "Calculate market share from the figures given.",
+    "What percentage of the total market does the company hold, given the figures below?",
+    "Calculate market share by dividing company revenue by total market revenue given.",
+    "Using the figures below, what is the company's market share?"
+  ],
+  "variables": {
+    "company_revenue": {
+      "min": 5000000,
+      "max": 80000000,
+      "step": 1000000,
+      "unit": "$"
+    },
+    "total_market_revenue": {
+      "min": 100000000,
+      "max": 2000000000,
+      "step": 50000000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate market share = company_revenue / total_market_revenue"
+  ],
+  "key_insight": "Market share is always measured against the total market, not against any single competitor — that comparison is what relative market share is for.",
+  "common_mistakes": [
+    "Dividing by a competitor's revenue instead of total market revenue",
+    "Confusing market share with relative market share, which compares against the largest rival instead of the whole market"
+  ],
+  "framework_soundbite": "Market share is company revenue over the total market — the whole pie, not one rival's slice.",
+  "archetype_tags": [
+    "consumer goods",
+    "banking",
+    "software",
+    "airlines"
+  ],
+  "display_context": "Core Arithmetic • Market Share",
+  "target_label": "Market share (%)",
+  "primary_variables": [
+    "company_revenue",
+    "total_market_revenue"
+  ]
+}

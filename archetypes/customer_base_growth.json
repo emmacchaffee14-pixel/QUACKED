@@ -97,5 +97,12 @@
     "monthly_churn_rate",
     "analysis_months",
     "arpu_monthly"
+  ],
+  "formula_structure": [
+    { "type": "term", "id": "starting_customer_base", "label": "Starting Customer Base" },
+    { "type": "operator", "value": "+" },
+    { "type": "term", "id": "net_monthly_change", "label": "Net Monthly Change", "chain_group": 1 },
+    { "type": "operator", "value": "×" },
+    { "type": "term", "id": "analysis_months", "label": "Analysis Months", "chain_group": 1 }
   ]
 }

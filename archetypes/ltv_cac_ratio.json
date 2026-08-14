@@ -97,5 +97,14 @@
       "components": ["ARPU (Monthly)", "Gross Margin %", "Monthly Churn Rate", "CAC"],
       "distractor_components": ["Fixed Costs", "Units Demanded per Day", "Bottleneck Capacity", "Investment Cost"]
     }
+  ],
+  "formula_structure": [
+    { "type": "term", "id": "arpu_monthly", "label": "ARPU (Monthly)", "chain_group": 1 },
+    { "type": "operator", "value": "×" },
+    { "type": "term", "id": "gross_margin_pct", "label": "Gross Margin %", "chain_group": 1 },
+    { "type": "operator", "value": "÷" },
+    { "type": "term", "id": "monthly_churn_rate", "label": "Monthly Churn Rate" },
+    { "type": "operator", "value": "÷" },
+    { "type": "term", "id": "cac", "label": "CAC" }
   ]
 }

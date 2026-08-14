@@ -1,0 +1,69 @@
+{
+  "name": "Output Rate and Time",
+  "description": "Calculate total output produced from a constant rate applied over a period of time.",
+  "archetype": "output_rate_time",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Output = Rate × Time",
+  "skills_tested": [
+    "capacity_math"
+  ],
+  "business_contexts": [
+    "a factory calculating total output from a production line's hourly rate",
+    "a call center calculating total calls handled from an hourly rate",
+    "a warehouse calculating total units picked from an hourly rate",
+    "a bottler calculating total cases filled from an hourly rate",
+    "a print shop calculating total pages printed from an hourly rate"
+  ],
+  "question_patterns": [
+    "Given the rate and time below, what is total output?",
+    "Calculate total output from the rate and time figures given.",
+    "What is the total output produced, given the rate and time shown?",
+    "Calculate output by multiplying the rate and time given.",
+    "Using the rate and time below, what is total output?"
+  ],
+  "variables": {
+    "rate": {
+      "min": 10,
+      "max": 500,
+      "step": 10,
+      "unit": "units/hour"
+    },
+    "time": {
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "unit": "hours"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate total output = rate × time"
+  ],
+  "key_insight": "Output scales linearly with time at a constant rate — the moment the rate itself changes partway through, this formula stops applying and the period has to be split.",
+  "common_mistakes": [
+    "Dividing rate by time instead of multiplying",
+    "Using a daily or weekly time figure when the rate is expressed per hour"
+  ],
+  "framework_soundbite": "Output is rate times time — a constant rate held over a period, nothing more.",
+  "archetype_tags": [
+    "manufacturing",
+    "logistics",
+    "operations",
+    "printing"
+  ],
+  "display_context": "Core Arithmetic • Output Rate and Time",
+  "target_label": "Total output (units)",
+  "primary_variables": [
+    "rate",
+    "time"
+  ]
+}

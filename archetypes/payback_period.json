@@ -1,0 +1,70 @@
+{
+  "name": "Payback Period",
+  "description": "Calculate the payback period as investment cost over annual cash flow.",
+  "archetype": "payback_period",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Payback Period = Investment Cost / Annual Cash Flow",
+  "skills_tested": [
+    "payback_period",
+    "investment_math"
+  ],
+  "business_contexts": [
+    "a manufacturer assessing payback period on a new equipment purchase",
+    "a retailer assessing payback period on a store buildout",
+    "a software company assessing payback period on a platform investment",
+    "a utility assessing payback period on an infrastructure upgrade",
+    "a restaurant assessing payback period on a renovation"
+  ],
+  "question_patterns": [
+    "Given the investment cost and annual cash flow below, what is the payback period?",
+    "Calculate the payback period from the figures given.",
+    "How many years until the investment pays back, given the figures below?",
+    "Calculate payback period by dividing investment cost by annual cash flow given.",
+    "Using the figures below, what is the payback period, in years?"
+  ],
+  "variables": {
+    "investment_cost": {
+      "min": 50000,
+      "max": 2000000,
+      "step": 50000,
+      "unit": "$"
+    },
+    "annual_cash_flow": {
+      "min": 20000,
+      "max": 600000,
+      "step": 10000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate payback period = investment_cost / annual_cash_flow"
+  ],
+  "key_insight": "Payback period only measures how long it takes to recover the investment — it says nothing about profitability afterward, which is why it's paired with ROI or NPV in a real evaluation.",
+  "common_mistakes": [
+    "Dividing annual cash flow by investment cost instead of the other way around",
+    "Treating a short payback period alone as proof the investment is worthwhile, ignoring returns beyond the payback point"
+  ],
+  "framework_soundbite": "Payback period is investment over annual cash flow — how long until you get your money back, nothing about what happens after.",
+  "archetype_tags": [
+    "manufacturing",
+    "retail",
+    "software",
+    "utilities"
+  ],
+  "display_context": "Core Arithmetic • Payback Period",
+  "target_label": "Payback period (years)",
+  "primary_variables": [
+    "investment_cost",
+    "annual_cash_flow"
+  ]
+}

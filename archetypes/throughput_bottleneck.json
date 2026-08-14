@@ -15,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Max throughput = min(capacity_per_stage) × utilization × operating_hours",
+  "formula": "Max throughput = min(Capacity Per Stage) × Utilization × Operating Hours",
   "skills_tested": [
     "throughput",
     "capacity_math",
@@ -101,5 +101,10 @@
       "components": ["Bottleneck Capacity", "Utilization Rate", "Units Demanded per Day", "Unit Contribution Margin"],
       "distractor_components": ["Investment Cost", "Tax Rate", "Customer Churn Rate", "Market Share"]
     }
+  ],
+  "formula_structure": [
+    { "type": "term", "id": "unmet_demand", "label": "Unmet Demand", "chain_group": 1 },
+    { "type": "operator", "value": "×" },
+    { "type": "term", "id": "unit_contribution_margin", "label": "Unit Contribution Margin", "chain_group": 1 }
   ]
 }

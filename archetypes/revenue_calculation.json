@@ -1,0 +1,69 @@
+{
+  "name": "Revenue Calculation",
+  "description": "Calculate total revenue from price and quantity sold.",
+  "archetype": "revenue_calculation",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Revenue = Price × Quantity",
+  "skills_tested": [
+    "revenue_math"
+  ],
+  "business_contexts": [
+    "a retailer totaling revenue from units sold in a period",
+    "a manufacturer totaling revenue from a production run",
+    "a software company totaling revenue from seats sold",
+    "an event organizer totaling revenue from tickets sold",
+    "a distributor totaling revenue from units shipped"
+  ],
+  "question_patterns": [
+    "Given the price and quantity below, what is total revenue?",
+    "Calculate total revenue from the price and quantity shown.",
+    "What is the total revenue generated, given the price and quantity below?",
+    "Calculate revenue by multiplying the price and quantity given.",
+    "Using the price and quantity shown, what is total revenue?"
+  ],
+  "variables": {
+    "price": {
+      "min": 20,
+      "max": 400,
+      "step": 10,
+      "unit": "$"
+    },
+    "quantity": {
+      "min": 100,
+      "max": 5000,
+      "step": 100,
+      "unit": "units"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate revenue = price × quantity"
+  ],
+  "key_insight": "Revenue is the top line before any cost is subtracted — price times quantity, nothing else.",
+  "common_mistakes": [
+    "Subtracting costs before arriving at revenue, which conflates revenue with profit",
+    "Multiplying price by a different volume figure than the one actually sold"
+  ],
+  "framework_soundbite": "Revenue is price times quantity — the starting line, not the finish line.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "software",
+    "events"
+  ],
+  "display_context": "Core Arithmetic • Revenue Calculation",
+  "target_label": "Revenue ($)",
+  "primary_variables": [
+    "price",
+    "quantity"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "name": "EBIT and EBITDA",
+  "description": "Calculate EBITDA by adding depreciation and amortization back to operating profit (EBIT).",
+  "archetype": "ebit_ebitda",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "EBIT = Operating Profit; EBITDA = EBIT + Depreciation & Amortization",
+  "skills_tested": [
+    "margin_math",
+    "cost_structure"
+  ],
+  "business_contexts": [
+    "a private equity firm assessing EBITDA on a target company",
+    "a manufacturer assessing EBITDA after heavy equipment depreciation",
+    "a telecom company assessing EBITDA given large network amortization",
+    "a hospital system assessing EBITDA for a lending covenant",
+    "a logistics company assessing EBITDA on a fleet-heavy balance sheet"
+  ],
+  "question_patterns": [
+    "Given the revenue, COGS, operating expenses, and D&A below, what is EBITDA?",
+    "Calculate EBITDA from the figures given.",
+    "What is EBITDA, given the revenue, COGS, operating expenses, and D&A shown?",
+    "Calculate EBITDA by adding D&A back to EBIT, using the figures below.",
+    "Using the figures given, what is EBITDA?"
+  ],
+  "variables": {
+    "revenue": {
+      "min": 50000,
+      "max": 800000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "cogs": {
+      "min": 20000,
+      "max": 500000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "operating_expenses": {
+      "min": 10000,
+      "max": 200000,
+      "step": 5000,
+      "unit": "$"
+    },
+    "depreciation_amortization": {
+      "min": 2000,
+      "max": 80000,
+      "step": 2000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate gross profit = revenue − cogs",
+    "Step 2: Calculate EBIT (operating profit) = gross profit − operating_expenses",
+    "Step 3: Calculate EBITDA = EBIT + depreciation_amortization"
+  ],
+  "key_insight": "EBIT is operating profit; EBITDA adds depreciation and amortization back on top, stripping out non-cash accounting charges to approximate cash operating earnings — the two are related but not interchangeable.",
+  "common_mistakes": [
+    "Subtracting D&A instead of adding it back",
+    "Adding D&A to revenue instead of to EBIT"
+  ],
+  "framework_soundbite": "EBITDA is EBIT with D&A added back — operating profit before the non-cash charges.",
+  "archetype_tags": [
+    "private equity",
+    "manufacturing",
+    "telecom",
+    "logistics"
+  ],
+  "display_context": "Core Arithmetic • EBIT and EBITDA",
+  "target_label": "EBITDA ($)",
+  "primary_variables": [
+    "revenue",
+    "cogs",
+    "operating_expenses",
+    "depreciation_amortization"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "name": "Operating Margin",
+  "description": "Calculate operating margin as a percentage of revenue.",
+  "archetype": "operating_margin",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "Operating Margin = Operating Profit / Revenue",
+  "skills_tested": [
+    "margin_math",
+    "cost_structure"
+  ],
+  "business_contexts": [
+    "a retailer assessing operating margin after COGS and operating expenses",
+    "a manufacturer assessing operating margin on total revenue",
+    "a software company assessing operating margin after SG&A",
+    "a restaurant chain assessing operating margin across locations",
+    "a distributor assessing operating margin on total shipments"
+  ],
+  "question_patterns": [
+    "Given the revenue, COGS, and operating expenses below, what is the operating margin?",
+    "Calculate operating margin as a percentage of revenue from the figures given.",
+    "What percentage of revenue is operating profit, given the values below?",
+    "Calculate the operating margin from the revenue, COGS, and operating expenses shown.",
+    "Using the figures given, what is the operating margin?"
+  ],
+  "variables": {
+    "revenue": {
+      "min": 50000,
+      "max": 800000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "cogs": {
+      "min": 20000,
+      "max": 500000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "operating_expenses": {
+      "min": 10000,
+      "max": 200000,
+      "step": 5000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate gross profit = revenue − cogs",
+    "Step 2: Calculate operating profit = gross profit − operating_expenses",
+    "Step 3: Calculate operating margin = operating profit / revenue"
+  ],
+  "key_insight": "Operating margin is operating profit converted into a percentage of revenue, making core operating performance comparable across companies of different sizes.",
+  "common_mistakes": [
+    "Dividing operating profit by cost instead of revenue",
+    "Reporting gross margin instead of continuing through to operating margin"
+  ],
+  "framework_soundbite": "Operating margin is operating profit over revenue — core earning power as a percentage.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "software",
+    "food service"
+  ],
+  "display_context": "Core Arithmetic • Operating Margin",
+  "target_label": "Operating margin (%)",
+  "primary_variables": [
+    "revenue",
+    "cogs",
+    "operating_expenses"
+  ]
+}

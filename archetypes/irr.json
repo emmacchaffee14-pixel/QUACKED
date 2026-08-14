@@ -1,0 +1,77 @@
+{
+  "name": "IRR (Single Cash Flow)",
+  "description": "Calculate the annualized rate of return for a single future cash flow relative to an initial investment. This is the simplified single-cash-flow case-interview shortcut, not full multi-period IRR with multiple cash flows.",
+  "archetype": "irr",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "IRR (single cash flow) = (Future Value / Initial Investment)^(1/Years) − 1",
+  "skills_tested": [
+    "investment_math"
+  ],
+  "business_contexts": [
+    "an investor estimating the annualized return on a single exit payout",
+    "a private equity firm estimating the annualized return on a hold-to-sale investment",
+    "a startup investor estimating the annualized return on a single funding round",
+    "a real estate investor estimating the annualized return on a property sale",
+    "a venture fund estimating the annualized return on a single portfolio exit"
+  ],
+  "question_patterns": [
+    "Given the initial investment, future value, and years below, what is the IRR?",
+    "Calculate the annualized IRR from the figures given, assuming a single cash flow at exit.",
+    "What annualized return does this single cash flow investment generate, given the figures below?",
+    "Calculate IRR for a single future payout using the figures shown.",
+    "Using the figures below, what is the annualized IRR for this single cash flow?"
+  ],
+  "variables": {
+    "initial_investment": {
+      "min": 20000,
+      "max": 500000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "future_value": {
+      "min": 30000,
+      "max": 1200000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "years": {
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "years"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate the value multiple = future_value / initial_investment",
+    "Step 2: Calculate IRR = (value multiple)^(1/years) − 1"
+  ],
+  "key_insight": "This is the single-cash-flow case-interview shortcut for IRR, not full multi-period IRR — real IRR with multiple interim cash flows requires iterative solving, which is out of scope for a closed-form drill.",
+  "common_mistakes": [
+    "Applying the exponent to the difference (future value minus initial investment) instead of to the ratio between them",
+    "Forgetting to take the years-th root, and instead dividing the multiple by years"
+  ],
+  "framework_soundbite": "Single-cash-flow IRR is the growth multiple raised to the power of 1 over years, minus 1 — annualizing a single payout, not solving a full cash flow schedule.",
+  "archetype_tags": [
+    "private equity",
+    "venture capital",
+    "real estate",
+    "investing"
+  ],
+  "display_context": "Core Arithmetic • IRR (Single Cash Flow)",
+  "target_label": "IRR (%)",
+  "primary_variables": [
+    "initial_investment",
+    "future_value",
+    "years"
+  ]
+}

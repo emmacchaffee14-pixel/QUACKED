@@ -1,0 +1,78 @@
+{
+  "name": "Operating Profit",
+  "description": "Calculate operating profit after cost of goods sold and operating expenses.",
+  "archetype": "operating_profit",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "Operating Profit = (Revenue − COGS) − Operating Expenses",
+  "skills_tested": [
+    "margin_math",
+    "cost_structure"
+  ],
+  "business_contexts": [
+    "a retailer calculating operating profit after COGS and store operating expenses",
+    "a manufacturer calculating operating profit after COGS and plant overhead",
+    "a software company calculating operating profit after COGS and SG&A",
+    "a restaurant chain calculating operating profit after COGS and operating costs",
+    "a distributor calculating operating profit after COGS and warehousing expenses"
+  ],
+  "question_patterns": [
+    "Given the revenue, COGS, and operating expenses below, what is operating profit?",
+    "Calculate operating profit from the figures given.",
+    "What is operating profit, given the revenue, COGS, and operating expenses shown?",
+    "Calculate operating profit by subtracting COGS and operating expenses from revenue given.",
+    "Using the figures below, what is operating profit?"
+  ],
+  "variables": {
+    "revenue": {
+      "min": 50000,
+      "max": 800000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "cogs": {
+      "min": 20000,
+      "max": 500000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "operating_expenses": {
+      "min": 10000,
+      "max": 200000,
+      "step": 5000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate gross profit = revenue − cogs",
+    "Step 2: Calculate operating profit = gross profit − operating_expenses"
+  ],
+  "key_insight": "Operating profit takes gross profit one step further by netting out the day-to-day cost of running the business — everything except financing and taxes.",
+  "common_mistakes": [
+    "Stopping at gross profit and forgetting to subtract operating expenses",
+    "Subtracting operating expenses from revenue directly instead of from gross profit"
+  ],
+  "framework_soundbite": "Operating profit is gross profit minus operating expenses — the business's core earning power before financing and tax.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "software",
+    "food service"
+  ],
+  "display_context": "Core Arithmetic • Operating Profit",
+  "target_label": "Operating profit ($)",
+  "primary_variables": [
+    "revenue",
+    "cogs",
+    "operating_expenses"
+  ]
+}

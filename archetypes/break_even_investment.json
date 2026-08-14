@@ -105,5 +105,10 @@
       "components": ["Revenue per Unit", "Variable Cost per Unit", "Expected Units per Year", "Additional Fixed Costs", "Investment Cost"],
       "distractor_components": ["Customer Acquisition Cost", "Market Growth Rate", "Customer Lifetime Value", "Headcount"]
     }
+  ],
+  "formula_structure": [
+    { "type": "term", "id": "investment_cost", "label": "Investment Cost" },
+    { "type": "operator", "value": "÷" },
+    { "type": "term", "id": "annual_profit_uplift", "label": "Annual Profit Uplift" }
   ]
 }

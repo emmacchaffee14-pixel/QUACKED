@@ -1,6 +1,6 @@
 {
-  "library_version": "1.2.0",
-  "total_archetypes": 30,
+  "library_version": "1.3.0",
+  "total_archetypes": 48,
   "archetypes": [
     {
       "id": "throughput_bottleneck",
@@ -731,6 +731,378 @@
         "starting_value",
         "growth_rate",
         "periods"
+      ]
+    },
+    {
+      "id": "revenue_calculation",
+      "name": "Revenue Calculation",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "revenue_math"
+      ],
+      "file": "revenue_calculation.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Revenue Calculation",
+      "target_label": "Revenue ($)",
+      "primary_variables": [
+        "price",
+        "quantity"
+      ]
+    },
+    {
+      "id": "total_cost_breakdown",
+      "name": "Total Cost Breakdown",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "cost_structure"
+      ],
+      "file": "total_cost_breakdown.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Total Cost Breakdown",
+      "target_label": "Total cost ($)",
+      "primary_variables": [
+        "total_variable_cost",
+        "total_fixed_cost"
+      ]
+    },
+    {
+      "id": "average_cost",
+      "name": "Average Cost",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "cost_per_unit"
+      ],
+      "file": "average_cost.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Average Cost",
+      "target_label": "Average cost per unit ($)",
+      "primary_variables": [
+        "total_cost",
+        "quantity"
+      ]
+    },
+    {
+      "id": "contribution_margin_ratio",
+      "name": "Contribution Margin Ratio",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "contribution_margin"
+      ],
+      "file": "contribution_margin_ratio.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Contribution Margin Ratio",
+      "target_label": "Contribution margin ratio (%)",
+      "primary_variables": [
+        "price",
+        "variable_cost_per_unit"
+      ]
+    },
+    {
+      "id": "profit_margin",
+      "name": "Profit Margin",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "margin_math"
+      ],
+      "file": "profit_margin.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Profit Margin",
+      "target_label": "Profit margin (%)",
+      "primary_variables": [
+        "revenue",
+        "cost"
+      ]
+    },
+    {
+      "id": "gross_profit",
+      "name": "Gross Profit",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "margin_math"
+      ],
+      "file": "gross_profit.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Gross Profit",
+      "target_label": "Gross profit ($)",
+      "primary_variables": [
+        "revenue",
+        "cogs"
+      ]
+    },
+    {
+      "id": "gross_margin",
+      "name": "Gross Margin",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "margin_math"
+      ],
+      "file": "gross_margin.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Gross Margin",
+      "target_label": "Gross margin (%)",
+      "primary_variables": [
+        "revenue",
+        "cogs"
+      ]
+    },
+    {
+      "id": "operating_profit",
+      "name": "Operating Profit",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "margin_math",
+        "cost_structure"
+      ],
+      "file": "operating_profit.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Operating Profit",
+      "target_label": "Operating profit ($)",
+      "primary_variables": [
+        "revenue",
+        "cogs",
+        "operating_expenses"
+      ]
+    },
+    {
+      "id": "operating_margin",
+      "name": "Operating Margin",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "margin_math",
+        "cost_structure"
+      ],
+      "file": "operating_margin.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Operating Margin",
+      "target_label": "Operating margin (%)",
+      "primary_variables": [
+        "revenue",
+        "cogs",
+        "operating_expenses"
+      ]
+    },
+    {
+      "id": "ebit_ebitda",
+      "name": "EBIT and EBITDA",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "margin_math",
+        "cost_structure"
+      ],
+      "file": "ebit_ebitda.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • EBIT and EBITDA",
+      "target_label": "EBITDA ($)",
+      "primary_variables": [
+        "revenue",
+        "cogs",
+        "operating_expenses",
+        "depreciation_amortization"
+      ]
+    },
+    {
+      "id": "market_share",
+      "name": "Market Share",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "market_share_math"
+      ],
+      "file": "market_share.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Market Share",
+      "target_label": "Market share (%)",
+      "primary_variables": [
+        "company_revenue",
+        "total_market_revenue"
+      ]
+    },
+    {
+      "id": "relative_market_share_ratio",
+      "name": "Relative Market Share Ratio",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "market_share_math",
+        "competitive_dynamics"
+      ],
+      "file": "relative_market_share_ratio.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Relative Market Share Ratio",
+      "target_label": "Relative market share (x)",
+      "primary_variables": [
+        "company_market_share_pct",
+        "competitor_market_share_pct"
+      ]
+    },
+    {
+      "id": "utilization_rate",
+      "name": "Utilization Rate",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "capacity_math"
+      ],
+      "file": "utilization_rate.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Utilization Rate",
+      "target_label": "Utilization rate (%)",
+      "primary_variables": [
+        "actual_output",
+        "maximum_output"
+      ]
+    },
+    {
+      "id": "output_rate_time",
+      "name": "Output Rate and Time",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "capacity_math"
+      ],
+      "file": "output_rate_time.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Output Rate and Time",
+      "target_label": "Total output (units)",
+      "primary_variables": [
+        "rate",
+        "time"
+      ]
+    },
+    {
+      "id": "payback_period",
+      "name": "Payback Period",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "payback_period",
+        "investment_math"
+      ],
+      "file": "payback_period.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Payback Period",
+      "target_label": "Payback period (years)",
+      "primary_variables": [
+        "investment_cost",
+        "annual_cash_flow"
+      ]
+    },
+    {
+      "id": "roi",
+      "name": "Return on Investment (ROI)",
+      "difficulty_range": [
+        "beginner"
+      ],
+      "primary_skills": [
+        "investment_math"
+      ],
+      "file": "roi.json",
+      "recommended_difficulty": "beginner",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Return on Investment",
+      "target_label": "ROI (%)",
+      "primary_variables": [
+        "gain_from_investment",
+        "cost_of_investment"
+      ]
+    },
+    {
+      "id": "irr",
+      "name": "IRR (Single Cash Flow)",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "investment_math"
+      ],
+      "file": "irr.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • IRR (Single Cash Flow)",
+      "target_label": "IRR (%)",
+      "primary_variables": [
+        "initial_investment",
+        "future_value",
+        "years"
+      ]
+    },
+    {
+      "id": "npv",
+      "name": "Net Present Value (NPV)",
+      "difficulty_range": [
+        "intermediate"
+      ],
+      "primary_skills": [
+        "investment_math"
+      ],
+      "file": "npv.json",
+      "recommended_difficulty": "intermediate",
+      "content_type": "drill",
+      "content_category": "waddle",
+      "display_context": "Core Arithmetic • Net Present Value",
+      "target_label": "NPV ($)",
+      "primary_variables": [
+        "initial_investment",
+        "future_cash_flow",
+        "discount_rate",
+        "years"
       ]
     }
   ],

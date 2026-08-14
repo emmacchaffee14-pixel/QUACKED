@@ -1,0 +1,69 @@
+{
+  "name": "Average Cost",
+  "description": "Calculate the average cost per unit from total cost and quantity produced.",
+  "archetype": "average_cost",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Average Cost = Total Cost / Quantity",
+  "skills_tested": [
+    "cost_per_unit"
+  ],
+  "business_contexts": [
+    "a manufacturer calculating average cost per unit across a production run",
+    "a bakery calculating average cost per item baked",
+    "a print shop calculating average cost per job across a batch",
+    "a farm calculating average cost per unit harvested",
+    "an assembler calculating average cost per unit assembled"
+  ],
+  "question_patterns": [
+    "Given the total cost and quantity below, what is the average cost per unit?",
+    "Calculate the average cost per unit from the figures given.",
+    "What is the cost per unit, given the total cost and quantity shown?",
+    "Calculate average unit cost by dividing total cost by quantity given.",
+    "Using the total cost and quantity below, what is the average cost?"
+  ],
+  "variables": {
+    "total_cost": {
+      "min": 10000,
+      "max": 200000,
+      "step": 1000,
+      "unit": "$"
+    },
+    "quantity": {
+      "min": 100,
+      "max": 5000,
+      "step": 100,
+      "unit": "units"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate average cost = total_cost / quantity"
+  ],
+  "key_insight": "Average cost spreads total cost evenly across every unit, even though the real cost structure underneath (fixed vs. variable) rarely behaves that evenly.",
+  "common_mistakes": [
+    "Dividing quantity by total cost instead of the other way around",
+    "Using a partial quantity figure instead of the full quantity actually produced"
+  ],
+  "framework_soundbite": "Average cost is the total spread evenly — total cost over quantity, full stop.",
+  "archetype_tags": [
+    "manufacturing",
+    "food service",
+    "agriculture",
+    "printing"
+  ],
+  "display_context": "Core Arithmetic • Average Cost",
+  "target_label": "Average cost per unit ($)",
+  "primary_variables": [
+    "total_cost",
+    "quantity"
+  ]
+}

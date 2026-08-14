@@ -1,0 +1,70 @@
+{
+  "name": "Return on Investment (ROI)",
+  "description": "Calculate return on investment as a percentage of the cost of investment.",
+  "archetype": "roi",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "ROI = (Gain from Investment − Cost of Investment) / Cost of Investment × 100",
+  "skills_tested": [
+    "investment_math"
+  ],
+  "business_contexts": [
+    "an investor assessing ROI on a portfolio position",
+    "a company assessing ROI on a marketing campaign",
+    "a manufacturer assessing ROI on a new machine",
+    "a retailer assessing ROI on a store remodel",
+    "a startup assessing ROI on a growth initiative"
+  ],
+  "question_patterns": [
+    "Given the gain from investment and cost of investment below, what is the ROI?",
+    "Calculate ROI from the figures given.",
+    "What is the return on investment, given the gain and cost shown below?",
+    "Calculate ROI as a percentage from the gain and cost given.",
+    "Using the figures below, what is the ROI?"
+  ],
+  "variables": {
+    "gain_from_investment": {
+      "min": 10000,
+      "max": 1000000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "cost_of_investment": {
+      "min": 5000,
+      "max": 500000,
+      "step": 5000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate net gain = gain_from_investment − cost_of_investment",
+    "Step 2: Calculate ROI = net gain / cost_of_investment × 100"
+  ],
+  "key_insight": "ROI measures net gain relative to what was put in — a positive ROI means the investment returned more than it cost, and a negative one means it didn't.",
+  "common_mistakes": [
+    "Dividing by the gain instead of the cost of investment",
+    "Forgetting to subtract the cost of investment before dividing, which reports gross return instead of net"
+  ],
+  "framework_soundbite": "ROI is net gain over cost, times 100 — what you got back beyond what you put in, as a percentage.",
+  "archetype_tags": [
+    "investing",
+    "marketing",
+    "manufacturing",
+    "retail"
+  ],
+  "display_context": "Core Arithmetic • Return on Investment",
+  "target_label": "ROI (%)",
+  "primary_variables": [
+    "gain_from_investment",
+    "cost_of_investment"
+  ]
+}

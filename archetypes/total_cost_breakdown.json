@@ -1,0 +1,69 @@
+{
+  "name": "Total Cost Breakdown",
+  "description": "Calculate total cost as the sum of variable and fixed cost components.",
+  "archetype": "total_cost_breakdown",
+  "content_type": "drill",
+  "content_category": "waddle",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Total Cost = Total Variable Cost + Total Fixed Cost",
+  "skills_tested": [
+    "cost_structure"
+  ],
+  "business_contexts": [
+    "a manufacturer totaling cost across variable materials and fixed plant overhead",
+    "a retailer totaling cost across variable inventory and fixed rent",
+    "a software company totaling cost across variable hosting and fixed salaries",
+    "a restaurant totaling cost across variable ingredients and fixed lease",
+    "a logistics firm totaling cost across variable fuel and fixed fleet cost"
+  ],
+  "question_patterns": [
+    "Given the total variable cost and total fixed cost below, what is total cost?",
+    "Calculate total cost from the variable and fixed cost figures given.",
+    "What is the combined total cost, given the figures below?",
+    "Calculate total cost by summing the variable and fixed cost shown.",
+    "Using the variable and fixed cost given, what is total cost?"
+  ],
+  "variables": {
+    "total_variable_cost": {
+      "min": 5000,
+      "max": 80000,
+      "step": 1000,
+      "unit": "$"
+    },
+    "total_fixed_cost": {
+      "min": 2000,
+      "max": 50000,
+      "step": 1000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate total cost = total_variable_cost + total_fixed_cost"
+  ],
+  "key_insight": "Total cost is a simple sum, but the split between variable and fixed is what actually drives breakeven and margin math downstream.",
+  "common_mistakes": [
+    "Adding only one cost component and forgetting the other",
+    "Treating fixed costs as if they scale with volume when they don't"
+  ],
+  "framework_soundbite": "Total cost is variable plus fixed — the split matters more than the sum.",
+  "archetype_tags": [
+    "manufacturing",
+    "retail",
+    "software",
+    "food service"
+  ],
+  "display_context": "Core Arithmetic • Total Cost Breakdown",
+  "target_label": "Total cost ($)",
+  "primary_variables": [
+    "total_variable_cost",
+    "total_fixed_cost"
+  ]
+}
