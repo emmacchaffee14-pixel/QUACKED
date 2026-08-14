@@ -11,11 +11,9 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
-    "advanced"
+    "beginner"
   ],
-  "recommended_difficulty": "intermediate",
+  "recommended_difficulty": "beginner",
   "formula": "SAM = Population x Penetration Rate x Purchase Frequency x Average Spend x Serviceable %",
   "skills_tested": [
     "market_sizing",
@@ -102,6 +100,9 @@
       "advanced": "A legacy luggage manufacturer facing declining mall traffic is considering a pivot into airport retail, but its board is skeptical the replacement cycle is long enough to support the real estate cost. Size the serviceable addressable market to inform the decision.",
       "beginner": "Estimate the serviceable addressable market for checked luggage purchases within major airport retail locations.",
       "intermediate": "A travel goods brand is deciding whether to open stores inside major airports and wants to size the serviceable portion of annual luggage replacement demand it could realistically reach."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

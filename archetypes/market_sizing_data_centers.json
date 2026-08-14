@@ -11,11 +11,9 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
     "advanced"
   ],
-  "recommended_difficulty": "intermediate",
+  "recommended_difficulty": "advanced",
   "formula": "SAM = Population x Penetration Rate x Purchase Frequency x Average Spend x Serviceable %",
   "skills_tested": [
     "market_sizing",
@@ -103,6 +101,9 @@
       "advanced": "An infrastructure fund is evaluating a colocation operator whose growth story depends on enterprise capacity demand the fund's own technical advisors are divided on. Build an independent serviceable-addressable-market view before the investment committee meets.",
       "beginner": "Estimate the serviceable addressable market for enterprise data center colocation capacity within a single new region.",
       "intermediate": "A cloud infrastructure provider is deciding whether to open a new regional data center and wants to size the serviceable portion of annual demand within that region's reach."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

@@ -11,9 +11,7 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
-    "advanced"
+    "intermediate"
   ],
   "recommended_difficulty": "intermediate",
   "formula": "SOM = Population x Penetration Rate x Purchase Frequency x Average Spend x Serviceable % x Obtainable Share %",
@@ -111,6 +109,9 @@
       "advanced": "A city transit authority is considering subsidizing an e-bike sharing operator whose ridership projections rely on adoption assumptions borrowed from a much denser peer city. Build an independent serviceable-obtainable-market estimate before the subsidy is approved.",
       "beginner": "Estimate the serviceable obtainable market for electric bike sharing rides in a major city, accounting for realistic competitive capture.",
       "intermediate": "A micromobility operator is deciding whether to launch e-bike sharing in a new city and wants to size the annual ridership revenue it could realistically capture against existing competitors."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

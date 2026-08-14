@@ -11,11 +11,9 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
-    "advanced"
+    "beginner"
   ],
-  "recommended_difficulty": "intermediate",
+  "recommended_difficulty": "beginner",
   "formula": "TAM = Population x Penetration_rate x Purchase_frequency x Average_spend",
   "skills_tested": [
     "market_sizing",
@@ -81,7 +79,7 @@
     "e-commerce",
     "accessories"
   ],
-  "display_context": "Consumer Electronics \u2022 Accessories Sizing",
+  "display_context": "Consumer Electronics • Accessories Sizing",
   "target_label": "Total addressable market ($)",
   "primary_variables": [
     "target_population",
@@ -95,6 +93,9 @@
       "beginner": "Estimate the total addressable market for smartphone protective cases.",
       "intermediate": "A consumer accessories brand is deciding whether to launch a phone case line and wants to size the annual market opportunity first.",
       "advanced": "A private-label accessories manufacturer has been offered exclusive shelf space by a major retailer, contingent on committing to a phone case line within the quarter. Leadership needs a credible size-of-prize estimate before agreeing to the terms."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

@@ -11,9 +11,7 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
-    "advanced"
+    "intermediate"
   ],
   "recommended_difficulty": "intermediate",
   "formula": "SOM = Population x Penetration Rate x Purchase Frequency x Average Spend x Serviceable % x Obtainable Share %",
@@ -111,6 +109,9 @@
       "advanced": "A grocery chain is evaluating a private-label meal-kit launch after a rival's high-profile meal-kit partnership underperformed. Leadership wants an independent serviceable-obtainable-market estimate before repeating the experiment.",
       "beginner": "Estimate the serviceable obtainable market for subscription meal-kit delivery, accounting for realistic competitive capture.",
       "intermediate": "A meal-kit startup is deciding whether to expand nationally and wants to size the annual subscription revenue it could realistically capture against established competitors."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

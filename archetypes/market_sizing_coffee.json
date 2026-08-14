@@ -11,11 +11,9 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
-    "advanced"
+    "beginner"
   ],
-  "recommended_difficulty": "intermediate",
+  "recommended_difficulty": "beginner",
   "formula": "TAM = Population x Penetration_rate x Purchase_frequency x Average_spend",
   "skills_tested": [
     "market_sizing",
@@ -81,7 +79,7 @@
     "consumer",
     "subscription"
   ],
-  "display_context": "Food & Beverage \u2022 Specialty Coffee Sizing",
+  "display_context": "Food & Beverage • Specialty Coffee Sizing",
   "target_label": "Total addressable market ($)",
   "primary_variables": [
     "target_population",
@@ -95,6 +93,9 @@
       "beginner": "Estimate the total addressable market for specialty coffee sold direct-to-consumer.",
       "intermediate": "A specialty coffee roaster is deciding whether to expand from regional cafes into national retail and wants to understand the size of the opportunity.",
       "advanced": "A regional roaster known for its cafe experience is being courted by a national retailer for a private-label deal, but leadership is unsure whether the specialty segment is large enough to justify walking away from its retail footprint. Size the market before the board meeting."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

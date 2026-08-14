@@ -11,9 +11,7 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
-    "advanced"
+    "intermediate"
   ],
   "recommended_difficulty": "intermediate",
   "formula": "SOM = Population x Penetration Rate x Purchase Frequency x Average Spend x Serviceable % x Obtainable Share %",
@@ -111,6 +109,9 @@
       "advanced": "A private equity firm is evaluating a home fitness equipment brand whose growth thesis depends on post-pandemic demand persisting at levels the firm's consumer analysts are skeptical of. Build an independent serviceable-obtainable-market view before the bid deadline.",
       "beginner": "Estimate the serviceable obtainable market for connected home fitness equipment, accounting for realistic competitive capture.",
       "intermediate": "A connected fitness hardware startup is deciding whether to enter the home equipment market and wants to size the annual revenue it could realistically capture against incumbents."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

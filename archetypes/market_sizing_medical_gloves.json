@@ -11,11 +11,9 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
     "advanced"
   ],
-  "recommended_difficulty": "intermediate",
+  "recommended_difficulty": "advanced",
   "formula": "SAM = Population x Penetration Rate x Purchase Frequency x Average Spend x Serviceable %",
   "skills_tested": [
     "market_sizing",
@@ -103,6 +101,9 @@
       "advanced": "A contract manufacturer is being asked to commit capital to a new glove production line based on a distributor's demand forecast that leadership suspects is optimistic. Build an independent view of the serviceable addressable market before approving the capex.",
       "beginner": "Estimate the serviceable addressable market for disposable medical exam gloves within the manufacturer's current distribution reach.",
       "intermediate": "A medical supply manufacturer is deciding whether to add a new glove production line and wants to size the serviceable portion of annual demand it could actually distribute to."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

@@ -11,9 +11,7 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
-    "advanced"
+    "intermediate"
   ],
   "recommended_difficulty": "intermediate",
   "formula": "SOM = Population x Penetration Rate x Purchase Frequency x Average Spend x Serviceable % x Obtainable Share %",
@@ -111,6 +109,9 @@
       "advanced": "An edtech investor is evaluating a language-learning app whose international expansion plan assumes conversion rates the fund's own data team hasn't been able to validate against comparable markets. Build an independent serviceable-obtainable-market estimate before the board vote.",
       "beginner": "Estimate the serviceable obtainable market for subscription language-learning apps in a new country launch, accounting for realistic competitive capture.",
       "intermediate": "A language-learning app is deciding whether to launch in a new country and wants to size the annual subscription revenue it could realistically capture against local competitors."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

@@ -11,11 +11,9 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
-    "advanced"
+    "beginner"
   ],
-  "recommended_difficulty": "intermediate",
+  "recommended_difficulty": "beginner",
   "formula": "TAM = Population x Penetration_rate x Purchase_frequency x Average_spend",
   "skills_tested": [
     "market_sizing",
@@ -81,7 +79,7 @@
     "retail",
     "e-commerce"
   ],
-  "display_context": "Consumer Goods \u2022 Pet Care Sizing",
+  "display_context": "Consumer Goods • Pet Care Sizing",
   "target_label": "Total addressable market ($)",
   "primary_variables": [
     "target_population",
@@ -95,6 +93,9 @@
       "beginner": "Estimate the total addressable market for premium dog food in the United States.",
       "intermediate": "A private-equity firm is evaluating an investment in a premium dog food brand and wants to understand the total market opportunity before committing to diligence.",
       "advanced": "A mid-market PE firm has been approached by a founder-led premium dog food company seeking growth capital. The founder's own materials are vague about geographic scope and what counts as a \"premium\" customer. Before committing further diligence resources, the investment team wants a defensible view of market size."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }

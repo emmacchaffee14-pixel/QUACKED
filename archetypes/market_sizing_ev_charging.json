@@ -11,11 +11,9 @@
     "BCG"
   ],
   "difficulty_range": [
-    "beginner",
-    "intermediate",
     "advanced"
   ],
-  "recommended_difficulty": "intermediate",
+  "recommended_difficulty": "advanced",
   "formula": "TAM = Population x Penetration_rate x Purchase_frequency x Average_spend",
   "skills_tested": [
     "market_sizing",
@@ -81,7 +79,7 @@
     "automotive",
     "sustainability"
   ],
-  "display_context": "Infrastructure \u2022 EV Charging Sizing",
+  "display_context": "Infrastructure • EV Charging Sizing",
   "target_label": "Total addressable market ($)",
   "primary_variables": [
     "target_population",
@@ -95,6 +93,9 @@
       "beginner": "Estimate the total addressable market for public EV charging sessions.",
       "intermediate": "An energy utility is deciding whether to invest in a national public EV charging network and wants to size the annual revenue opportunity.",
       "advanced": "A state-backed infrastructure fund is weighing a stake in an EV charging operator whose growth deck cites aggressive adoption assumptions the fund's diligence team has not been able to verify independently. Before signing off, the fund wants its own bottom-up view of the addressable market."
-    }
+    },
+    "given_facts": [
+      "target_population"
+    ]
   }
 }
