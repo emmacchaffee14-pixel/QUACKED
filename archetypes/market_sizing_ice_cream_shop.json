@@ -1,0 +1,108 @@
+{
+  "id": "market_sizing_ice_cream_shop",
+  "name": "Ice Cream Shop Revenue",
+  "description": "Size the annual revenue of a single ice cream shop location.",
+  "archetype": "market_sizing",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "intermediate"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "Revenue = Annual foot traffic x % who notice x % who buy x cones per purchase x price per cone",
+  "skills_tested": [
+    "market_sizing",
+    "estimation",
+    "segmentation",
+    "order_of_magnitude"
+  ],
+  "solution_logic": [
+    "Step 1: Identify noticing traffic = target_population x addressable_segment",
+    "Step 2: Apply purchase rate = noticing_traffic x penetration_rate",
+    "Step 3: Calculate spend per purchase = purchase_frequency x avg_spend_per_purchase",
+    "Step 4: Calculate annual revenue = buyers x spend_per_purchase"
+  ],
+  "key_insight": "There's no population or citywide market to narrow down here -- this is a single-location estimate, built up from foot traffic past this one spot, not down from a city's population.",
+  "common_mistakes": [
+    "Trying to size the citywide ice cream market instead of this one shop's foot traffic",
+    "Skipping the \"who notices\" filter and assuming everyone who walks by is a potential customer",
+    "Forgetting cones-per-purchase and pricing off a single scoop instead of the average purchase"
+  ],
+  "framework_soundbite": "One location, foot traffic in, conversion twice, price out -- there's no population to narrow down from.",
+  "business_contexts": [
+    "a single-location ice cream shop owner planning next year's budget",
+    "a franchise evaluating a new storefront's revenue potential"
+  ],
+  "question_patterns": [
+    "A franchise is evaluating whether a candidate storefront can support an ice cream shop and wants a bottom-up revenue estimate before signing the lease."
+  ],
+  "variables": {
+    "target_population": {
+      "min": 300000,
+      "max": 450000,
+      "step": 25000,
+      "unit": "people/year (annual foot traffic near the shop)"
+    },
+    "addressable_segment": {
+      "min": 0.3,
+      "max": 0.6,
+      "step": 0.05,
+      "unit": "% who notice the shop"
+    },
+    "penetration_rate": {
+      "min": 0.1,
+      "max": 0.25,
+      "step": 0.01,
+      "unit": "% of noticers who buy"
+    },
+    "purchase_frequency": {
+      "min": 1,
+      "max": 2,
+      "step": 1,
+      "unit": "cones/purchase"
+    },
+    "avg_spend_per_purchase": {
+      "min": 4,
+      "max": 7,
+      "step": 1,
+      "unit": "$/cone"
+    }
+  },
+  "archetype_tags": [
+    "food & beverage",
+    "retail",
+    "single-location",
+    "consumer"
+  ],
+  "display_context": "Food & Beverage • Ice Cream Shop Sizing",
+  "target_label": "Annual shop revenue ($)",
+  "primary_variables": [
+    "target_population",
+    "addressable_segment",
+    "penetration_rate",
+    "purchase_frequency",
+    "avg_spend_per_purchase"
+  ],
+  "market_sizing_scenario": {
+    "prompts": {
+      "beginner": "Estimate the annual revenue of a single ice cream shop on a busy street corner.",
+      "intermediate": "A franchise is evaluating whether a candidate storefront can support an ice cream shop and wants a bottom-up revenue estimate before signing the lease.",
+      "advanced": "An ice cream franchise's real estate team has three candidate storefronts and limited capital to open only one this year. Before committing, they want a defensible bottom-up revenue estimate for the strongest candidate -- built from foot traffic, not a citywide estimate."
+    },
+    "given_facts": [
+      "target_population"
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "bottom_up"
+      ],
+      "bottom_up_why": "Start from the foot traffic actually near this one shop, filter down to who notices and who buys, then multiply by what they spend -- you're building the whole estimate up from this single location, since there's no larger market to narrow down from."
+    }
+  }
+}

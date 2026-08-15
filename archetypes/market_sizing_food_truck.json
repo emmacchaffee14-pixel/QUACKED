@@ -1,0 +1,108 @@
+{
+  "id": "market_sizing_food_truck",
+  "name": "Food Truck Revenue",
+  "description": "Size the annual revenue of a single food truck parked on weekdays.",
+  "archetype": "market_sizing",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "advanced"
+  ],
+  "recommended_difficulty": "advanced",
+  "formula": "Revenue = Annual weekday lunch-hour foot traffic x % nearby x % who buy x orders per visit x price per order",
+  "skills_tested": [
+    "market_sizing",
+    "estimation",
+    "segmentation",
+    "order_of_magnitude"
+  ],
+  "solution_logic": [
+    "Step 1: Identify nearby traffic = target_population x addressable_segment",
+    "Step 2: Apply purchase rate = nearby_traffic x penetration_rate",
+    "Step 3: Calculate spend per purchase = purchase_frequency x avg_spend_per_purchase",
+    "Step 4: Calculate annual revenue = buyers x spend_per_purchase"
+  ],
+  "key_insight": "This is a single truck at a single spot, weekdays only -- the whole estimate has to be built up from lunch-hour foot traffic at this one location, not narrowed down from a city's food-service market.",
+  "common_mistakes": [
+    "Sizing the citywide food truck or restaurant market instead of this one truck's lunch-hour foot traffic",
+    "Forgetting that this is weekdays only and accidentally scaling as if the truck operates 7 days a week",
+    "Treating everyone near the truck at lunch as a buyer instead of applying both a notice filter and a purchase filter"
+  ],
+  "framework_soundbite": "One truck, weekday lunch traffic only, two filters before you multiply by price -- nothing here comes from a city population.",
+  "business_contexts": [
+    "a food truck owner deciding whether a new parking spot is worth the permit cost",
+    "a food truck startup pitching investors on a single-truck pilot"
+  ],
+  "question_patterns": [
+    "A food truck startup is deciding whether a downtown lunch spot is worth a year-long parking permit and wants a bottom-up revenue estimate first."
+  ],
+  "variables": {
+    "target_population": {
+      "min": 150000,
+      "max": 300000,
+      "step": 25000,
+      "unit": "people/year (weekday lunch-hour foot traffic near the spot)"
+    },
+    "addressable_segment": {
+      "min": 0.25,
+      "max": 0.5,
+      "step": 0.05,
+      "unit": "% close enough to the truck during lunch"
+    },
+    "penetration_rate": {
+      "min": 0.05,
+      "max": 0.15,
+      "step": 0.01,
+      "unit": "% who actually buy"
+    },
+    "purchase_frequency": {
+      "min": 1,
+      "max": 1,
+      "step": 1,
+      "unit": "orders/visit"
+    },
+    "avg_spend_per_purchase": {
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "$/order"
+    }
+  },
+  "archetype_tags": [
+    "food & beverage",
+    "retail",
+    "single-location",
+    "consumer"
+  ],
+  "display_context": "Food & Beverage • Food Truck Sizing",
+  "target_label": "Annual truck revenue ($)",
+  "primary_variables": [
+    "target_population",
+    "addressable_segment",
+    "penetration_rate",
+    "purchase_frequency",
+    "avg_spend_per_purchase"
+  ],
+  "market_sizing_scenario": {
+    "prompts": {
+      "beginner": "Estimate the annual revenue of a single food truck parked in a downtown business district on weekdays.",
+      "intermediate": "A food truck startup is deciding whether a downtown lunch spot is worth a year-long parking permit and wants a bottom-up revenue estimate first.",
+      "advanced": "A food truck operator has one truck and is choosing between renewing a downtown weekday permit or trying a new neighborhood with unproven foot traffic. Before deciding, they want a defensible bottom-up revenue estimate for the current spot, built from lunch-hour foot traffic, not a citywide estimate."
+    },
+    "given_facts": [
+      "target_population"
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "bottom_up"
+      ],
+      "bottom_up_why": "Start from the lunch-hour foot traffic actually near this one truck on the days it operates, filter down to who's close enough and who buys, then multiply by what they spend -- there's no larger market to narrow down from, just this one spot."
+    }
+  }
+}
