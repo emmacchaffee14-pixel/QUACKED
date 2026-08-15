@@ -112,6 +112,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from urban residents, narrow to the service zone, apply penetration, then multiply by rides per year and price per ride -- narrowing down from the city's population.",
+      "bottom_up_why": "Or start from one rider: their annual spend (rides/year x price/ride), then scale up by penetrating riders and obtainable share against competitors. The more natural default for a usage-based business -- you're building from one rider's behavior, not a city population."
+    }
   }
 }

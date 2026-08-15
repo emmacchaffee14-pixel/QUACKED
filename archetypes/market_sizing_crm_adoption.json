@@ -104,6 +104,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from small businesses, narrow to those without a CRM today, apply this startup's penetration and reachable %, then multiply by monthly spend -- narrowing down from the total small-business count.",
+      "bottom_up_why": "Or start from one subscribing customer: their annual spend (12 x $/month), then scale up by how many reachable, CRM-less businesses this go-to-market motion can win. The more natural default for a subscription business -- most SaaS pitches build up from ARPU, not down from a population."
+    }
   }
 }

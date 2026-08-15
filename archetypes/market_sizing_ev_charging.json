@@ -96,6 +96,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from registered EVs, narrow to those lacking home charging, apply penetration, then multiply by sessions per year and price per session -- narrowing down from the EV fleet.",
+      "bottom_up_why": "Or start from one EV without home charging: its annual charging spend (sessions/year x price/session), then scale up by how many such vehicles this network penetrates. The more natural default -- usage-based infrastructure is usually sized from one vehicle's behavior up, not a population down."
+    }
   }
 }

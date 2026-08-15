@@ -96,6 +96,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "top_down",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from dog-owning households, narrow to the premium-willing segment, apply penetration, then multiply by how often and how much they spend -- a population-down funnel, the natural shape for a national TAM question like this.",
+      "bottom_up_why": "Or start from a single dog: its annual food spend (purchase frequency x price), then scale up by the number of penetrating premium-willing households. Just as valid -- you're building up from a defensible unit instead of narrowing down from a population."
+    }
   }
 }

@@ -112,6 +112,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from households, narrow to time-constrained cooks, apply penetration and reachable %, then multiply by boxes per year and price per box -- narrowing down from the household count.",
+      "bottom_up_why": "Or start from one subscriber: their annual spend (boxes/year x price/box), then scale up by penetrating households and obtainable share against incumbents. The more natural default -- subscription box businesses are usually pitched from one customer's basket up, not a population down."
+    }
   }
 }

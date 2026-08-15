@@ -96,6 +96,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "top_down",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from smartphone owners, narrow to the segment that actually buys cases, apply penetration, then multiply by purchase frequency and price -- narrowing down from the device install base.",
+      "bottom_up_why": "Or start from one case-buying customer: their annual spend (cases/year x price), then scale up by how many of them this brand penetrates. Both reach the same number from opposite directions."
+    }
   }
 }

@@ -104,6 +104,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from hospitals & clinics, narrow to those using disposable gloves, apply penetration and current distribution reach, then multiply by order value -- narrowing down from the facility count.",
+      "bottom_up_why": "Or start from one facility: its annual order value (orders/year x $/order), then scale up by how many penetrating, glove-using facilities this manufacturer's distribution reaches. The more natural default -- B2B procurement is usually sized bottom-up from one account's order value, not down from a population."
+    }
   }
 }

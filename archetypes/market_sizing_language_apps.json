@@ -112,6 +112,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from adults, narrow to those actively learning a language, apply penetration and reachable %, then multiply by monthly spend -- narrowing down from the adult population.",
+      "bottom_up_why": "Or start from one subscriber: their annual spend (12 x $/month), then scale up by penetrating learners and obtainable share against incumbents. The more natural default for a subscription app -- build from ARPU, not down from a country's population."
+    }
   }
 }

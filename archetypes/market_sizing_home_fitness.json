@@ -112,6 +112,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "top_down",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from households, narrow to the fitness-motivated segment, apply penetration and obtainable share, then multiply by price -- narrowing down from the national household count.",
+      "bottom_up_why": "Or start from one fitness-motivated household: their spend on a five-year replacement cycle, then scale up by how many households this brand can realistically win. Builds from the unit purchase instead of the population."
+    }
   }
 }

@@ -103,6 +103,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "top_down",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from annual air travelers, narrow to frequent travelers, apply this brand's penetration within its airport-retail footprint, then multiply by price -- narrowing down from total travel volume.",
+      "bottom_up_why": "Or start from one frequent traveler: their roughly-annual luggage spend, then scale up by how many travelers this brand's footprint actually reaches. A smaller, more defensible starting point."
+    }
   }
 }

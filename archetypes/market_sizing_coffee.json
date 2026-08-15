@@ -96,6 +96,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "top_down",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from the adult population, narrow to regular coffee drinkers, apply this brand's penetration rate, then multiply by bags per year and price per bag -- narrowing down from the total market.",
+      "bottom_up_why": "Or start from one regular coffee drinker: their annual spend (bags/year x price/bag), then scale up by how many drinkers this brand actually penetrates. Equally defensible -- you're building from the individual customer instead of the total population."
+    }
   }
 }

@@ -104,6 +104,15 @@
     },
     "given_facts": [
       "target_population"
-    ]
+    ],
+    "approach_guidance": {
+      "preferred": "bottom_up",
+      "accepted": [
+        "top_down",
+        "bottom_up"
+      ],
+      "top_down_why": "Start from mid-market enterprises, narrow to those needing added capacity, apply penetration and the region's serviceable %, then multiply by contract value -- narrowing down from the enterprise count.",
+      "bottom_up_why": "Or start from one contract: its annual value, then scale up by how many addressable, capacity-needing enterprises this region can realistically win. The more natural default here -- B2B deals like this are usually sized bottom-up from one contract's economics, not down from a population."
+    }
   }
 }
