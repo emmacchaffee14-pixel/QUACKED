@@ -1,0 +1,71 @@
+{
+  "id": "profit_margin_case",
+  "name": "Keep-Rate Review",
+  "description": "Case-pool variant of Profit Margin, for Problem Recognition.",
+  "archetype": "profit_margin",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Profit margin = (Revenue − Cost) / Revenue",
+  "skills_tested": [
+    "margin_math"
+  ],
+  "business_contexts": [
+    "a specialty grocer comparing how much of every dollar of sales it actually keeps",
+    "a contract manufacturer reviewing how much of its sales survive after costs",
+    "a boutique consultancy reviewing how much of its billings it actually keeps",
+    "an online retailer reviewing how much of each sales dollar survives after costs",
+    "a franchise reviewing how much of its sales it keeps after expenses"
+  ],
+  "question_patterns": [
+    "Of every dollar the client brings in, what share is actually kept after costs?",
+    "What percentage of the client's sales survives once costs are subtracted?",
+    "How much of each sales dollar does the client actually keep, expressed as a percentage?",
+    "As a share of sales, how much does the client keep after paying its costs?"
+  ],
+  "variables": {
+    "revenue": {
+      "min": 20000,
+      "max": 500000,
+      "step": 5000,
+      "unit": "$"
+    },
+    "cost": {
+      "min": 10000,
+      "max": 400000,
+      "step": 5000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate profit margin = (revenue − cost) / revenue"
+  ],
+  "key_insight": "Profit margin is the same calculation as profit divided by revenue — profit is just revenue minus cost, so the margin is that gap expressed as a share of revenue.",
+  "common_mistakes": [
+    "Dividing by cost instead of revenue",
+    "Reporting the dollar profit instead of converting it to a percentage of revenue"
+  ],
+  "framework_soundbite": "Profit margin is profit over revenue — the gap expressed as a share of the top line.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "professional services",
+    "e-commerce"
+  ],
+  "display_context": "Case Practice • Keep-Rate Review",
+  "target_label": "Profit margin (%)",
+  "primary_variables": [
+    "revenue",
+    "cost"
+  ]
+}

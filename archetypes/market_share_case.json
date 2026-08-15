@@ -1,0 +1,71 @@
+{
+  "id": "market_share_case",
+  "name": "Category Position Review",
+  "description": "Case-pool variant of Market Share, for Problem Recognition.",
+  "archetype": "market_share",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "Market Share = Company Revenue / Total Market Revenue",
+  "skills_tested": [
+    "market_share_math"
+  ],
+  "business_contexts": [
+    "a regional grocery chain comparing its own sales to total category sales in its footprint",
+    "a telecom carrier comparing its subscriber revenue to the total spent across the industry",
+    "a ride-hailing app comparing its bookings to total category spend in its metro",
+    "a private-label skincare brand comparing its sales to total category sales at retail",
+    "a community bank comparing its deposits to total deposits held across its market"
+  ],
+  "question_patterns": [
+    "Given the client's own sales and the total spent across the category, what percentage of the category does the client represent?",
+    "What portion of the total category does the client currently account for?",
+    "Out of every dollar spent in this category, what fraction lands with the client?",
+    "Relative to the total category, how big a slice does the client currently hold?"
+  ],
+  "variables": {
+    "company_revenue": {
+      "min": 5000000,
+      "max": 80000000,
+      "step": 1000000,
+      "unit": "$"
+    },
+    "total_market_revenue": {
+      "min": 100000000,
+      "max": 2000000000,
+      "step": 50000000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate market share = company_revenue / total_market_revenue"
+  ],
+  "key_insight": "Market share is always measured against the total market, not against any single competitor — that comparison is what relative market share is for.",
+  "common_mistakes": [
+    "Dividing by a competitor's revenue instead of total market revenue",
+    "Confusing market share with relative market share, which compares against the largest rival instead of the whole market"
+  ],
+  "framework_soundbite": "Market share is company revenue over the total market — the whole pie, not one rival's slice.",
+  "archetype_tags": [
+    "consumer goods",
+    "banking",
+    "software",
+    "airlines"
+  ],
+  "display_context": "Case Practice • Category Position Review",
+  "target_label": "Market share (%)",
+  "primary_variables": [
+    "company_revenue",
+    "total_market_revenue"
+  ]
+}

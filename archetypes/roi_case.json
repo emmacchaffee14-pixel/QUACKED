@@ -1,0 +1,72 @@
+{
+  "id": "roi_case",
+  "name": "Payoff Review",
+  "description": "Case-pool variant of Return on Investment, for Problem Recognition.",
+  "archetype": "roi",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "recommended_difficulty": "intermediate",
+  "formula": "ROI = (Gain from Investment − Cost of Investment) / Cost of Investment × 100",
+  "skills_tested": [
+    "investment_math"
+  ],
+  "business_contexts": [
+    "a manufacturer weighing whether a new packaging line was worth the money it cost",
+    "a marketing team assessing whether a completed campaign was worth its spend",
+    "a retailer assessing whether a store remodel was worth its cost",
+    "a logistics company assessing whether a new routing system was worth its cost",
+    "a hospital assessing whether new equipment was worth its purchase price"
+  ],
+  "question_patterns": [
+    "Relative to what it cost, how much did the client actually get back from this investment?",
+    "Expressed as a percentage of what was spent, how well did this investment pay off?",
+    "How much value did this investment generate, relative to what it cost to make?",
+    "As a percentage of the original outlay, what did the client gain from this investment?"
+  ],
+  "variables": {
+    "gain_from_investment": {
+      "min": 10000,
+      "max": 1000000,
+      "step": 10000,
+      "unit": "$"
+    },
+    "cost_of_investment": {
+      "min": 5000,
+      "max": 500000,
+      "step": 5000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate net gain = gain_from_investment − cost_of_investment",
+    "Step 2: Calculate ROI = net gain / cost_of_investment × 100"
+  ],
+  "key_insight": "ROI measures net gain relative to what was put in — a positive ROI means the investment returned more than it cost, and a negative one means it didn't.",
+  "common_mistakes": [
+    "Dividing by the gain instead of the cost of investment",
+    "Forgetting to subtract the cost of investment before dividing, which reports gross return instead of net"
+  ],
+  "framework_soundbite": "ROI is net gain over cost, times 100 — what you got back beyond what you put in, as a percentage.",
+  "archetype_tags": [
+    "investing",
+    "marketing",
+    "manufacturing",
+    "retail"
+  ],
+  "display_context": "Case Practice • Payoff Review",
+  "target_label": "ROI (%)",
+  "primary_variables": [
+    "gain_from_investment",
+    "cost_of_investment"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "revenue_calculation_case",
+  "name": "Revenue Recognition",
+  "description": "Case-pool variant of Revenue Calculation, for Problem Recognition.",
+  "archetype": "revenue_calculation",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Revenue = Price × Quantity",
+  "skills_tested": [
+    "revenue_math"
+  ],
+  "business_contexts": [
+    "a boutique furniture maker closing out its first full year of online sales",
+    "a mobile game studio wrapping up a seasonal in-app promotion",
+    "a regional ticketing platform reviewing a completed concert series",
+    "a subscription meal-kit company closing its books for the quarter",
+    "a wholesale distributor totaling a completed shipping cycle"
+  ],
+  "question_patterns": [
+    "How much did the client bring in from this product line before any costs are considered?",
+    "What did the client's top line come out to for the period?",
+    "Before subtracting anything, what was the total amount the client collected from customers?",
+    "What figure lands on the very first line of the client's income statement for this period?"
+  ],
+  "variables": {
+    "price": {
+      "min": 20,
+      "max": 400,
+      "step": 10,
+      "unit": "$"
+    },
+    "quantity": {
+      "min": 100,
+      "max": 5000,
+      "step": 100,
+      "unit": "units"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate revenue = price × quantity"
+  ],
+  "key_insight": "Revenue is the top line before any cost is subtracted — price times quantity, nothing else.",
+  "common_mistakes": [
+    "Subtracting costs before arriving at revenue, which conflates revenue with profit",
+    "Multiplying price by a different volume figure than the one actually sold"
+  ],
+  "framework_soundbite": "Revenue is price times quantity — the starting line, not the finish line.",
+  "archetype_tags": [
+    "retail",
+    "manufacturing",
+    "software",
+    "events"
+  ],
+  "display_context": "Case Practice • Revenue Recognition",
+  "target_label": "Revenue ($)",
+  "primary_variables": [
+    "price",
+    "quantity"
+  ]
+}

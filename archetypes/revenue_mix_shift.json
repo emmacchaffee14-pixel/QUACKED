@@ -15,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Profit = Total Volume × [(Mix % A × Contribution Margin A) + (Mix % B × Contribution Margin B)] = Profit_current vs Profit_prior",
+  "formula": "Profit (Prior) = Total Volume × [(Prior Mix (A) % × Contribution Margin (A)) + ((1 − Prior Mix (A) %) × Contribution Margin (B))]\nProfit (Current) = Total Volume × [(Current Mix (A) % × Contribution Margin (A)) + ((1 − Current Mix (A) %) × Contribution Margin (B))]",
   "skills_tested": [
     "profitability",
     "margin_math",

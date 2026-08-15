@@ -1,0 +1,71 @@
+{
+  "id": "total_cost_breakdown_case",
+  "name": "All-In Cost Review",
+  "description": "Case-pool variant of Total Cost Breakdown, for Problem Recognition.",
+  "archetype": "total_cost_breakdown",
+  "content_type": "drill",
+  "content_category": "case",
+  "firm_compatibility": [
+    "McKinsey",
+    "Bain",
+    "BCG"
+  ],
+  "difficulty_range": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "recommended_difficulty": "beginner",
+  "formula": "Total Cost = Total Variable Cost + Total Fixed Cost",
+  "skills_tested": [
+    "cost_structure"
+  ],
+  "business_contexts": [
+    "a contract manufacturer combining raw materials spend with plant overhead for the year",
+    "a boutique hotel adding up housekeeping supplies alongside its fixed lease payment",
+    "a regional airline combining fuel spend with fixed aircraft leasing costs",
+    "an e-commerce brand combining packaging spend with fixed warehouse rent",
+    "a dental practice combining supply costs with fixed staff salaries"
+  ],
+  "question_patterns": [
+    "Once every variable and fixed expense is added up, what does the client actually spend to run this operation?",
+    "What is the full expense bill the client is carrying, once every cost line is combined?",
+    "Adding the pieces below together, what does it cost the client to operate for the period?",
+    "What is the client's all-in spend once every cost component shown is combined?"
+  ],
+  "variables": {
+    "total_variable_cost": {
+      "min": 5000,
+      "max": 80000,
+      "step": 1000,
+      "unit": "$"
+    },
+    "total_fixed_cost": {
+      "min": 2000,
+      "max": 50000,
+      "step": 1000,
+      "unit": "$"
+    }
+  },
+  "solution_logic": [
+    "Step 1: Calculate total cost = total_variable_cost + total_fixed_cost"
+  ],
+  "key_insight": "Total cost is a simple sum, but the split between variable and fixed is what actually drives breakeven and margin math downstream.",
+  "common_mistakes": [
+    "Adding only one cost component and forgetting the other",
+    "Treating fixed costs as if they scale with volume when they don't"
+  ],
+  "framework_soundbite": "Total cost is variable plus fixed — the split matters more than the sum.",
+  "archetype_tags": [
+    "manufacturing",
+    "retail",
+    "software",
+    "food service"
+  ],
+  "display_context": "Case Practice • All-In Cost Review",
+  "target_label": "Total cost ($)",
+  "primary_variables": [
+    "total_variable_cost",
+    "total_fixed_cost"
+  ]
+}

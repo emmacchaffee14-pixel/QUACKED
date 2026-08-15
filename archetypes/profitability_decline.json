@@ -34,7 +34,7 @@
     "Why has profit declined despite stable revenue?",
     "Is the decline driven by price, volume, or cost?",
     "How much profit has been lost versus the prior period?",
-    "What is the size of the profitability gap the client needs to close?"
+    "How big is the gap the client needs to close to get back to where it started?"
   ],
   "variables": {
     "price_per_unit": {
