@@ -27,13 +27,13 @@
     "Step 3: Calculate annual spend per user = purchase_frequency x avg_spend_per_purchase",
     "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "The population is dog-owning households, not all households -- and \"premium-willing\" in addressable_segment is the difference between a mass-market and a premium play.",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Sizing all US households instead of dog-owning households",
+    "Treating every dog owner as premium-willing instead of applying the addressable segment filter",
+    "Forgetting purchase frequency and pricing off a single purchase instead of annual spend"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "Dog-owning households, filtered to premium-willing, times how often they actually buy -- not just how many dogs there are.",
   "business_contexts": [
     "a direct-to-consumer premium dog food startup",
     "a pet CPG brand considering a premium line extension"

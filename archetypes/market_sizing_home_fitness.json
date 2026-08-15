@@ -29,13 +29,13 @@
     "Step 5: Calculate SAM = TAM x serviceable_pct",
     "Step 6: Calculate SOM = SAM x obtainable_share_pct"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "Purchase frequency here is structurally low (about one unit per five years) because this is a durable good, not a consumable -- the market size lives or dies on penetration rate and price, not repeat frequency.",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Treating this like a subscription or consumable and inflating purchase frequency",
+    "Sizing off all households instead of the fitness-motivated addressable segment",
+    "Forgetting obtainable share -- connected fitness is a competitive category, not a blue ocean"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "A five-year replacement cycle means frequency isn't your lever -- penetration, price, and obtainable share are.",
   "business_contexts": [
     "a connected fitness hardware startup evaluating market entry",
     "a private equity firm sizing demand for home fitness equipment"

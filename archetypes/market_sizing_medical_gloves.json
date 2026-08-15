@@ -28,13 +28,13 @@
     "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user",
     "Step 5: Calculate SAM = TAM x serviceable_pct"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "The population is hospitals and clinics, not patients or the general public -- this is a B2B procurement market sized by facility count and order value, not population health metrics.",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Sizing by patient population or general public instead of the number of hospitals & clinics",
+    "Treating orders/year as a soft assumption when it's structurally fixed by standard procurement cycles",
+    "Ignoring current distribution reach (serviceable %), which caps who this manufacturer can actually sell to today"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "Facilities, not patients; standard procurement cycles, not annual bulk buys -- the population here is B2B, not B2C.",
   "business_contexts": [
     "a medical supply manufacturer evaluating a new glove production line",
     "a hospital procurement group sizing annual glove demand"

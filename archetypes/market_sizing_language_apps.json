@@ -29,13 +29,13 @@
     "Step 5: Calculate SAM = TAM x serviceable_pct",
     "Step 6: Calculate SOM = SAM x obtainable_share_pct"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "This is a subscription market (months/year times $/month), and the addressable segment -- adults actively learning a language right now -- is much smaller than \"anyone who might someday want to learn.\"",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Sizing all adults instead of those actively learning a language today",
+    "Forgetting to annualize monthly subscription spend (x12)",
+    "Ignoring obtainable share in a category with several dominant incumbents already serving this demand"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "Actively learning, subscribed monthly, split against the incumbents already in this space -- not everyone who's ever thought about learning a language.",
   "business_contexts": [
     "a language-learning app evaluating a new market launch",
     "an edtech investor sizing the language-learning subscription market"

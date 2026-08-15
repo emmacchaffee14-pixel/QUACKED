@@ -28,13 +28,13 @@
     "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user",
     "Step 5: Calculate SAM = TAM x serviceable_pct"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "This is a seat/subscription market, not a population market -- the population is small businesses, and the real constraint is how many are reachable by this specific go-to-market motion, not how many exist nationally.",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Sizing all small businesses instead of the subset without a CRM today (the real greenfield)",
+    "Forgetting to annualize monthly subscription spend (x12) for an inherently recurring purchase",
+    "Ignoring serviceable %, which caps the market at what this company's specific channel can actually reach"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "Small businesses without a CRM, reachable by this go-to-market, paying monthly -- three filters before you multiply.",
   "business_contexts": [
     "a CRM software startup targeting small businesses",
     "a PE-backed software roll-up evaluating a CRM acquisition"

@@ -28,13 +28,13 @@
     "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user",
     "Step 5: Calculate SAM = TAM x serviceable_pct"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "The population is enterprises, not people -- and purchase frequency is structurally one contract per year, so the real judgment call is the addressable % that needs added capacity right now, not a frequency assumption.",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Sizing the general population instead of mid-market enterprises specifically",
+    "Second-guessing purchase frequency when it's structurally fixed at one contract/year -- the real levers are contract value and addressable %",
+    "Ignoring the new region's service radius (serviceable %), which caps demand regardless of national enterprise count"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "Enterprises, not people; one contract each -- the market moves on addressable % and deal size, not frequency.",
   "business_contexts": [
     "a cloud infrastructure provider evaluating a new data center region",
     "a private equity fund sizing demand for colocation capacity"

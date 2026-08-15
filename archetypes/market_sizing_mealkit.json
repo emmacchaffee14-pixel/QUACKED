@@ -29,13 +29,13 @@
     "Step 5: Calculate SAM = TAM x serviceable_pct",
     "Step 6: Calculate SOM = SAM x obtainable_share_pct"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "The addressable segment (time-constrained cooks) is the whole thesis of this business -- sizing off all households instead of that segment erases the reason the product exists.",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Sizing all households instead of the time-constrained-cooks segment specifically",
+    "Pricing a single box instead of boxes/year times price/box to get annual spend",
+    "Skipping obtainable share in a category several well-funded incumbents already compete in"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "Time-constrained cooks, ordering by the box, split against the incumbents already feeding them -- that's the funnel.",
   "business_contexts": [
     "a meal-kit startup evaluating national expansion",
     "a grocery chain considering a meal-kit private-label launch"

@@ -28,13 +28,13 @@
     "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user",
     "Step 5: Calculate SAM = TAM x serviceable_pct"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "The population is annual air travelers, not the general public -- and purchase frequency is naturally low (roughly one bag a year) because luggage is a replacement purchase, not a repeat consumable.",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Sizing the general population instead of annual air travelers",
+    "Treating every traveler as equally likely to buy instead of filtering to frequent travelers",
+    "Overestimating purchase frequency for what is fundamentally an infrequent, durable-goods purchase"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "Frequent travelers, buying about once a year, within this brand's airport-retail footprint -- not every person who has ever flown.",
   "business_contexts": [
     "a travel goods brand evaluating expansion into airport retail",
     "a luggage manufacturer sizing replacement demand"

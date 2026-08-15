@@ -27,13 +27,13 @@
     "Step 3: Calculate annual spend per user = purchase_frequency x avg_spend_per_purchase",
     "Step 4: Calculate TAM = penetrating_users x annual_spend_per_user"
   ],
-  "key_insight": "Market sizing is about defensible assumptions, not precision. Show your logic clearly -- the interviewer is testing your structure, not your arithmetic.",
+  "key_insight": "The addressable segment here is regular coffee drinkers, not all adults -- conflating the two overstates the market by roughly 2-3x before a penetration rate is even applied.",
   "common_mistakes": [
-    "Sizing the total population instead of the addressable segment",
-    "Forgetting purchase frequency -- confusing annual vs per-transaction spend",
-    "Not sanity-checking the output against known benchmarks"
+    "Sizing all adults instead of regular coffee drinkers specifically",
+    "Treating \"bags per year\" as annual dollar spend instead of multiplying it by price per bag",
+    "Using a penetration rate that assumes brand-level dominance instead of a realistic new-entrant share"
   ],
-  "framework_soundbite": "Top-down or bottom-up -- pick one, state your assumptions, and sanity-check the output. The logic matters more than the number.",
+  "framework_soundbite": "Coffee drinkers, not adults; bags times price, not bags alone -- get those two right and the rest is arithmetic.",
   "business_contexts": [
     "a specialty coffee roaster considering national retail expansion",
     "a coffee subscription startup sizing its addressable market"
