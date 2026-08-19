@@ -15,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Profit (Prior) = Total Volume × [(Prior Mix (A) % × Contribution Margin (A)) + ((1 − Prior Mix (A) %) × Contribution Margin (B))]\nProfit (Current) = Total Volume × [(Current Mix (A) % × Contribution Margin (A)) + ((1 − Current Mix (A) %) × Contribution Margin (B))]",
+  "formula": "Profit (Prior) = Total Volume × [(Prior Mix (A) % × Contribution Margin (A)) + ((1 − Prior Mix (A) %) × Contribution Margin (B))]\nProfit (Current) = Total Volume × [(Current Mix (A) % × Contribution Margin (A)) + ((1 − Current Mix (A) %) × Contribution Margin (B))]\nAt advanced difficulty: After-Tax Profit Impact = Profit Impact × Tax Rate",
   "skills_tested": [
     "profitability",
     "margin_math",
@@ -65,6 +65,12 @@
       "max": 0.7,
       "step": 0.05,
       "unit": "%"
+    },
+    "tax_rate": {
+      "min": 0.20,
+      "max": 0.35,
+      "step": 0.05,
+      "unit": "% of profit"
     }
   },
   "solution_logic": [
@@ -72,7 +78,8 @@
     "Step 2: Derive mix_pct_b_current = 1 - mix_pct_a_current",
     "Step 3: Calculate prior profit = total_volume × [(mix_pct_a_prior × contribution_margin_a) + (mix_pct_b_prior × contribution_margin_b)]",
     "Step 4: Calculate current profit = total_volume × [(mix_pct_a_current × contribution_margin_a) + (mix_pct_b_current × contribution_margin_b)]",
-    "Step 5: Calculate profit delta = current profit - prior profit"
+    "Step 5: Calculate profit delta = current profit - prior profit",
+    "Step 6 (advanced): Calculate after-tax profit delta = profit delta × tax_rate"
   ],
   "key_insight": "A flat top line can hide a real profit story — always check what's inside the revenue number before assuming stable revenue means a stable business.",
   "common_mistakes": [
@@ -95,6 +102,7 @@
     "mix_pct_a_prior",
     "mix_pct_a_current",
     "contribution_margin_a",
-    "contribution_margin_b"
+    "contribution_margin_b",
+    "tax_rate"
   ]
 }

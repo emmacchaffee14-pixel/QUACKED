@@ -15,7 +15,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Channel Profit = (Price - Variable Cost per Unit) × Units - Allocated Fixed Cost = Profit_A vs Profit_B",
+  "formula": "Channel Profit = (Price - Variable Cost per Unit) × Units - Allocated Fixed Cost = Profit_A vs Profit_B; at advanced difficulty, After-Tax Profit Gap = Profit Gap × Tax Rate",
   "skills_tested": [
     "profitability",
     "margin_math",
@@ -83,12 +83,19 @@
       "max": 800000,
       "step": 25000,
       "unit": "$"
+    },
+    "tax_rate": {
+      "min": 0.20,
+      "max": 0.35,
+      "step": 0.05,
+      "unit": "% of profit"
     }
   },
   "solution_logic": [
     "Step 1: Calculate Channel A profit = (channel_a_price - channel_a_variable_cost) × channel_a_units - channel_a_fixed_cost",
     "Step 2: Calculate Channel B profit = (channel_b_price - channel_b_variable_cost) × channel_b_units - channel_b_fixed_cost",
-    "Step 3: Calculate profit gap = Channel A profit - Channel B profit"
+    "Step 3: Calculate profit gap = Channel A profit - Channel B profit",
+    "Step 4 (advanced): Calculate after-tax profit gap = profit gap × tax_rate"
   ],
   "key_insight": "Blended, company-wide margins can hide a channel that's actively destroying value — always break profitability down by channel before recommending a fix.",
   "common_mistakes": [
@@ -114,6 +121,7 @@
     "channel_b_price",
     "channel_b_variable_cost",
     "channel_b_units",
-    "channel_b_fixed_cost"
+    "channel_b_fixed_cost",
+    "tax_rate"
   ]
 }

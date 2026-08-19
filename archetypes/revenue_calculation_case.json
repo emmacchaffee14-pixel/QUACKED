@@ -1,7 +1,7 @@
 {
   "id": "revenue_calculation_case",
-  "name": "Revenue Recognition",
-  "description": "Case-pool variant of Revenue Calculation, for Problem Recognition.",
+  "name": "Total Revenue Across Regions",
+  "description": "Aggregate revenue across a domestic and an international region, with currency and unit conversion.",
   "archetype": "revenue_calculation",
   "content_type": "drill",
   "content_category": "case",
@@ -16,56 +16,92 @@
     "advanced"
   ],
   "recommended_difficulty": "beginner",
-  "formula": "Revenue = Price × Quantity",
+  "formula": "Total Revenue (USD) = Domestic Revenue + (International Revenue (local currency) × FX Rate). At advanced difficulty, a third region reports volume in cases rather than units: Region 3 Revenue = (Cases Sold × Units per Case) × Price per Unit, added to the total.",
   "skills_tested": [
-    "revenue_math"
+    "revenue_math",
+    "currency_conversion",
+    "unit_conversion"
   ],
   "business_contexts": [
-    "a boutique furniture maker closing out its first full year of online sales",
-    "a mobile game studio wrapping up a seasonal in-app promotion",
-    "a regional ticketing platform reviewing a completed concert series",
-    "a subscription meal-kit company closing its books for the quarter",
-    "a wholesale distributor totaling a completed shipping cycle"
+    "a boutique furniture maker closing out its first full year of international online sales",
+    "a consumer electronics brand totaling revenue across its US and European storefronts",
+    "a wholesale distributor totaling a completed shipping cycle across multiple regions",
+    "a specialty foods company combining domestic revenue with sales from its export distributor, who reports in cases rather than individual units",
+    "a subscription meal-kit company closing its books for the quarter across two currency zones"
   ],
   "question_patterns": [
-    "How much did the client bring in from this product line before any costs are considered?",
-    "What did the client's top line come out to for the period?",
-    "Before subtracting anything, what was the total amount the client collected from customers?",
-    "What figure lands on the very first line of the client's income statement for this period?"
+    "What was the client's total revenue in dollars, once the international region is converted?",
+    "Before subtracting anything, what was the total amount the client collected from customers across all regions, in dollars?",
+    "What figure lands on the very first line of the client's consolidated income statement for this period?",
+    "Once cases are converted to units and everything is converted to dollars, what was total revenue?"
   ],
   "variables": {
-    "price": {
-      "min": 20,
-      "max": 400,
-      "step": 10,
+    "domestic_revenue": {
+      "min": 500000,
+      "max": 5000000,
+      "step": 50000,
       "unit": "$"
     },
-    "quantity": {
+    "international_revenue_foreign": {
+      "min": 300000,
+      "max": 3000000,
+      "step": 50000,
+      "unit": "foreign currency units"
+    },
+    "fx_rate": {
+      "min": 0.85,
+      "max": 1.15,
+      "step": 0.01,
+      "unit": "$ per foreign currency unit"
+    },
+    "region3_cases_sold": {
       "min": 100,
       "max": 5000,
       "step": 100,
-      "unit": "units"
+      "unit": "cases"
+    },
+    "region3_units_per_case": {
+      "min": 6,
+      "max": 24,
+      "step": 6,
+      "unit": "units/case"
+    },
+    "region3_price_per_unit": {
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "unit": "$"
     }
   },
   "solution_logic": [
-    "Step 1: Calculate revenue = price × quantity"
+    "Step 1: Convert international revenue = international_revenue_foreign × fx_rate",
+    "Step 2: Calculate total revenue = domestic_revenue + converted international revenue",
+    "Step 1 (advanced): Convert region 3 volume to units = region3_cases_sold × region3_units_per_case",
+    "Step 2 (advanced): Calculate region 3 revenue = converted units × region3_price_per_unit",
+    "Step 3 (advanced): Convert international revenue = international_revenue_foreign × fx_rate",
+    "Step 4 (advanced): Calculate total revenue = domestic_revenue + converted international revenue + region 3 revenue"
   ],
-  "key_insight": "Revenue is the top line before any cost is subtracted — price times quantity, nothing else.",
+  "key_insight": "Revenue isn't ready to add up until every region is on the same footing — the same currency and the same unit of volume.",
   "common_mistakes": [
-    "Subtracting costs before arriving at revenue, which conflates revenue with profit",
-    "Multiplying price by a different volume figure than the one actually sold"
+    "Adding the foreign-currency figure directly without converting it to dollars first",
+    "Adding cases directly to a unit-based price instead of converting cases to units first",
+    "Subtracting costs before arriving at revenue, which conflates revenue with profit"
   ],
-  "framework_soundbite": "Revenue is price times quantity — the starting line, not the finish line.",
+  "framework_soundbite": "Revenue is price times quantity — but first, get every region onto the same currency and the same unit.",
   "archetype_tags": [
     "retail",
     "manufacturing",
     "software",
-    "events"
+    "international"
   ],
-  "display_context": "Case Practice • Revenue Recognition",
+  "display_context": "International Finance • Revenue Consolidation",
   "target_label": "Revenue ($)",
   "primary_variables": [
-    "price",
-    "quantity"
+    "domestic_revenue",
+    "international_revenue_foreign",
+    "fx_rate",
+    "region3_cases_sold",
+    "region3_units_per_case",
+    "region3_price_per_unit"
   ]
 }

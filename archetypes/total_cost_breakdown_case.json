@@ -1,7 +1,7 @@
 {
   "id": "total_cost_breakdown_case",
-  "name": "All-In Cost Review",
-  "description": "Case-pool variant of Total Cost Breakdown, for Problem Recognition.",
+  "name": "Cost per Equivalent Unit",
+  "description": "Break down total production cost, and at advanced difficulty, spread it across equivalent units when some inventory is only partially finished.",
   "archetype": "total_cost_breakdown",
   "content_type": "drill",
   "content_category": "case",
@@ -16,56 +16,91 @@
     "advanced"
   ],
   "recommended_difficulty": "beginner",
-  "formula": "Total Cost = Total Variable Cost + Total Fixed Cost",
+  "formula": "Total Cost = Direct Materials + Direct Labor + Manufacturing Overhead. At advanced difficulty, cost is spread across equivalent units: Equivalent Units = Units Completed + (Ending WIP Units × % Complete); Cost per Equivalent Unit = Total Cost / Equivalent Units.",
   "skills_tested": [
-    "cost_structure"
+    "cost_structure",
+    "process_costing",
+    "equivalent_units"
   ],
   "business_contexts": [
     "a contract manufacturer combining raw materials spend with plant overhead for the year",
-    "a boutique hotel adding up housekeeping supplies alongside its fixed lease payment",
-    "a regional airline combining fuel spend with fixed aircraft leasing costs",
-    "an e-commerce brand combining packaging spend with fixed warehouse rent",
-    "a dental practice combining supply costs with fixed staff salaries"
+    "a food processor totaling direct materials, labor, and overhead for a production run",
+    "an electronics assembler spreading total production cost across finished units and partially-assembled units still in process",
+    "a paint manufacturer computing cost per equivalent unit when a batch is only 60% complete at month end",
+    "a textile mill calculating cost per unit across finished goods and unfinished work-in-process"
   ],
   "question_patterns": [
-    "Once every variable and fixed expense is added up, what does the client actually spend to run this operation?",
-    "What is the full expense bill the client is carrying, once every cost line is combined?",
-    "Adding the pieces below together, what does it cost the client to operate for the period?",
-    "What is the client's all-in spend once every cost component shown is combined?"
+    "Once every direct and overhead cost is added up, what does it cost the client to produce this period's output?",
+    "What is the client's total production cost, once materials, labor, and overhead are combined?",
+    "What is the cost per equivalent unit, once partially-finished inventory is accounted for?",
+    "Given some units are still in process, what does each equivalent unit actually cost to produce?"
   ],
   "variables": {
-    "total_variable_cost": {
-      "min": 5000,
-      "max": 80000,
-      "step": 1000,
+    "direct_materials": {
+      "min": 200000,
+      "max": 2000000,
+      "step": 50000,
       "unit": "$"
     },
-    "total_fixed_cost": {
-      "min": 2000,
+    "direct_labor": {
+      "min": 150000,
+      "max": 1500000,
+      "step": 50000,
+      "unit": "$"
+    },
+    "manufacturing_overhead": {
+      "min": 100000,
+      "max": 1000000,
+      "step": 25000,
+      "unit": "$"
+    },
+    "units_completed": {
+      "min": 5000,
       "max": 50000,
       "step": 1000,
-      "unit": "$"
+      "unit": "units"
+    },
+    "ending_wip_units": {
+      "min": 500,
+      "max": 5000,
+      "step": 100,
+      "unit": "units"
+    },
+    "pct_complete": {
+      "min": 0.2,
+      "max": 0.8,
+      "step": 0.1,
+      "unit": "% complete"
     }
   },
   "solution_logic": [
-    "Step 1: Calculate total cost = total_variable_cost + total_fixed_cost"
+    "Step 1: Calculate total cost = direct_materials + direct_labor + manufacturing_overhead",
+    "Step 1 (advanced): Calculate total cost = direct_materials + direct_labor + manufacturing_overhead",
+    "Step 2 (advanced): Calculate equivalent WIP units = ending_wip_units × pct_complete",
+    "Step 3 (advanced): Calculate equivalent units = units_completed + equivalent WIP units",
+    "Step 4 (advanced): Calculate cost per equivalent unit = total cost / equivalent units"
   ],
-  "key_insight": "Total cost is a simple sum, but the split between variable and fixed is what actually drives breakeven and margin math downstream.",
+  "key_insight": "A partially-finished unit doesn't cost the same as a finished one — equivalent units convert incomplete work-in-process into the whole-unit terms cost per unit actually needs.",
   "common_mistakes": [
-    "Adding only one cost component and forgetting the other",
-    "Treating fixed costs as if they scale with volume when they don't"
+    "Adding only one cost component and forgetting the others",
+    "Counting ending WIP units as full units instead of scaling them by percent complete",
+    "Dividing total cost by units completed alone, ignoring the equivalent units still in process"
   ],
-  "framework_soundbite": "Total cost is variable plus fixed — the split matters more than the sum.",
+  "framework_soundbite": "Total cost is materials plus labor plus overhead — and when some units aren't finished yet, spread that cost across equivalent units, not finished ones.",
   "archetype_tags": [
     "manufacturing",
-    "retail",
-    "software",
-    "food service"
+    "process costing",
+    "food & beverage",
+    "cost accounting"
   ],
-  "display_context": "Case Practice • All-In Cost Review",
+  "display_context": "Managerial Accounting • Process Costing",
   "target_label": "Total cost ($)",
   "primary_variables": [
-    "total_variable_cost",
-    "total_fixed_cost"
+    "direct_materials",
+    "direct_labor",
+    "manufacturing_overhead",
+    "units_completed",
+    "ending_wip_units",
+    "pct_complete"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "id": "profit_margin_case",
-  "name": "Keep-Rate Review",
-  "description": "Case-pool variant of Profit Margin, for Problem Recognition.",
+  "name": "Profit Margin (Activity-Based Costing)",
+  "description": "Recompute profit margin once overhead is allocated by activity instead of a single blanket rate.",
   "archetype": "profit_margin",
   "content_type": "drill",
   "content_category": "case",
@@ -16,56 +16,101 @@
     "advanced"
   ],
   "recommended_difficulty": "beginner",
-  "formula": "Profit margin = (Revenue − Cost) / Revenue",
+  "formula": "Net Profit = Revenue − COGS − Operating Expenses; Margin % = Net Profit / Revenue. At advanced difficulty, Operating Expenses is replaced by activity-based overhead: Total Overhead = (Setup Driver Qty × Setup Rate) + (Inspection Driver Qty × Inspection Rate); Net Profit = Revenue − COGS − Total Overhead.",
   "skills_tested": [
-    "margin_math"
+    "margin_math",
+    "cost_structure",
+    "activity_based_costing"
   ],
   "business_contexts": [
     "a specialty grocer comparing how much of every dollar of sales it actually keeps",
     "a contract manufacturer reviewing how much of its sales survive after costs",
-    "a boutique consultancy reviewing how much of its billings it actually keeps",
     "an online retailer reviewing how much of each sales dollar survives after costs",
-    "a franchise reviewing how much of its sales it keeps after expenses"
+    "a franchise reviewing how much of its sales it keeps after expenses",
+    "a precision parts manufacturer recomputing margin after switching to activity-based costing for its production overhead"
   ],
   "question_patterns": [
     "Of every dollar the client brings in, what share is actually kept after costs?",
     "What percentage of the client's sales survives once costs are subtracted?",
-    "How much of each sales dollar does the client actually keep, expressed as a percentage?",
-    "As a share of sales, how much does the client keep after paying its costs?"
+    "What is the margin once overhead is allocated by activity instead of one blanket rate?",
+    "How does the margin change when setup and inspection costs are traced to what actually drives them?"
   ],
   "variables": {
     "revenue": {
-      "min": 20000,
-      "max": 500000,
-      "step": 5000,
+      "min": 2000000,
+      "max": 20000000,
+      "step": 250000,
       "unit": "$"
     },
-    "cost": {
-      "min": 10000,
-      "max": 400000,
-      "step": 5000,
+    "cogs": {
+      "min": 800000,
+      "max": 8000000,
+      "step": 100000,
       "unit": "$"
+    },
+    "operating_expenses": {
+      "min": 300000,
+      "max": 3000000,
+      "step": 50000,
+      "unit": "$"
+    },
+    "setup_driver_qty": {
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "unit": "setups"
+    },
+    "setup_rate": {
+      "min": 200,
+      "max": 2000,
+      "step": 100,
+      "unit": "$/setup"
+    },
+    "inspection_driver_qty": {
+      "min": 200,
+      "max": 2000,
+      "step": 100,
+      "unit": "inspections"
+    },
+    "inspection_rate": {
+      "min": 50,
+      "max": 300,
+      "step": 25,
+      "unit": "$/inspection"
     }
   },
   "solution_logic": [
-    "Step 1: Calculate profit margin = (revenue − cost) / revenue"
+    "Step 1: Calculate net profit = revenue − cogs − operating_expenses",
+    "Step 2: Calculate margin = net profit / revenue",
+    "Step 1 (advanced): Calculate setup overhead = setup_driver_qty × setup_rate",
+    "Step 2 (advanced): Calculate inspection overhead = inspection_driver_qty × inspection_rate",
+    "Step 3 (advanced): Calculate total overhead = setup overhead + inspection overhead",
+    "Step 4 (advanced): Calculate net profit = revenue − cogs − total overhead",
+    "Step 5 (advanced): Calculate margin = net profit / revenue"
   ],
-  "key_insight": "Profit margin is the same calculation as profit divided by revenue — profit is just revenue minus cost, so the margin is that gap expressed as a share of revenue.",
+  "key_insight": "A single blanket overhead rate can hide which activities actually drive cost — activity-based costing traces overhead to what causes it, and that can move the margin meaningfully.",
   "common_mistakes": [
     "Dividing by cost instead of revenue",
-    "Reporting the dollar profit instead of converting it to a percentage of revenue"
+    "Adding operating expenses AND activity-based overhead instead of replacing one with the other",
+    "Treating the driver quantity alone as the cost, instead of multiplying it by its rate"
   ],
-  "framework_soundbite": "Profit margin is profit over revenue — the gap expressed as a share of the top line.",
+  "framework_soundbite": "Profit margin is profit over revenue — and profit is only as accurate as how honestly you've traced overhead to what actually drives it.",
   "archetype_tags": [
     "retail",
     "manufacturing",
     "professional services",
-    "e-commerce"
+    "e-commerce",
+    "cost accounting"
   ],
-  "display_context": "Case Practice • Keep-Rate Review",
+  "display_context": "Managerial Accounting • Activity-Based Costing",
   "target_label": "Profit margin (%)",
   "primary_variables": [
     "revenue",
-    "cost"
+    "cogs",
+    "operating_expenses",
+    "setup_driver_qty",
+    "setup_rate",
+    "inspection_driver_qty",
+    "inspection_rate"
   ]
 }

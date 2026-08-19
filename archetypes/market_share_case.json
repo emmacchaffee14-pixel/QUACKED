@@ -1,7 +1,7 @@
 {
   "id": "market_share_case",
-  "name": "Category Position Review",
-  "description": "Case-pool variant of Market Share, for Problem Recognition.",
+  "name": "Blended Market Share Across Segments",
+  "description": "Calculate market share, and at advanced difficulty, blend share across two market segments weighted by segment size.",
   "archetype": "market_share",
   "content_type": "drill",
   "content_category": "case",
@@ -15,57 +15,99 @@
     "intermediate",
     "advanced"
   ],
-  "recommended_difficulty": "intermediate",
-  "formula": "Market Share = Company Revenue / Total Market Revenue",
+  "recommended_difficulty": "beginner",
+  "formula": "Market Share = Company Revenue / Total Market Revenue, where Company Revenue = Price × Volume. At advanced difficulty, share is blended across two segments: Overall Share = (Segment 1 Size × Segment 1 Share + Segment 2 Size × Segment 2 Share) / (Segment 1 Size + Segment 2 Size).",
   "skills_tested": [
-    "market_share_math"
+    "market_share_math",
+    "weighted_average_math"
   ],
   "business_contexts": [
     "a regional grocery chain comparing its own sales to total category sales in its footprint",
     "a telecom carrier comparing its subscriber revenue to the total spent across the industry",
-    "a ride-hailing app comparing its bookings to total category spend in its metro",
     "a private-label skincare brand comparing its sales to total category sales at retail",
-    "a community bank comparing its deposits to total deposits held across its market"
+    "a consumer electronics brand blending its share across the Premium and Value segments of its category",
+    "a community bank blending its deposit share across its urban and rural markets"
   ],
   "question_patterns": [
     "Given the client's own sales and the total spent across the category, what percentage of the category does the client represent?",
     "What portion of the total category does the client currently account for?",
-    "Out of every dollar spent in this category, what fraction lands with the client?",
-    "Relative to the total category, how big a slice does the client currently hold?"
+    "What is the client's blended market share once both segments are weighted by size?",
+    "Across both segments combined, what share of the total market does the client hold?"
   ],
   "variables": {
-    "company_revenue": {
-      "min": 5000000,
-      "max": 80000000,
-      "step": 1000000,
+    "company_price": {
+      "min": 20,
+      "max": 150,
+      "step": 5,
       "unit": "$"
     },
+    "company_volume": {
+      "min": 10000,
+      "max": 100000,
+      "step": 2000,
+      "unit": "units"
+    },
     "total_market_revenue": {
-      "min": 100000000,
-      "max": 2000000000,
-      "step": 50000000,
+      "min": 50000000,
+      "max": 500000000,
+      "step": 10000000,
       "unit": "$"
+    },
+    "segment1_market_size": {
+      "min": 500000000,
+      "max": 5000000000,
+      "step": 100000000,
+      "unit": "$"
+    },
+    "segment1_company_share": {
+      "min": 0.05,
+      "max": 0.4,
+      "step": 0.01,
+      "unit": "%"
+    },
+    "segment2_market_size": {
+      "min": 300000000,
+      "max": 3000000000,
+      "step": 100000000,
+      "unit": "$"
+    },
+    "segment2_company_share": {
+      "min": 0.05,
+      "max": 0.4,
+      "step": 0.01,
+      "unit": "%"
     }
   },
   "solution_logic": [
-    "Step 1: Calculate market share = company_revenue / total_market_revenue"
+    "Step 1: Calculate company revenue = company_price × company_volume",
+    "Step 2: Calculate market share = company revenue / total_market_revenue",
+    "Step 1 (advanced): Calculate segment 1 weighted contribution = segment1_market_size × segment1_company_share",
+    "Step 2 (advanced): Calculate segment 2 weighted contribution = segment2_market_size × segment2_company_share",
+    "Step 3 (advanced): Calculate total addressed market = segment1_market_size + segment2_market_size",
+    "Step 4 (advanced): Calculate overall share = (segment 1 contribution + segment 2 contribution) / total addressed market"
   ],
-  "key_insight": "Market share is always measured against the total market, not against any single competitor — that comparison is what relative market share is for.",
+  "key_insight": "A company can hold very different shares in different segments — the blended share has to weight each segment by its size, not just average the two percentages.",
   "common_mistakes": [
     "Dividing by a competitor's revenue instead of total market revenue",
+    "Averaging the two segment shares directly instead of weighting by segment size",
     "Confusing market share with relative market share, which compares against the largest rival instead of the whole market"
   ],
-  "framework_soundbite": "Market share is company revenue over the total market — the whole pie, not one rival's slice.",
+  "framework_soundbite": "Market share is company revenue over the total market — and when there's more than one market, weight by size before you blend.",
   "archetype_tags": [
     "consumer goods",
     "banking",
     "software",
-    "airlines"
+    "telecom"
   ],
-  "display_context": "Case Practice • Category Position Review",
+  "display_context": "Competitive Strategy • Market Share",
   "target_label": "Market share (%)",
   "primary_variables": [
-    "company_revenue",
-    "total_market_revenue"
+    "company_price",
+    "company_volume",
+    "total_market_revenue",
+    "segment1_market_size",
+    "segment1_company_share",
+    "segment2_market_size",
+    "segment2_company_share"
   ]
 }

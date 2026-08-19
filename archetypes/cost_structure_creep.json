@@ -16,7 +16,7 @@
     "advanced"
   ],
   "recommended_difficulty": "intermediate",
-  "formula": "Profit = (Price - Variable Cost per Unit) × Volume - Fixed Costs (price, volume, and fixed costs held constant) = Profit_current vs Profit_prior",
+  "formula": "Profit = (Price - Variable Cost per Unit) × Volume - Fixed Costs (price, volume, and fixed costs held constant) = Profit_current vs Profit_prior; at advanced difficulty, After-Tax Profit Delta = Profit Delta × Tax Rate",
   "skills_tested": [
     "profitability",
     "margin_math",
@@ -66,12 +66,19 @@
       "max": 1000000,
       "step": 50000,
       "unit": "$"
+    },
+    "tax_rate": {
+      "min": 0.20,
+      "max": 0.35,
+      "step": 0.05,
+      "unit": "% of profit"
     }
   },
   "solution_logic": [
     "Step 1: Calculate prior profit = (price_per_unit - variable_cost_per_unit_prior) × volume - fixed_costs",
     "Step 2: Calculate current profit = (price_per_unit - variable_cost_per_unit_current) × volume - fixed_costs",
-    "Step 3: Calculate profit delta = current profit - prior profit"
+    "Step 3: Calculate profit delta = current profit - prior profit",
+    "Step 4 (advanced): Calculate after-tax profit delta = profit delta × tax_rate"
   ],
   "key_insight": "Stable revenue can mask real profit erosion — always check per-unit costs, not just totals, before concluding the business is healthy.",
   "common_mistakes": [
@@ -94,6 +101,7 @@
     "variable_cost_per_unit_prior",
     "variable_cost_per_unit_current",
     "volume",
-    "fixed_costs"
+    "fixed_costs",
+    "tax_rate"
   ]
 }

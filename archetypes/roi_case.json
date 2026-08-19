@@ -1,7 +1,7 @@
 {
   "id": "roi_case",
-  "name": "Payoff Review",
-  "description": "Case-pool variant of Return on Investment, for Problem Recognition.",
+  "name": "Return on Investment (International)",
+  "description": "Evaluate whether an investment paid off, including a return realized in a foreign market.",
   "archetype": "roi",
   "content_type": "drill",
   "content_category": "case",
@@ -15,58 +15,85 @@
     "intermediate",
     "advanced"
   ],
-  "recommended_difficulty": "intermediate",
-  "formula": "ROI = (Gain from Investment − Cost of Investment) / Cost of Investment × 100",
+  "recommended_difficulty": "beginner",
+  "formula": "Net Gain = Revenue Gain + Cost Savings; ROI % = Net Gain / Investment Cost. At advanced difficulty, Cost Savings is instead realized in a foreign currency: Net Gain = Revenue Gain + (Foreign Cost Savings × FX Rate).",
   "skills_tested": [
-    "investment_math"
+    "investment_math",
+    "unit_economics",
+    "currency_conversion"
   ],
   "business_contexts": [
     "a manufacturer weighing whether a new packaging line was worth the money it cost",
-    "a marketing team assessing whether a completed campaign was worth its spend",
     "a retailer assessing whether a store remodel was worth its cost",
     "a logistics company assessing whether a new routing system was worth its cost",
-    "a hospital assessing whether new equipment was worth its purchase price"
+    "a consumer goods company evaluating a completed plant upgrade with savings realized at its European facility",
+    "a hospital system assessing whether new equipment was worth its purchase price"
   ],
   "question_patterns": [
     "Relative to what it cost, how much did the client actually get back from this investment?",
     "Expressed as a percentage of what was spent, how well did this investment pay off?",
-    "How much value did this investment generate, relative to what it cost to make?",
+    "What is the ROI once the foreign-currency portion of the return is converted to dollars?",
     "As a percentage of the original outlay, what did the client gain from this investment?"
   ],
   "variables": {
-    "gain_from_investment": {
-      "min": 10000,
-      "max": 1000000,
-      "step": 10000,
+    "investment_cost": {
+      "min": 500000,
+      "max": 5000000,
+      "step": 50000,
       "unit": "$"
     },
-    "cost_of_investment": {
-      "min": 5000,
-      "max": 500000,
-      "step": 5000,
+    "revenue_gain": {
+      "min": 100000,
+      "max": 1500000,
+      "step": 25000,
       "unit": "$"
+    },
+    "cost_savings": {
+      "min": 50000,
+      "max": 800000,
+      "step": 25000,
+      "unit": "$"
+    },
+    "foreign_cost_savings": {
+      "min": 50000,
+      "max": 800000,
+      "step": 25000,
+      "unit": "foreign currency units"
+    },
+    "fx_rate": {
+      "min": 0.85,
+      "max": 1.15,
+      "step": 0.01,
+      "unit": "$ per foreign currency unit"
     }
   },
   "solution_logic": [
-    "Step 1: Calculate net gain = gain_from_investment − cost_of_investment",
-    "Step 2: Calculate ROI = net gain / cost_of_investment × 100"
+    "Step 1: Calculate net gain = revenue_gain + cost_savings",
+    "Step 2: Calculate ROI = net gain / investment_cost × 100",
+    "Step 1 (advanced): Convert foreign savings = foreign_cost_savings × fx_rate",
+    "Step 2 (advanced): Calculate net gain = revenue_gain + converted foreign savings",
+    "Step 3 (advanced): Calculate ROI = net gain / investment_cost × 100"
   ],
-  "key_insight": "ROI measures net gain relative to what was put in — a positive ROI means the investment returned more than it cost, and a negative one means it didn't.",
+  "key_insight": "ROI measures net gain relative to what was put in — and when part of that gain arrives in a foreign currency, it has to be converted before it can be added to the rest.",
   "common_mistakes": [
+    "Adding the foreign-currency figure directly without converting it first",
     "Dividing by the gain instead of the cost of investment",
     "Forgetting to subtract the cost of investment before dividing, which reports gross return instead of net"
   ],
-  "framework_soundbite": "ROI is net gain over cost, times 100 — what you got back beyond what you put in, as a percentage.",
+  "framework_soundbite": "ROI is net gain over cost — and every dollar of that gain has to actually be in dollars before you add it up.",
   "archetype_tags": [
     "investing",
-    "marketing",
     "manufacturing",
-    "retail"
+    "retail",
+    "international"
   ],
-  "display_context": "Case Practice • Payoff Review",
+  "display_context": "Corporate Finance • Return on Investment",
   "target_label": "ROI (%)",
   "primary_variables": [
-    "gain_from_investment",
-    "cost_of_investment"
+    "investment_cost",
+    "revenue_gain",
+    "cost_savings",
+    "foreign_cost_savings",
+    "fx_rate"
   ]
 }
