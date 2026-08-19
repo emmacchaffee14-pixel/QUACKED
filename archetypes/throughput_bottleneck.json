@@ -106,5 +106,234 @@
     { "type": "term", "id": "unmet_demand", "label": "Unmet Demand", "chain_group": 1 },
     { "type": "operator", "value": "×" },
     { "type": "term", "id": "unit_contribution_margin", "label": "Unit Contribution Margin", "chain_group": 1 }
-  ]
+  ],
+  "structure_tree": {
+    "version": 2,
+    "structure_tier": "easy",
+    "canonical": {
+      "id": "margin_lost", "label": "Margin Lost to Bottleneck", "operator": "×",
+      "children": [
+        { "id": "unmet_demand", "label": "Unmet Demand", "operator": "−",
+          "children": [
+            { "id": "units_demanded_per_day", "label": "Units Demanded per Day", "leaf": true, "fact_keys": ["units_demanded_per_day"] },
+            { "id": "effective_capacity", "label": "Effective Capacity", "operator": "×",
+              "children": [
+                { "id": "bottleneck_capacity", "label": "Bottleneck Capacity", "leaf": true, "fact_keys": ["bottleneck_capacity"] },
+                { "id": "utilization_rate", "label": "Utilization Rate", "leaf": true, "fact_keys": ["utilization_rate"] }
+              ] }
+          ] },
+        { "id": "unit_contribution_margin", "label": "Unit Contribution Margin", "leaf": true, "fact_keys": ["unit_contribution_margin"] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "margin_lost": "Margin Lost to Bottleneck needs both how much demand is going unmet and what each unit would have been worth.",
+        "unmet_demand": "Unmet Demand needs both what's demanded and what the system can actually produce.",
+        "effective_capacity": "Effective Capacity needs both the bottleneck's rated capacity and how much of it is actually usable."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "margin_lost": "Unmet Demand and Unit Contribution Margin combine by multiplying.",
+        "unmet_demand": "Effective Capacity is subtracted FROM demand here, not added.",
+        "effective_capacity": "Bottleneck Capacity and Utilization Rate combine by multiplying."
+      },
+      "wrong_order": {
+        "unmet_demand": "Check the order — Effective Capacity is subtracted FROM Units Demanded per Day, not the other way around."
+      }
+    },
+    "business_context": "Operations cannot support current demand growth, and leadership wants to know exactly how much margin is being left on the table because of the bottleneck before deciding whether to relieve it.",
+    "hints": [
+      "Start by dragging 'Margin Lost to Bottleneck' into the top-level goal slot — that's what this whole structure needs to explain.",
+      "Margin Lost splits into Unmet Demand and Unit Contribution Margin — Unmet Demand is what's demanded minus what the system can actually produce.",
+      "Effective Capacity is Bottleneck Capacity times Utilization Rate — the bottleneck rarely runs at its full rated capacity."
+    ],
+    "building_blocks": [
+      { "id": "margin_lost", "label": "Margin Lost to Bottleneck" },
+      { "id": "unmet_demand", "label": "Unmet Demand" },
+      { "id": "units_demanded_per_day", "label": "Units Demanded per Day" },
+      { "id": "effective_capacity", "label": "Effective Capacity" },
+      { "id": "bottleneck_capacity", "label": "Bottleneck Capacity" },
+      { "id": "utilization_rate", "label": "Utilization Rate" },
+      { "id": "unit_contribution_margin", "label": "Unit Contribution Margin" },
+      { "id": "investment_cost", "label": "Investment Cost" },
+      { "id": "tax_rate", "label": "Tax Rate" },
+      { "id": "customer_churn_rate", "label": "Customer Churn Rate" },
+      { "id": "market_share", "label": "Market Share" }
+    ],
+    "given_facts": [
+      { "key": "units_demanded_per_day", "label": "Units Demanded per Day", "value_template": "{units_demanded_per_day} units/day" },
+      { "key": "bottleneck_capacity", "label": "Bottleneck Capacity", "value_template": "{bottleneck_capacity} units/day" },
+      { "key": "utilization_rate", "label": "Utilization Rate", "value_template": "{utilization_rate}" },
+      { "key": "unit_contribution_margin", "label": "Unit Contribution Margin", "value_template": "${unit_contribution_margin}" }
+    ],
+    "distractor_facts": [
+      { "key": "investment_cost_distractor", "label": "Investment Cost", "display": "$1.2M" },
+      { "key": "tax_rate_distractor", "label": "Tax Rate", "display": "24%" },
+      { "key": "churn_rate_distractor", "label": "Customer Churn Rate", "display": "3.8%" },
+      { "key": "market_share_distractor", "label": "Market Share", "display": "12%" }
+    ]
+  },
+  "structure_tree_advanced": {
+    "version": 2,
+    "structure_tier": "intermediate",
+    "canonical": {
+      "id": "margin_lost", "label": "Margin Lost to Bottleneck", "operator": "×",
+      "children": [
+        { "id": "unmet_demand", "label": "Unmet Demand", "operator": "−",
+          "children": [
+            { "id": "units_demanded_per_day", "label": "Units Demanded per Day", "leaf": true, "fact_keys": ["units_demanded_per_day"] },
+            { "id": "effective_capacity", "label": "Effective Capacity", "operator": "×",
+              "children": [
+                { "id": "bottleneck_capacity", "label": "Bottleneck Capacity", "leaf": true, "fact_keys": ["bottleneck_capacity"] },
+                { "id": "utilization_rate", "label": "Utilization Rate", "leaf": true, "fact_keys": ["utilization_rate"] }
+              ] }
+          ] },
+        { "id": "unit_contribution_margin", "label": "Unit Contribution Margin", "operator": "−",
+          "children": [
+            { "id": "unit_price", "label": "Unit Price", "leaf": true, "fact_keys": ["unit_price"] },
+            { "id": "unit_variable_cost", "label": "Unit Variable Cost", "leaf": true, "fact_keys": ["unit_variable_cost"] }
+          ] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "margin_lost": "Margin Lost to Bottleneck needs both how much demand is going unmet and what each unit would have been worth.",
+        "unmet_demand": "Unmet Demand needs both what's demanded and what the system can actually produce.",
+        "effective_capacity": "Effective Capacity needs both the bottleneck's rated capacity and how much of it is actually usable.",
+        "unit_contribution_margin": "Unit Contribution Margin is what's left per unit after variable cost — you need both sides of that."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "margin_lost": "Unmet Demand and Unit Contribution Margin combine by multiplying.",
+        "unmet_demand": "Effective Capacity is subtracted FROM demand here, not added.",
+        "effective_capacity": "Bottleneck Capacity and Utilization Rate combine by multiplying.",
+        "unit_contribution_margin": "Unit Price and Unit Variable Cost combine by subtracting, not adding."
+      },
+      "wrong_order": {
+        "unmet_demand": "Check the order — Effective Capacity is subtracted FROM Units Demanded per Day, not the other way around.",
+        "unit_contribution_margin": "Check the order — Unit Variable Cost is subtracted FROM Unit Price."
+      }
+    },
+    "business_context": "Operations wants a sharper number than a single lump 'contribution margin' figure — leadership is asking what's actually behind the per-unit economics before deciding how urgently to relieve the bottleneck.",
+    "hints": [
+      "Start by dragging 'Margin Lost to Bottleneck' into the top-level goal slot — the rest of the structure exists to explain how it's calculated.",
+      "Break it into Unmet Demand and Unit Contribution Margin.",
+      "Unit Contribution Margin itself splits into Unit Price and Unit Variable Cost."
+    ],
+    "building_blocks": [
+      { "id": "margin_lost", "label": "Margin Lost to Bottleneck" },
+      { "id": "unmet_demand", "label": "Unmet Demand" },
+      { "id": "units_demanded_per_day", "label": "Units Demanded per Day" },
+      { "id": "effective_capacity", "label": "Effective Capacity" },
+      { "id": "bottleneck_capacity", "label": "Bottleneck Capacity" },
+      { "id": "utilization_rate", "label": "Utilization Rate" },
+      { "id": "unit_contribution_margin", "label": "Unit Contribution Margin" },
+      { "id": "unit_price", "label": "Unit Price" },
+      { "id": "unit_variable_cost", "label": "Unit Variable Cost" },
+      { "id": "investment_cost", "label": "Investment Cost" },
+      { "id": "tax_rate", "label": "Tax Rate" },
+      { "id": "customer_churn_rate", "label": "Customer Churn Rate" },
+      { "id": "market_share", "label": "Market Share" }
+    ],
+    "given_facts": [
+      { "key": "units_demanded_per_day", "label": "Units Demanded per Day", "value_template": "{units_demanded_per_day} units/day" },
+      { "key": "bottleneck_capacity", "label": "Bottleneck Capacity", "value_template": "{bottleneck_capacity} units/day" },
+      { "key": "utilization_rate", "label": "Utilization Rate", "value_template": "{utilization_rate}" },
+      { "key": "unit_price", "label": "Unit Price", "value_template": "${unit_price}" },
+      { "key": "unit_variable_cost", "label": "Unit Variable Cost", "value_template": "${unit_variable_cost}" }
+    ],
+    "distractor_facts": [
+      { "key": "investment_cost_distractor", "label": "Investment Cost", "display": "$1.2M" },
+      { "key": "tax_rate_distractor", "label": "Tax Rate", "display": "24%" },
+      { "key": "churn_rate_distractor", "label": "Customer Churn Rate", "display": "3.8%" },
+      { "key": "market_share_distractor", "label": "Market Share", "display": "12%" }
+    ]
+  },
+  "structure_tree_advanced_v2": {
+    "version": 2,
+    "structure_tier": "advanced",
+    "canonical": {
+      "id": "margin_lost", "label": "Margin Lost to Bottleneck", "operator": "×",
+      "children": [
+        { "id": "unmet_demand", "label": "Unmet Demand", "operator": "−",
+          "children": [
+            { "id": "units_demanded_per_day", "label": "Units Demanded per Day", "leaf": true, "fact_keys": ["units_demanded_per_day"] },
+            { "id": "effective_capacity", "label": "Effective Capacity", "operator": "×",
+              "children": [
+                { "id": "bottleneck_capacity", "label": "Bottleneck Capacity", "leaf": true, "fact_keys": ["bottleneck_capacity"] },
+                { "id": "utilization_rate", "label": "Utilization Rate", "leaf": true, "fact_keys": ["utilization_rate"] }
+              ] }
+          ] },
+        { "id": "unit_contribution_margin", "label": "Unit Contribution Margin", "operator": "−",
+          "children": [
+            { "id": "unit_price", "label": "Unit Price", "leaf": true, "fact_keys": ["unit_price"] },
+            { "id": "unit_variable_cost", "label": "Unit Variable Cost", "operator": "+",
+              "children": [
+                { "id": "materials_cost_per_unit", "label": "Materials Cost per Unit", "leaf": true, "fact_keys": ["materials_cost_per_unit"] },
+                { "id": "labor_cost_per_unit", "label": "Labor Cost per Unit", "leaf": true, "fact_keys": ["labor_cost_per_unit"] }
+              ] }
+          ] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "margin_lost": "Margin Lost to Bottleneck needs both how much demand is going unmet and what each unit would have been worth.",
+        "unmet_demand": "Unmet Demand needs both what's demanded and what the system can actually produce.",
+        "effective_capacity": "Effective Capacity needs both the bottleneck's rated capacity and how much of it is actually usable.",
+        "unit_contribution_margin": "Unit Contribution Margin is what's left per unit after variable cost — you need both sides of that.",
+        "unit_variable_cost": "Unit Variable Cost is made up of two pieces here — what are they?"
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "margin_lost": "Unmet Demand and Unit Contribution Margin combine by multiplying.",
+        "unmet_demand": "Effective Capacity is subtracted FROM demand here, not added.",
+        "effective_capacity": "Bottleneck Capacity and Utilization Rate combine by multiplying.",
+        "unit_contribution_margin": "Unit Price and Unit Variable Cost combine by subtracting, not adding.",
+        "unit_variable_cost": "Materials and Labor combine by adding, not subtracting."
+      },
+      "wrong_order": {
+        "unmet_demand": "Check the order — Effective Capacity is subtracted FROM Units Demanded per Day, not the other way around.",
+        "unit_contribution_margin": "Check the order — Unit Variable Cost is subtracted FROM Unit Price."
+      }
+    },
+    "business_context": "The bottleneck's cost impact holds up on paper, but leadership wants to see what's actually inside the per-unit variable cost — materials and labor separately — before deciding how urgently to relieve the constraint.",
+    "hints": [
+      "Start by dragging 'Margin Lost to Bottleneck' into the top-level goal slot — the rest of the structure exists to explain how it's calculated.",
+      "Break it into Unmet Demand and Unit Contribution Margin, then Unit Contribution Margin into Unit Price and Unit Variable Cost.",
+      "Unit Variable Cost itself splits into two pieces — don't leave it as a single leaf: Materials Cost per Unit and Labor Cost per Unit."
+    ],
+    "building_blocks": [
+      { "id": "margin_lost", "label": "Margin Lost to Bottleneck" },
+      { "id": "unmet_demand", "label": "Unmet Demand" },
+      { "id": "units_demanded_per_day", "label": "Units Demanded per Day" },
+      { "id": "effective_capacity", "label": "Effective Capacity" },
+      { "id": "bottleneck_capacity", "label": "Bottleneck Capacity" },
+      { "id": "utilization_rate", "label": "Utilization Rate" },
+      { "id": "unit_contribution_margin", "label": "Unit Contribution Margin" },
+      { "id": "unit_price", "label": "Unit Price" },
+      { "id": "unit_variable_cost", "label": "Unit Variable Cost" },
+      { "id": "materials_cost_per_unit", "label": "Materials Cost per Unit" },
+      { "id": "labor_cost_per_unit", "label": "Labor Cost per Unit" },
+      { "id": "investment_cost", "label": "Investment Cost" },
+      { "id": "tax_rate", "label": "Tax Rate" },
+      { "id": "customer_churn_rate", "label": "Customer Churn Rate" },
+      { "id": "market_share", "label": "Market Share" }
+    ],
+    "given_facts": [
+      { "key": "units_demanded_per_day", "label": "Units Demanded per Day", "value_template": "{units_demanded_per_day} units/day" },
+      { "key": "bottleneck_capacity", "label": "Bottleneck Capacity", "value_template": "{bottleneck_capacity} units/day" },
+      { "key": "utilization_rate", "label": "Utilization Rate", "value_template": "{utilization_rate}" },
+      { "key": "unit_price", "label": "Unit Price", "value_template": "${unit_price}" },
+      { "key": "materials_cost_per_unit", "label": "Materials Cost per Unit", "value_template": "${materials_cost_per_unit}" },
+      { "key": "labor_cost_per_unit", "label": "Labor Cost per Unit", "value_template": "${labor_cost_per_unit}" }
+    ],
+    "distractor_facts": [
+      { "key": "investment_cost_distractor", "label": "Investment Cost", "display": "$1.2M" },
+      { "key": "tax_rate_distractor", "label": "Tax Rate", "display": "24%" },
+      { "key": "churn_rate_distractor", "label": "Customer Churn Rate", "display": "3.8%" }
+    ]
+  }
 }

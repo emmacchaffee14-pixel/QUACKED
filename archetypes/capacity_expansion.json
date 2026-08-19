@@ -109,5 +109,231 @@
       "components": ["Capex Required", "Additional Capacity Units", "Expected Utilization", "Contribution Margin", "Additional Fixed Costs", "Analysis Years"],
       "distractor_components": ["Tax Rate", "Churn Rate", "ARPU (Monthly)", "Market Growth Rate"]
     }
-  ]
+  ],
+  "structure_tree": {
+    "version": 2,
+    "structure_tier": "easy",
+    "canonical": {
+      "id": "payback_period",
+      "label": "Payback Period",
+      "operator": "÷",
+      "children": [
+        { "id": "capex_required", "label": "Capex Required", "leaf": true, "fact_keys": ["capex_required"] },
+        { "id": "annual_incremental_profit", "label": "Annual Incremental Profit", "operator": "−",
+          "children": [
+            { "id": "gross_contribution", "label": "Gross Contribution", "leaf": true,
+              "note": "Gross Contribution here stands in for (Effective Additional Units × Contribution Margin) — the two-node shape keeps this tier bounded; it decomposes one level further at Intermediate.",
+              "fact_keys": ["additional_capacity_units", "expected_utilization", "contribution_margin"] },
+            { "id": "additional_fixed_costs", "label": "Additional Fixed Costs", "leaf": true, "fact_keys": ["additional_fixed_costs"] }
+          ] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "payback_period": "Payback Period needs both what was spent on the expansion and what it earns back each year.",
+        "annual_incremental_profit": "Annual Incremental Profit needs the contribution the expansion generates, minus the extra fixed costs that came with it."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "payback_period": "Capex and Annual Incremental Profit combine by dividing — payback is how long it takes, not how much.",
+        "annual_incremental_profit": "Additional Fixed Costs are subtracted here, not added."
+      },
+      "wrong_order": {
+        "payback_period": "Check the order — Capex is divided BY the annual incremental profit, not the other way around.",
+        "annual_incremental_profit": "Check the order — Additional Fixed Costs are subtracted FROM Gross Contribution."
+      }
+    },
+    "business_context": "A company is weighing whether to expand capacity and needs to know how quickly that spend will pay for itself. Leadership wants a clear view of what determines that timeline before committing the capital.",
+    "hints": [
+      "Start by dragging 'Payback Period' into the top-level goal slot — that's what this whole structure needs to explain.",
+      "Payback compares what was spent on the expansion against what it earns back each year — start there.",
+      "Annual Incremental Profit is the contribution the expansion generates, minus any new fixed costs it brings with it."
+    ],
+    "building_blocks": [
+      { "id": "payback_period", "label": "Payback Period" },
+      { "id": "capex_required", "label": "Capex Required" },
+      { "id": "annual_incremental_profit", "label": "Annual Incremental Profit" },
+      { "id": "gross_contribution", "label": "Gross Contribution" },
+      { "id": "effective_additional_units", "label": "Effective Additional Units" },
+      { "id": "additional_capacity_units", "label": "Additional Capacity Units" },
+      { "id": "expected_utilization", "label": "Expected Utilization" },
+      { "id": "contribution_margin", "label": "Contribution Margin" },
+      { "id": "additional_fixed_costs", "label": "Additional Fixed Costs" },
+      { "id": "analysis_years", "label": "Analysis Years" },
+      { "id": "tax_rate", "label": "Tax Rate" },
+      { "id": "churn_rate", "label": "Churn Rate" },
+      { "id": "arpu_monthly", "label": "ARPU (Monthly)" },
+      { "id": "market_growth_rate", "label": "Market Growth Rate" }
+    ],
+    "given_facts": [
+      { "key": "capex_required", "label": "Capex Required", "value_template": "${capex_required}" },
+      { "key": "additional_capacity_units", "label": "Additional Capacity Units", "value_template": "{additional_capacity_units} units/year" },
+      { "key": "expected_utilization", "label": "Expected Utilization", "value_template": "{expected_utilization}" },
+      { "key": "contribution_margin", "label": "Contribution Margin", "value_template": "${contribution_margin}/unit" },
+      { "key": "additional_fixed_costs", "label": "Additional Fixed Costs", "value_template": "${additional_fixed_costs}/year" }
+    ],
+    "distractor_facts": [
+      { "key": "tax_rate_distractor", "label": "Tax Rate", "display": "24%" },
+      { "key": "churn_rate_distractor", "label": "Churn Rate", "display": "4.2%" },
+      { "key": "arpu_distractor", "label": "ARPU (Monthly)", "display": "$68" },
+      { "key": "market_growth_distractor", "label": "Market Growth Rate", "display": "6.5%/yr" }
+    ]
+  },
+  "structure_tree_advanced": {
+    "version": 2,
+    "structure_tier": "intermediate",
+    "canonical": {
+      "id": "payback_period",
+      "label": "Payback Period",
+      "operator": "÷",
+      "children": [
+        { "id": "capex_required", "label": "Capex Required", "leaf": true, "fact_keys": ["capex_required"] },
+        { "id": "annual_incremental_profit", "label": "Annual Incremental Profit", "operator": "−",
+          "children": [
+            { "id": "gross_contribution", "label": "Gross Contribution", "operator": "×",
+              "children": [
+                { "id": "effective_additional_units", "label": "Effective Additional Units", "leaf": true,
+                  "note": "Effective Additional Units here stands in for (Additional Capacity Units × Expected Utilization) — decomposes one level further at Advanced.",
+                  "fact_keys": ["additional_capacity_units", "expected_utilization"] },
+                { "id": "contribution_margin", "label": "Contribution Margin", "leaf": true, "fact_keys": ["contribution_margin"] }
+              ] },
+            { "id": "additional_fixed_costs", "label": "Additional Fixed Costs", "leaf": true, "fact_keys": ["additional_fixed_costs"] }
+          ] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "payback_period": "Payback Period needs both what was spent on the expansion and what it earns back each year.",
+        "annual_incremental_profit": "Annual Incremental Profit needs the contribution the expansion generates, minus the extra fixed costs that came with it.",
+        "gross_contribution": "This needs both how many effective units the expansion adds and the margin on each one."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "payback_period": "Capex and Annual Incremental Profit combine by dividing — payback is how long it takes, not how much.",
+        "annual_incremental_profit": "Additional Fixed Costs are subtracted here, not added.",
+        "gross_contribution": "Effective Additional Units and Contribution Margin combine by multiplying."
+      },
+      "wrong_order": {
+        "payback_period": "Check the order — Capex is divided BY the annual incremental profit, not the other way around.",
+        "annual_incremental_profit": "Check the order — Additional Fixed Costs are subtracted FROM Gross Contribution."
+      }
+    },
+    "business_context": "The company is weighing the same expansion, but this time wants payback measured against the REALISTIC output the new capacity will produce — not its full rated capacity, since new lines rarely run at 100% utilization from day one.",
+    "hints": [
+      "Start by dragging 'Payback Period' into the top-level goal slot — the rest of the structure exists to explain how it's calculated.",
+      "Break Payback Period into Capex Required and Annual Incremental Profit.",
+      "Gross Contribution needs both Effective Additional Units (the realistic output, not rated capacity) and Contribution Margin."
+    ],
+    "building_blocks": [
+      { "id": "payback_period", "label": "Payback Period" },
+      { "id": "capex_required", "label": "Capex Required" },
+      { "id": "annual_incremental_profit", "label": "Annual Incremental Profit" },
+      { "id": "gross_contribution", "label": "Gross Contribution" },
+      { "id": "effective_additional_units", "label": "Effective Additional Units" },
+      { "id": "additional_capacity_units", "label": "Additional Capacity Units" },
+      { "id": "expected_utilization", "label": "Expected Utilization" },
+      { "id": "contribution_margin", "label": "Contribution Margin" },
+      { "id": "additional_fixed_costs", "label": "Additional Fixed Costs" },
+      { "id": "analysis_years", "label": "Analysis Years" },
+      { "id": "tax_rate", "label": "Tax Rate" },
+      { "id": "churn_rate", "label": "Churn Rate" },
+      { "id": "arpu_monthly", "label": "ARPU (Monthly)" },
+      { "id": "market_growth_rate", "label": "Market Growth Rate" }
+    ],
+    "given_facts": [
+      { "key": "capex_required", "label": "Capex Required", "value_template": "${capex_required}" },
+      { "key": "additional_capacity_units", "label": "Additional Capacity Units", "value_template": "{additional_capacity_units} units/year" },
+      { "key": "expected_utilization", "label": "Expected Utilization", "value_template": "{expected_utilization}" },
+      { "key": "contribution_margin", "label": "Contribution Margin", "value_template": "${contribution_margin}/unit" },
+      { "key": "additional_fixed_costs", "label": "Additional Fixed Costs", "value_template": "${additional_fixed_costs}/year" }
+    ],
+    "distractor_facts": [
+      { "key": "tax_rate_distractor", "label": "Tax Rate", "display": "24%" },
+      { "key": "churn_rate_distractor", "label": "Churn Rate", "display": "4.2%" },
+      { "key": "arpu_distractor", "label": "ARPU (Monthly)", "display": "$68" },
+      { "key": "market_growth_distractor", "label": "Market Growth Rate", "display": "6.5%/yr" }
+    ]
+  },
+  "structure_tree_advanced_v2": {
+    "version": 2,
+    "structure_tier": "advanced",
+    "canonical": {
+      "id": "payback_period",
+      "label": "Payback Period",
+      "operator": "÷",
+      "children": [
+        { "id": "capex_required", "label": "Capex Required", "leaf": true, "fact_keys": ["capex_required"] },
+        { "id": "annual_incremental_profit", "label": "Annual Incremental Profit", "operator": "−",
+          "children": [
+            { "id": "gross_contribution", "label": "Gross Contribution", "operator": "×",
+              "children": [
+                { "id": "effective_additional_units", "label": "Effective Additional Units", "operator": "×",
+                  "children": [
+                    { "id": "additional_capacity_units", "label": "Additional Capacity Units", "leaf": true, "fact_keys": ["additional_capacity_units"] },
+                    { "id": "expected_utilization", "label": "Expected Utilization", "leaf": true, "fact_keys": ["expected_utilization"] }
+                  ] },
+                { "id": "contribution_margin", "label": "Contribution Margin", "leaf": true, "fact_keys": ["contribution_margin"] }
+              ] },
+            { "id": "additional_fixed_costs", "label": "Additional Fixed Costs", "leaf": true, "fact_keys": ["additional_fixed_costs"] }
+          ] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "payback_period": "Payback Period needs both what was spent on the expansion and what it earns back each year.",
+        "annual_incremental_profit": "Annual Incremental Profit needs the contribution the expansion generates, minus the extra fixed costs that came with it.",
+        "gross_contribution": "This needs both how many effective units the expansion adds and the margin on each one.",
+        "effective_additional_units": "Effective Additional Units needs both the rated capacity added and the utilization it will actually run at."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "payback_period": "Capex and Annual Incremental Profit combine by dividing — payback is how long it takes, not how much.",
+        "annual_incremental_profit": "Additional Fixed Costs are subtracted here, not added.",
+        "gross_contribution": "Effective Additional Units and Contribution Margin combine by multiplying.",
+        "effective_additional_units": "Additional Capacity Units and Expected Utilization combine by multiplying."
+      },
+      "wrong_order": {
+        "payback_period": "Check the order — Capex is divided BY the annual incremental profit, not the other way around.",
+        "annual_incremental_profit": "Check the order — Additional Fixed Costs are subtracted FROM Gross Contribution."
+      }
+    },
+    "business_context": "The expansion case holds up on paper, but leadership wants to see exactly how much of the new rated capacity will actually be usable before committing — utilization ramps take time, and the payback estimate needs to reflect that explicitly, not fold it into a single number.",
+    "hints": [
+      "Start by dragging 'Payback Period' into the top-level goal slot — the rest of the structure exists to explain how it's calculated.",
+      "Break Payback Period into Capex Required and Annual Incremental Profit, then Gross Contribution into Effective Additional Units and Contribution Margin.",
+      "Effective Additional Units itself splits into two pieces — don't leave it as a single leaf: how much rated capacity is added, and what share of it will actually run."
+    ],
+    "building_blocks": [
+      { "id": "payback_period", "label": "Payback Period" },
+      { "id": "capex_required", "label": "Capex Required" },
+      { "id": "annual_incremental_profit", "label": "Annual Incremental Profit" },
+      { "id": "gross_contribution", "label": "Gross Contribution" },
+      { "id": "effective_additional_units", "label": "Effective Additional Units" },
+      { "id": "additional_capacity_units", "label": "Additional Capacity Units" },
+      { "id": "expected_utilization", "label": "Expected Utilization" },
+      { "id": "contribution_margin", "label": "Contribution Margin" },
+      { "id": "additional_fixed_costs", "label": "Additional Fixed Costs" },
+      { "id": "analysis_years", "label": "Analysis Years" },
+      { "id": "tax_rate", "label": "Tax Rate" },
+      { "id": "churn_rate", "label": "Churn Rate" },
+      { "id": "arpu_monthly", "label": "ARPU (Monthly)" },
+      { "id": "market_growth_rate", "label": "Market Growth Rate" }
+    ],
+    "given_facts": [
+      { "key": "capex_required", "label": "Capex Required", "value_template": "${capex_required}" },
+      { "key": "additional_capacity_units", "label": "Additional Capacity Units", "value_template": "{additional_capacity_units} units/year" },
+      { "key": "expected_utilization", "label": "Expected Utilization", "value_template": "{expected_utilization}" },
+      { "key": "contribution_margin", "label": "Contribution Margin", "value_template": "${contribution_margin}/unit" },
+      { "key": "additional_fixed_costs", "label": "Additional Fixed Costs", "value_template": "${additional_fixed_costs}/year" }
+    ],
+    "distractor_facts": [
+      { "key": "tax_rate_distractor", "label": "Tax Rate", "display": "24%" },
+      { "key": "churn_rate_distractor", "label": "Churn Rate", "display": "4.2%" },
+      { "key": "arpu_distractor", "label": "ARPU (Monthly)", "display": "$68" },
+      { "key": "market_growth_distractor", "label": "Market Growth Rate", "display": "6.5%/yr" }
+    ]
+  }
 }

@@ -91,7 +91,7 @@
     "healthcare"
   ],
   "display_context": "Capital Investment • Break-Even",
-  "target_label": "Payback period (years)",
+  "target_label": "Break-even volume (units)",
   "primary_variables": [
     "investment_cost",
     "expected_units_per_year",
@@ -102,13 +102,999 @@
   ],
   "acceptable_structures": [
     {
-      "components": ["Revenue per Unit", "Variable Cost per Unit", "Expected Units per Year", "Additional Fixed Costs", "Investment Cost"],
-      "distractor_components": ["Customer Acquisition Cost", "Market Growth Rate", "Customer Lifetime Value", "Headcount"]
+      "components": [
+        "Revenue per Unit",
+        "Variable Cost per Unit",
+        "Expected Units per Year",
+        "Additional Fixed Costs",
+        "Investment Cost"
+      ],
+      "distractor_components": [
+        "Customer Acquisition Cost",
+        "Market Growth Rate",
+        "Customer Lifetime Value",
+        "Headcount"
+      ]
     }
   ],
   "formula_structure": [
-    { "type": "term", "id": "investment_cost", "label": "Investment Cost" },
-    { "type": "operator", "value": "÷" },
-    { "type": "term", "id": "annual_profit_uplift", "label": "Annual Profit Uplift" }
-  ]
+    {
+      "type": "term",
+      "id": "investment_cost",
+      "label": "Investment Cost"
+    },
+    {
+      "type": "operator",
+      "value": "÷"
+    },
+    {
+      "type": "term",
+      "id": "contribution_margin",
+      "label": "Contribution Margin"
+    }
+  ],
+  "structure_tree": {
+    "version": 2,
+    "structure_tier": "easy",
+    "canonical": {
+      "id": "break_even_units",
+      "label": "Break-Even Units",
+      "operator": "÷",
+      "children": [
+        {
+          "id": "investment_cost",
+          "label": "Investment Cost",
+          "leaf": true,
+          "fact_keys": [
+            "investment_cost"
+          ]
+        },
+        {
+          "id": "contribution_margin",
+          "label": "Contribution Margin",
+          "operator": "−",
+          "children": [
+            {
+              "id": "revenue_per_unit",
+              "label": "Revenue per Unit",
+              "leaf": true,
+              "fact_keys": [
+                "revenue_per_unit"
+              ]
+            },
+            {
+              "id": "variable_cost_per_unit_leaf",
+              "label": "Variable Cost per Unit",
+              "leaf": true,
+              "fact_keys": [
+                "variable_cost_per_unit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "top_level_alternate": {
+      "id": "payback_period",
+      "label": "Payback Period",
+      "operator": "÷",
+      "note": "A related but distinct 'how long' framing — how quickly the investment pays for itself, rather than how many units it takes to break even. Accepted as an equally legitimate response to whether this investment makes sense.",
+      "children": [
+        {
+          "id": "investment_cost",
+          "label": "Investment Cost",
+          "leaf": true,
+          "fact_keys": [
+            "investment_cost"
+          ]
+        },
+        {
+          "id": "annual_profit_uplift",
+          "label": "Annual Profit Uplift",
+          "operator": "−",
+          "children": [
+            {
+              "id": "gross_contribution",
+              "label": "Contribution Margin",
+              "operator": "×",
+              "note": "Contribution Margin here stands in for (Expected Units × per-unit Contribution Margin) — the two-node shape keeps this pilot bounded; per-unit margin decomposes one level further below.",
+              "children": [
+                {
+                  "id": "expected_units_per_year",
+                  "label": "Expected Units per Year",
+                  "leaf": true,
+                  "fact_keys": [
+                    "expected_units_per_year"
+                  ]
+                },
+                {
+                  "id": "contribution_margin",
+                  "label": "Contribution Margin",
+                  "operator": "−",
+                  "children": [
+                    {
+                      "id": "revenue_per_unit",
+                      "label": "Revenue per Unit",
+                      "leaf": true,
+                      "fact_keys": [
+                        "revenue_per_unit"
+                      ]
+                    },
+                    {
+                      "id": "variable_cost_per_unit_leaf",
+                      "label": "Variable Cost per Unit",
+                      "leaf": true,
+                      "fact_keys": [
+                        "variable_cost_per_unit"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "additional_fixed_costs",
+              "label": "Additional Fixed Costs",
+              "leaf": true,
+              "fact_keys": [
+                "additional_fixed_costs_pa"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "feedback": {
+      "missing_child": {
+        "break_even_units": "Break-Even Units needs both what was invested and the margin each unit contributes toward recovering it.",
+        "payback_period": "Payback Period needs both what was invested and what it earns back each year.",
+        "annual_profit_uplift": "Annual Profit Uplift = the contribution this investment generates (units sold times margin per unit), minus any new fixed costs that came with it.",
+        "gross_contribution": "This needs both how many units you'll sell and the margin on each one.",
+        "contribution_margin": "Contribution Margin is what's left per unit after variable cost — you need both sides of that."
+      },
+      "extra_child": {
+        "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship."
+      },
+      "wrong_operator": {
+        "break_even_units": "Investment and Contribution Margin combine by dividing — break-even is a volume, not a dollar amount.",
+        "payback_period": "Investment and Annual Profit Uplift combine by dividing — payback is how long it takes, not how much.",
+        "annual_profit_uplift": "Additional Fixed Costs are subtracted here, not added.",
+        "gross_contribution": "Units and per-unit margin combine by multiplying.",
+        "contribution_margin": "Revenue per Unit and Variable Cost per Unit combine by subtracting, not adding."
+      },
+      "wrong_order": {
+        "break_even_units": "Check the order — Investment is divided BY the contribution margin, not the other way around.",
+        "payback_period": "Check the order — Investment is divided BY the annual return, not the other way around.",
+        "annual_profit_uplift": "Check the order — Additional Fixed Costs are subtracted FROM the gross contribution.",
+        "contribution_margin": "Check the order — Variable Cost per Unit is subtracted FROM Revenue per Unit."
+      }
+    },
+    "business_context": "A company is preparing to make a major capital investment and needs to know how many units it must sell before the investment pays for itself. Leadership wants a clear view of what determines that threshold before committing the capital.",
+    "hints": [
+      "Start by dragging 'Break-Even Units' into the top-level goal slot — that's what this whole structure needs to explain.",
+      "Break-even compares what you put in against how much each unit sold contributes toward recovering it — start there.",
+      "Contribution Margin is what's left per unit after variable cost — you need both Revenue per Unit and Variable Cost per Unit to get it."
+    ],
+    "building_blocks": [
+      {
+        "id": "break_even_units",
+        "label": "Break-Even Units"
+      },
+      {
+        "id": "payback_period",
+        "label": "Payback Period"
+      },
+      {
+        "id": "investment_cost",
+        "label": "Investment Cost"
+      },
+      {
+        "id": "annual_profit_uplift",
+        "label": "Annual Profit Uplift"
+      },
+      {
+        "id": "expected_units_per_year",
+        "label": "Expected Units per Year"
+      },
+      {
+        "id": "contribution_margin",
+        "label": "Contribution Margin"
+      },
+      {
+        "id": "revenue_per_unit",
+        "label": "Revenue per Unit"
+      },
+      {
+        "id": "variable_cost_per_unit",
+        "label": "Variable Cost per Unit"
+      },
+      {
+        "id": "additional_fixed_costs",
+        "label": "Additional Fixed Costs"
+      },
+      {
+        "id": "customer_acquisition_cost",
+        "label": "Customer Acquisition Cost"
+      },
+      {
+        "id": "market_growth_rate",
+        "label": "Market Growth Rate"
+      },
+      {
+        "id": "customer_lifetime_value",
+        "label": "Customer Lifetime Value"
+      },
+      {
+        "id": "headcount",
+        "label": "Headcount"
+      }
+    ],
+    "given_facts": [
+      {
+        "key": "investment_cost",
+        "label": "Investment Cost",
+        "value_template": "${investment_cost}"
+      },
+      {
+        "key": "revenue_per_unit",
+        "label": "Revenue per Unit",
+        "value_template": "${revenue_per_unit}"
+      },
+      {
+        "key": "variable_cost_per_unit",
+        "label": "Variable Cost per Unit",
+        "value_template": "${variable_cost_per_unit}"
+      },
+      {
+        "key": "additional_fixed_costs_pa",
+        "label": "Additional Fixed Costs (Annual)",
+        "value_template": "${additional_fixed_costs_pa}/year"
+      },
+      {
+        "key": "expected_units_per_year",
+        "label": "Expected Units per Year",
+        "value_template": "{expected_units_per_year} units/year"
+      }
+    ],
+    "distractor_facts": [
+      {
+        "key": "cac_distractor",
+        "label": "Customer Acquisition Cost",
+        "display": "$340"
+      },
+      {
+        "key": "market_growth_distractor",
+        "label": "Market Growth Rate",
+        "display": "6.5%/yr"
+      },
+      {
+        "key": "ltv_distractor",
+        "label": "Customer Lifetime Value",
+        "display": "$2,150"
+      },
+      {
+        "key": "headcount_distractor",
+        "label": "Headcount",
+        "display": "58"
+      }
+    ]
+  },
+  "structure_tree_advanced": {
+    "version": 2,
+    "structure_tier": "intermediate",
+    "canonical": {
+      "id": "break_even_units",
+      "label": "Break-Even Units",
+      "operator": "÷",
+      "children": [
+        {
+          "id": "total_investment_required",
+          "label": "Total Investment Required",
+          "operator": "+",
+          "children": [
+            {
+              "id": "investment_cost",
+              "label": "Investment Cost",
+              "leaf": true,
+              "fact_keys": [
+                "investment_cost"
+              ]
+            },
+            {
+              "id": "additional_fixed_costs",
+              "label": "Additional Fixed Costs",
+              "leaf": true,
+              "fact_keys": [
+                "additional_fixed_costs_pa"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "contribution_margin",
+          "label": "Contribution Margin",
+          "operator": "−",
+          "children": [
+            {
+              "id": "revenue_per_unit",
+              "label": "Revenue per Unit",
+              "leaf": true,
+              "fact_keys": [
+                "revenue_per_unit"
+              ]
+            },
+            {
+              "id": "variable_cost_per_unit_leaf",
+              "label": "Variable Cost per Unit",
+              "leaf": true,
+              "fact_keys": [
+                "variable_cost_per_unit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "top_level_alternate": {
+      "id": "payback_period",
+      "label": "Payback Period",
+      "operator": "÷",
+      "note": "A related but distinct 'how long' framing, after tax — accepted as an equally legitimate response to whether this investment makes sense.",
+      "children": [
+        {
+          "id": "investment_cost",
+          "label": "Investment Cost",
+          "leaf": true,
+          "fact_keys": [
+            "investment_cost"
+          ]
+        },
+        {
+          "id": "after_tax_annual_profit_uplift",
+          "label": "After-Tax Annual Profit Uplift",
+          "operator": "×",
+          "children": [
+            {
+              "id": "annual_profit_uplift",
+              "label": "Annual Profit Uplift",
+              "operator": "−",
+              "children": [
+                {
+                  "id": "gross_contribution",
+                  "label": "Contribution Margin Total",
+                  "operator": "×",
+                  "children": [
+                    {
+                      "id": "expected_units_per_year",
+                      "label": "Expected Units per Year",
+                      "leaf": true,
+                      "fact_keys": [
+                        "expected_units_per_year"
+                      ]
+                    },
+                    {
+                      "id": "contribution_margin",
+                      "label": "Contribution Margin",
+                      "operator": "−",
+                      "children": [
+                        {
+                          "id": "revenue_per_unit",
+                          "label": "Revenue per Unit",
+                          "leaf": true,
+                          "fact_keys": [
+                            "revenue_per_unit"
+                          ]
+                        },
+                        {
+                          "id": "variable_cost_per_unit_leaf",
+                          "label": "Variable Cost per Unit",
+                          "leaf": true,
+                          "fact_keys": [
+                            "variable_cost_per_unit"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "additional_fixed_costs",
+                  "label": "Additional Fixed Costs",
+                  "leaf": true,
+                  "fact_keys": [
+                    "additional_fixed_costs_pa"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tax_rate_leaf",
+              "label": "Tax Rate",
+              "leaf": true,
+              "fact_keys": [
+                "tax_rate"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "feedback": {
+      "missing_child": {
+        "break_even_units": "Break-Even Units needs both the total investment to recover and the margin each unit contributes toward recovering it.",
+        "total_investment_required": "Total Investment Required needs both the upfront investment and the additional fixed costs that come with it.",
+        "payback_period": "Payback Period needs both what was invested and what it earns back each year.",
+        "after_tax_annual_profit_uplift": "This needs both the pre-tax annual profit uplift and the tax rate applied against it.",
+        "annual_profit_uplift": "Annual Profit Uplift = the contribution this investment generates (units sold times margin per unit), minus any new fixed costs that came with it.",
+        "gross_contribution": "This needs both how many units you'll sell and the margin on each one.",
+        "contribution_margin": "Contribution Margin is what's left per unit after variable cost — you need both sides of that."
+      },
+      "extra_child": {
+        "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship."
+      },
+      "wrong_operator": {
+        "break_even_units": "Total Investment Required and Contribution Margin combine by dividing — break-even is a volume, not a dollar amount.",
+        "total_investment_required": "Investment Cost and Additional Fixed Costs combine by adding, not subtracting.",
+        "payback_period": "Investment and After-Tax Annual Profit Uplift combine by dividing — payback is how long it takes, not how much.",
+        "after_tax_annual_profit_uplift": "Annual Profit Uplift and Tax Rate combine by multiplying here, not subtracting directly.",
+        "annual_profit_uplift": "Additional Fixed Costs are subtracted here, not added.",
+        "gross_contribution": "Units and per-unit margin combine by multiplying.",
+        "contribution_margin": "Revenue per Unit and Variable Cost per Unit combine by subtracting, not adding."
+      },
+      "wrong_order": {
+        "break_even_units": "Check the order — Total Investment Required is divided BY the contribution margin, not the other way around.",
+        "payback_period": "Check the order — Investment is divided BY the annual return, not the other way around.",
+        "annual_profit_uplift": "Check the order — Additional Fixed Costs are subtracted FROM the gross contribution.",
+        "contribution_margin": "Check the order — Variable Cost per Unit is subtracted FROM Revenue per Unit."
+      }
+    },
+    "business_context": "The company is weighing the same capital investment, but this time wants the break-even threshold to account for the additional fixed costs the investment brings with it, not just the sticker price of the investment itself.",
+    "hints": [
+      "Start by dragging 'Break-Even Units' into the top-level goal slot — the rest of the structure exists to explain how it's calculated.",
+      "Break-Even Units splits into Total Investment Required and Contribution Margin — Total Investment Required here includes both the upfront Investment Cost and the Additional Fixed Costs this investment brings with it.",
+      "Contribution Margin needs both Revenue per Unit and Variable Cost per Unit."
+    ],
+    "building_blocks": [
+      {
+        "id": "break_even_units",
+        "label": "Break-Even Units"
+      },
+      {
+        "id": "total_investment_required",
+        "label": "Total Investment Required"
+      },
+      {
+        "id": "payback_period",
+        "label": "Payback Period"
+      },
+      {
+        "id": "investment_cost",
+        "label": "Investment Cost"
+      },
+      {
+        "id": "annual_profit_uplift",
+        "label": "Annual Profit Uplift"
+      },
+      {
+        "id": "after_tax_annual_profit_uplift",
+        "label": "After-Tax Annual Profit Uplift"
+      },
+      {
+        "id": "expected_units_per_year",
+        "label": "Expected Units per Year"
+      },
+      {
+        "id": "contribution_margin",
+        "label": "Contribution Margin"
+      },
+      {
+        "id": "revenue_per_unit",
+        "label": "Revenue per Unit"
+      },
+      {
+        "id": "variable_cost_per_unit",
+        "label": "Variable Cost per Unit"
+      },
+      {
+        "id": "additional_fixed_costs",
+        "label": "Additional Fixed Costs"
+      },
+      {
+        "id": "tax_rate",
+        "label": "Tax Rate"
+      },
+      {
+        "id": "customer_acquisition_cost",
+        "label": "Customer Acquisition Cost"
+      },
+      {
+        "id": "market_growth_rate",
+        "label": "Market Growth Rate"
+      },
+      {
+        "id": "customer_lifetime_value",
+        "label": "Customer Lifetime Value"
+      },
+      {
+        "id": "headcount",
+        "label": "Headcount"
+      }
+    ],
+    "given_facts": [
+      {
+        "key": "investment_cost",
+        "label": "Investment Cost",
+        "value_template": "${investment_cost}"
+      },
+      {
+        "key": "revenue_per_unit",
+        "label": "Revenue per Unit",
+        "value_template": "${revenue_per_unit}"
+      },
+      {
+        "key": "variable_cost_per_unit",
+        "label": "Variable Cost per Unit",
+        "value_template": "${variable_cost_per_unit}"
+      },
+      {
+        "key": "additional_fixed_costs_pa",
+        "label": "Additional Fixed Costs (Annual)",
+        "value_template": "${additional_fixed_costs_pa}/year"
+      },
+      {
+        "key": "expected_units_per_year",
+        "label": "Expected Units per Year",
+        "value_template": "{expected_units_per_year} units/year"
+      },
+      {
+        "key": "tax_rate",
+        "label": "Tax Rate",
+        "value_template": "{tax_rate}"
+      }
+    ],
+    "distractor_facts": [
+      {
+        "key": "cac_distractor",
+        "label": "Customer Acquisition Cost",
+        "display": "$340"
+      },
+      {
+        "key": "market_growth_distractor",
+        "label": "Market Growth Rate",
+        "display": "6.5%/yr"
+      },
+      {
+        "key": "ltv_distractor",
+        "label": "Customer Lifetime Value",
+        "display": "$2,150"
+      },
+      {
+        "key": "headcount_distractor",
+        "label": "Headcount",
+        "display": "58"
+      }
+    ]
+  },
+  "structure_tree_advanced_v2": {
+    "version": 2,
+    "structure_tier": "advanced",
+    "canonical": {
+      "id": "break_even_units",
+      "label": "Break-Even Units",
+      "operator": "÷",
+      "children": [
+        {
+          "id": "total_investment_required",
+          "label": "Total Investment Required",
+          "operator": "+",
+          "children": [
+            {
+              "id": "investment_cost",
+              "label": "Investment Cost",
+              "leaf": true,
+              "fact_keys": [
+                "investment_cost"
+              ]
+            },
+            {
+              "id": "additional_fixed_costs",
+              "label": "Additional Fixed Costs",
+              "operator": "+",
+              "children": [
+                {
+                  "id": "base_fixed_1",
+                  "label": "Base Fixed Costs",
+                  "leaf": true,
+                  "fact_keys": [
+                    "base_fixed_costs"
+                  ]
+                },
+                {
+                  "id": "headcount_cost",
+                  "label": "Headcount Cost",
+                  "operator": "×",
+                  "children": [
+                    {
+                      "id": "headcount_1",
+                      "label": "Headcount",
+                      "leaf": true,
+                      "fact_keys": [
+                        "headcount"
+                      ]
+                    },
+                    {
+                      "id": "cost_per_employee_1",
+                      "label": "Cost per Employee",
+                      "leaf": true,
+                      "fact_keys": [
+                        "cost_per_employee"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "contribution_margin",
+          "label": "Contribution Margin",
+          "operator": "−",
+          "children": [
+            {
+              "id": "revenue_per_unit",
+              "label": "Revenue per Unit",
+              "leaf": true,
+              "fact_keys": [
+                "revenue_per_unit"
+              ]
+            },
+            {
+              "id": "variable_cost_per_unit_leaf",
+              "label": "Variable Cost per Unit",
+              "operator": "+",
+              "children": [
+                {
+                  "id": "materials_1",
+                  "label": "Materials Cost per Unit",
+                  "leaf": true,
+                  "fact_keys": [
+                    "materials_cost_per_unit"
+                  ]
+                },
+                {
+                  "id": "labor_1",
+                  "label": "Labor Cost per Unit",
+                  "leaf": true,
+                  "fact_keys": [
+                    "labor_cost_per_unit"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "top_level_alternate": {
+      "id": "payback_period",
+      "label": "Payback Period",
+      "operator": "÷",
+      "note": "A related but distinct 'how long' framing, after tax — accepted as an equally legitimate response to whether this investment makes sense.",
+      "children": [
+        {
+          "id": "investment_cost",
+          "label": "Investment Cost",
+          "leaf": true,
+          "fact_keys": [
+            "investment_cost"
+          ]
+        },
+        {
+          "id": "after_tax_annual_profit_uplift",
+          "label": "After-Tax Annual Profit Uplift",
+          "operator": "×",
+          "children": [
+            {
+              "id": "annual_profit_uplift",
+              "label": "Annual Profit Uplift",
+              "operator": "−",
+              "children": [
+                {
+                  "id": "gross_contribution",
+                  "label": "Contribution Margin Total",
+                  "operator": "×",
+                  "children": [
+                    {
+                      "id": "expected_units_per_year",
+                      "label": "Expected Units per Year",
+                      "leaf": true,
+                      "fact_keys": [
+                        "expected_units_per_year"
+                      ]
+                    },
+                    {
+                      "id": "contribution_margin",
+                      "label": "Contribution Margin",
+                      "operator": "−",
+                      "children": [
+                        {
+                          "id": "revenue_per_unit",
+                          "label": "Revenue per Unit",
+                          "leaf": true,
+                          "fact_keys": [
+                            "revenue_per_unit"
+                          ]
+                        },
+                        {
+                          "id": "variable_cost_per_unit_leaf",
+                          "label": "Variable Cost per Unit",
+                          "operator": "+",
+                          "children": [
+                            {
+                              "id": "materials_1",
+                              "label": "Materials Cost per Unit",
+                              "leaf": true,
+                              "fact_keys": [
+                                "materials_cost_per_unit"
+                              ]
+                            },
+                            {
+                              "id": "labor_1",
+                              "label": "Labor Cost per Unit",
+                              "leaf": true,
+                              "fact_keys": [
+                                "labor_cost_per_unit"
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "additional_fixed_costs",
+                  "label": "Additional Fixed Costs",
+                  "operator": "+",
+                  "children": [
+                    {
+                      "id": "base_fixed_1",
+                      "label": "Base Fixed Costs",
+                      "leaf": true,
+                      "fact_keys": [
+                        "base_fixed_costs"
+                      ]
+                    },
+                    {
+                      "id": "headcount_cost",
+                      "label": "Headcount Cost",
+                      "operator": "×",
+                      "children": [
+                        {
+                          "id": "headcount_1",
+                          "label": "Headcount",
+                          "leaf": true,
+                          "fact_keys": [
+                            "headcount"
+                          ]
+                        },
+                        {
+                          "id": "cost_per_employee_1",
+                          "label": "Cost per Employee",
+                          "leaf": true,
+                          "fact_keys": [
+                            "cost_per_employee"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tax_rate_leaf",
+              "label": "Tax Rate",
+              "leaf": true,
+              "fact_keys": [
+                "tax_rate"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "feedback": {
+      "missing_child": {
+        "break_even_units": "Break-Even Units needs both the total investment to recover and the margin each unit contributes toward recovering it.",
+        "total_investment_required": "Total Investment Required needs both the upfront investment and the additional fixed costs that come with it.",
+        "payback_period": "Payback Period needs both what was invested and what it earns back each year.",
+        "after_tax_annual_profit_uplift": "This needs both the pre-tax annual profit uplift and the tax rate applied against it.",
+        "annual_profit_uplift": "Annual Profit Uplift = the contribution this investment generates (units sold times margin per unit), minus any new fixed costs that came with it.",
+        "gross_contribution": "This needs both how many units you'll sell and the margin on each one.",
+        "contribution_margin": "Contribution Margin is what's left per unit after variable cost — you need both sides of that.",
+        "variable_cost_per_unit_leaf": "Variable Cost per Unit is made up of two pieces here — what are they?",
+        "additional_fixed_costs": "Additional Fixed Costs is made up of two pieces here — what are they?",
+        "headcount_cost": "Headcount Cost needs both the number of people and the cost per person."
+      },
+      "extra_child": {
+        "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship."
+      },
+      "wrong_operator": {
+        "break_even_units": "Total Investment Required and Contribution Margin combine by dividing — break-even is a volume, not a dollar amount.",
+        "total_investment_required": "Investment Cost and Additional Fixed Costs combine by adding, not subtracting.",
+        "payback_period": "Investment and After-Tax Annual Profit Uplift combine by dividing — payback is how long it takes, not how much.",
+        "after_tax_annual_profit_uplift": "Annual Profit Uplift and Tax Rate combine by multiplying here, not subtracting directly.",
+        "annual_profit_uplift": "Additional Fixed Costs are subtracted here, not added.",
+        "gross_contribution": "Units and per-unit margin combine by multiplying.",
+        "contribution_margin": "Revenue per Unit and Variable Cost per Unit combine by subtracting, not adding.",
+        "variable_cost_per_unit_leaf": "Materials and Labor combine by adding, not subtracting.",
+        "additional_fixed_costs": "Base Fixed Costs and Headcount Cost combine by adding, not subtracting.",
+        "headcount_cost": "Headcount and Cost per Employee combine by multiplying."
+      },
+      "wrong_order": {
+        "break_even_units": "Check the order — Total Investment Required is divided BY the contribution margin, not the other way around.",
+        "payback_period": "Check the order — Investment is divided BY the annual return, not the other way around.",
+        "annual_profit_uplift": "Check the order — Additional Fixed Costs are subtracted FROM the gross contribution.",
+        "contribution_margin": "Check the order — Variable Cost per Unit is subtracted FROM Revenue per Unit."
+      }
+    },
+    "business_context": "The investment case holds up on paper, but leadership wants to see what's actually inside the cost base before committing — both the per-unit production cost and the extra headcount this investment will require — before signing off on the break-even threshold.",
+    "hints": [
+      "Start by dragging 'Break-Even Units' into the top-level goal slot — the rest of the structure exists to explain how it's calculated.",
+      "Break-Even Units splits into Total Investment Required and Contribution Margin — Total Investment Required includes both Investment Cost and Additional Fixed Costs.",
+      "Variable Cost per Unit and Additional Fixed Costs each split into two pieces here — don't leave them as single leaves."
+    ],
+    "building_blocks": [
+      {
+        "id": "break_even_units",
+        "label": "Break-Even Units"
+      },
+      {
+        "id": "total_investment_required",
+        "label": "Total Investment Required"
+      },
+      {
+        "id": "payback_period",
+        "label": "Payback Period"
+      },
+      {
+        "id": "investment_cost",
+        "label": "Investment Cost"
+      },
+      {
+        "id": "annual_profit_uplift",
+        "label": "Annual Profit Uplift"
+      },
+      {
+        "id": "after_tax_annual_profit_uplift",
+        "label": "After-Tax Annual Profit Uplift"
+      },
+      {
+        "id": "expected_units_per_year",
+        "label": "Expected Units per Year"
+      },
+      {
+        "id": "contribution_margin",
+        "label": "Contribution Margin"
+      },
+      {
+        "id": "revenue_per_unit",
+        "label": "Revenue per Unit"
+      },
+      {
+        "id": "variable_cost_per_unit",
+        "label": "Variable Cost per Unit"
+      },
+      {
+        "id": "materials_cost_per_unit",
+        "label": "Materials Cost per Unit"
+      },
+      {
+        "id": "labor_cost_per_unit",
+        "label": "Labor Cost per Unit"
+      },
+      {
+        "id": "additional_fixed_costs",
+        "label": "Additional Fixed Costs"
+      },
+      {
+        "id": "base_fixed_costs",
+        "label": "Base Fixed Costs"
+      },
+      {
+        "id": "headcount_cost",
+        "label": "Headcount Cost"
+      },
+      {
+        "id": "cost_per_employee",
+        "label": "Cost per Employee"
+      },
+      {
+        "id": "tax_rate",
+        "label": "Tax Rate"
+      },
+      {
+        "id": "customer_acquisition_cost",
+        "label": "Customer Acquisition Cost"
+      },
+      {
+        "id": "market_growth_rate",
+        "label": "Market Growth Rate"
+      },
+      {
+        "id": "customer_lifetime_value",
+        "label": "Customer Lifetime Value"
+      },
+      {
+        "id": "headcount",
+        "label": "Headcount"
+      }
+    ],
+    "given_facts": [
+      {
+        "key": "investment_cost",
+        "label": "Investment Cost",
+        "value_template": "${investment_cost}"
+      },
+      {
+        "key": "revenue_per_unit",
+        "label": "Revenue per Unit",
+        "value_template": "${revenue_per_unit}"
+      },
+      {
+        "key": "materials_cost_per_unit",
+        "label": "Materials Cost per Unit",
+        "value_template": "${materials_cost_per_unit}"
+      },
+      {
+        "key": "labor_cost_per_unit",
+        "label": "Labor Cost per Unit",
+        "value_template": "${labor_cost_per_unit}"
+      },
+      {
+        "key": "base_fixed_costs",
+        "label": "Base Fixed Costs",
+        "value_template": "${base_fixed_costs}"
+      },
+      {
+        "key": "headcount",
+        "label": "Headcount (New Hires)",
+        "value_template": "{headcount} employees"
+      },
+      {
+        "key": "cost_per_employee",
+        "label": "Cost per Employee",
+        "value_template": "${cost_per_employee}"
+      },
+      {
+        "key": "expected_units_per_year",
+        "label": "Expected Units per Year",
+        "value_template": "{expected_units_per_year} units/year"
+      },
+      {
+        "key": "tax_rate",
+        "label": "Tax Rate",
+        "value_template": "{tax_rate}"
+      }
+    ],
+    "distractor_facts": [
+      {
+        "key": "cac_distractor",
+        "label": "Customer Acquisition Cost",
+        "display": "$340"
+      },
+      {
+        "key": "market_growth_distractor",
+        "label": "Market Growth Rate",
+        "display": "6.5%/yr"
+      },
+      {
+        "key": "ltv_distractor",
+        "label": "Customer Lifetime Value",
+        "display": "$2,150"
+      }
+    ]
+  }
 }

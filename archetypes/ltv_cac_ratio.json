@@ -106,5 +106,252 @@
     { "type": "term", "id": "monthly_churn_rate", "label": "Monthly Churn Rate" },
     { "type": "operator", "value": "÷" },
     { "type": "term", "id": "cac", "label": "CAC" }
-  ]
+  ],
+  "structure_tree": {
+    "version": 2,
+    "structure_tier": "easy",
+    "canonical": {
+      "id": "ltv_cac_ratio",
+      "label": "LTV to CAC Ratio",
+      "operator": "÷",
+      "children": [
+        { "id": "ltv", "label": "LTV", "operator": "÷",
+          "children": [
+            { "id": "monthly_gross_profit", "label": "Monthly Gross Profit", "operator": "×",
+              "children": [
+                { "id": "arpu_monthly", "label": "ARPU (Monthly)", "leaf": true, "fact_keys": ["arpu_monthly"] },
+                { "id": "gross_margin_pct", "label": "Gross Margin %", "leaf": true, "fact_keys": ["gross_margin_pct"] }
+              ] },
+            { "id": "monthly_churn_rate", "label": "Monthly Churn Rate", "leaf": true, "fact_keys": ["monthly_churn_rate"] }
+          ] },
+        { "id": "cac", "label": "CAC", "leaf": true, "fact_keys": ["cac"] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "ltv_cac_ratio": "LTV to CAC Ratio needs both the lifetime value of a customer and what it costs to acquire one.",
+        "ltv": "LTV needs both the profit a customer generates each month and how long they typically stick around.",
+        "monthly_gross_profit": "Monthly Gross Profit needs both how much a customer pays and what share of that is margin."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "ltv_cac_ratio": "LTV and CAC combine by dividing — this is a ratio, not a difference.",
+        "ltv": "Monthly Gross Profit and Monthly Churn Rate combine by dividing — churn is the inverse of how long a customer stays.",
+        "monthly_gross_profit": "ARPU and Gross Margin % combine by multiplying."
+      },
+      "wrong_order": {
+        "ltv_cac_ratio": "Check the order — LTV is divided BY CAC, not the other way around.",
+        "ltv": "Check the order — Monthly Gross Profit is divided BY Monthly Churn Rate."
+      }
+    },
+    "business_context": "A subscription business is reviewing whether its growth spend still makes sense. Leadership wants to know how the lifetime value of a customer compares to what it costs to acquire one, before deciding whether to keep scaling paid acquisition.",
+    "hints": [
+      "Start by dragging 'LTV to CAC Ratio' into the top-level goal slot — that's what this whole structure needs to explain.",
+      "LTV to CAC Ratio splits into LTV and CAC — drag both in as its first two components.",
+      "LTV itself splits into Monthly Gross Profit (ARPU × Gross Margin %) and Monthly Churn Rate."
+    ],
+    "building_blocks": [
+      { "id": "ltv_cac_ratio", "label": "LTV to CAC Ratio" },
+      { "id": "ltv", "label": "LTV" },
+      { "id": "cac", "label": "CAC" },
+      { "id": "monthly_gross_profit", "label": "Monthly Gross Profit" },
+      { "id": "arpu_monthly", "label": "ARPU (Monthly)" },
+      { "id": "gross_margin_pct", "label": "Gross Margin %" },
+      { "id": "monthly_churn_rate", "label": "Monthly Churn Rate" },
+      { "id": "fixed_costs", "label": "Fixed Costs" },
+      { "id": "units_demanded_per_day", "label": "Units Demanded per Day" },
+      { "id": "bottleneck_capacity", "label": "Bottleneck Capacity" },
+      { "id": "investment_cost", "label": "Investment Cost" }
+    ],
+    "given_facts": [
+      { "key": "arpu_monthly", "label": "ARPU (Monthly)", "value_template": "${arpu_monthly}/mo" },
+      { "key": "gross_margin_pct", "label": "Gross Margin %", "value_template": "{gross_margin_pct}" },
+      { "key": "monthly_churn_rate", "label": "Monthly Churn Rate", "value_template": "{monthly_churn_rate}" },
+      { "key": "cac", "label": "CAC", "value_template": "${cac}" }
+    ],
+    "distractor_facts": [
+      { "key": "fixed_costs_distractor", "label": "Fixed Costs", "display": "$320K" },
+      { "key": "units_demanded_distractor", "label": "Units Demanded per Day", "display": "2,400" },
+      { "key": "bottleneck_distractor", "label": "Bottleneck Capacity", "display": "1,900 units/day" },
+      { "key": "investment_cost_distractor", "label": "Investment Cost", "display": "$1.2M" }
+    ]
+  },
+  "structure_tree_advanced": {
+    "version": 2,
+    "structure_tier": "intermediate",
+    "canonical": {
+      "id": "ltv_cac_ratio",
+      "label": "LTV to CAC Ratio",
+      "operator": "÷",
+      "children": [
+        { "id": "ltv", "label": "LTV", "operator": "÷",
+          "children": [
+            { "id": "monthly_gross_profit", "label": "Monthly Gross Profit", "operator": "×",
+              "children": [
+                { "id": "arpu_monthly", "label": "ARPU (Monthly)", "leaf": true, "fact_keys": ["arpu_monthly"] },
+                { "id": "gross_margin_pct", "label": "Gross Margin %", "leaf": true, "fact_keys": ["gross_margin_pct"] }
+              ] },
+            { "id": "monthly_churn_rate", "label": "Monthly Churn Rate", "leaf": true, "fact_keys": ["monthly_churn_rate"] }
+          ] },
+        { "id": "cac", "label": "CAC", "operator": "÷",
+          "children": [
+            { "id": "marketing_spend", "label": "Marketing Spend", "leaf": true, "fact_keys": ["marketing_spend"] },
+            { "id": "new_customers_acquired", "label": "New Customers Acquired", "leaf": true, "fact_keys": ["new_customers_acquired"] }
+          ] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "ltv_cac_ratio": "LTV to CAC Ratio needs both the lifetime value of a customer and what it costs to acquire one.",
+        "ltv": "LTV needs both the profit a customer generates each month and how long they typically stick around.",
+        "monthly_gross_profit": "Monthly Gross Profit needs both how much a customer pays and what share of that is margin.",
+        "cac": "CAC needs both what was spent on acquisition and how many customers it actually brought in."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "ltv_cac_ratio": "LTV and CAC combine by dividing — this is a ratio, not a difference.",
+        "ltv": "Monthly Gross Profit and Monthly Churn Rate combine by dividing — churn is the inverse of how long a customer stays.",
+        "monthly_gross_profit": "ARPU and Gross Margin % combine by multiplying.",
+        "cac": "Marketing Spend and New Customers Acquired combine by dividing — CAC is a cost PER customer."
+      },
+      "wrong_order": {
+        "ltv_cac_ratio": "Check the order — LTV is divided BY CAC, not the other way around.",
+        "ltv": "Check the order — Monthly Gross Profit is divided BY Monthly Churn Rate.",
+        "cac": "Check the order — Marketing Spend is divided BY New Customers Acquired."
+      }
+    },
+    "business_context": "The subscription business wants to double-check its CAC figure rather than take it as a given number — breaking it down into what was actually spent and how many customers that spend brought in, to make sure the ratio holds up under scrutiny.",
+    "hints": [
+      "Start by dragging 'LTV to CAC Ratio' into the top-level goal slot — the rest of the structure exists to explain how it's calculated.",
+      "Break LTV to CAC Ratio into LTV and CAC.",
+      "CAC itself splits into Marketing Spend and New Customers Acquired — CAC is spend divided by how many customers it actually won."
+    ],
+    "building_blocks": [
+      { "id": "ltv_cac_ratio", "label": "LTV to CAC Ratio" },
+      { "id": "ltv", "label": "LTV" },
+      { "id": "cac", "label": "CAC" },
+      { "id": "monthly_gross_profit", "label": "Monthly Gross Profit" },
+      { "id": "arpu_monthly", "label": "ARPU (Monthly)" },
+      { "id": "gross_margin_pct", "label": "Gross Margin %" },
+      { "id": "monthly_churn_rate", "label": "Monthly Churn Rate" },
+      { "id": "marketing_spend", "label": "Marketing Spend" },
+      { "id": "new_customers_acquired", "label": "New Customers Acquired" },
+      { "id": "fixed_costs", "label": "Fixed Costs" },
+      { "id": "units_demanded_per_day", "label": "Units Demanded per Day" },
+      { "id": "bottleneck_capacity", "label": "Bottleneck Capacity" },
+      { "id": "investment_cost", "label": "Investment Cost" }
+    ],
+    "given_facts": [
+      { "key": "arpu_monthly", "label": "ARPU (Monthly)", "value_template": "${arpu_monthly}/mo" },
+      { "key": "gross_margin_pct", "label": "Gross Margin %", "value_template": "{gross_margin_pct}" },
+      { "key": "monthly_churn_rate", "label": "Monthly Churn Rate", "value_template": "{monthly_churn_rate}" },
+      { "key": "marketing_spend", "label": "Marketing Spend", "value_template": "${marketing_spend}" },
+      { "key": "new_customers_acquired", "label": "New Customers Acquired", "value_template": "{new_customers_acquired} customers" }
+    ],
+    "distractor_facts": [
+      { "key": "fixed_costs_distractor", "label": "Fixed Costs", "display": "$320K" },
+      { "key": "units_demanded_distractor", "label": "Units Demanded per Day", "display": "2,400" },
+      { "key": "bottleneck_distractor", "label": "Bottleneck Capacity", "display": "1,900 units/day" },
+      { "key": "investment_cost_distractor", "label": "Investment Cost", "display": "$1.2M" }
+    ]
+  },
+  "structure_tree_advanced_v2": {
+    "version": 2,
+    "structure_tier": "advanced",
+    "canonical": {
+      "id": "ltv_cac_ratio",
+      "label": "LTV to CAC Ratio",
+      "operator": "÷",
+      "children": [
+        { "id": "ltv", "label": "LTV", "operator": "÷",
+          "children": [
+            { "id": "monthly_gross_profit", "label": "Monthly Gross Profit", "operator": "×",
+              "children": [
+                { "id": "arpu_monthly", "label": "ARPU (Monthly)", "operator": "×",
+                  "children": [
+                    { "id": "subscription_price", "label": "Subscription Price", "leaf": true, "fact_keys": ["subscription_price"] },
+                    { "id": "attach_rate", "label": "Attach Rate", "leaf": true, "fact_keys": ["attach_rate"] }
+                  ] },
+                { "id": "gross_margin_pct", "label": "Gross Margin %", "leaf": true, "fact_keys": ["gross_margin_pct"] }
+              ] },
+            { "id": "monthly_churn_rate", "label": "Monthly Churn Rate", "leaf": true, "fact_keys": ["monthly_churn_rate"] }
+          ] },
+        { "id": "cac", "label": "CAC", "operator": "÷",
+          "children": [
+            { "id": "marketing_spend", "label": "Marketing Spend", "operator": "+",
+              "children": [
+                { "id": "ad_spend", "label": "Ad Spend", "leaf": true, "fact_keys": ["ad_spend"] },
+                { "id": "sales_team_cost", "label": "Sales Team Cost", "leaf": true, "fact_keys": ["sales_team_cost"] }
+              ] },
+            { "id": "new_customers_acquired", "label": "New Customers Acquired", "leaf": true, "fact_keys": ["new_customers_acquired"] }
+          ] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "ltv_cac_ratio": "LTV to CAC Ratio needs both the lifetime value of a customer and what it costs to acquire one.",
+        "ltv": "LTV needs both the profit a customer generates each month and how long they typically stick around.",
+        "monthly_gross_profit": "Monthly Gross Profit needs both how much a customer pays and what share of that is margin.",
+        "cac": "CAC needs both what was spent on acquisition and how many customers it actually brought in.",
+        "arpu_monthly": "ARPU is made up of two pieces here — what are they?",
+        "marketing_spend": "Marketing Spend is made up of two pieces here — what are they?"
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct component of \"{parent_label}\" here. It may matter elsewhere in the business, but reconsider whether it belongs in this relationship." },
+      "wrong_operator": {
+        "ltv_cac_ratio": "LTV and CAC combine by dividing — this is a ratio, not a difference.",
+        "ltv": "Monthly Gross Profit and Monthly Churn Rate combine by dividing — churn is the inverse of how long a customer stays.",
+        "monthly_gross_profit": "ARPU and Gross Margin % combine by multiplying.",
+        "cac": "Marketing Spend and New Customers Acquired combine by dividing — CAC is a cost PER customer.",
+        "arpu_monthly": "Subscription Price and Attach Rate combine by multiplying.",
+        "marketing_spend": "Ad Spend and Sales Team Cost combine by adding, not subtracting."
+      },
+      "wrong_order": {
+        "ltv_cac_ratio": "Check the order — LTV is divided BY CAC, not the other way around.",
+        "ltv": "Check the order — Monthly Gross Profit is divided BY Monthly Churn Rate.",
+        "cac": "Check the order — Marketing Spend is divided BY New Customers Acquired."
+      }
+    },
+    "business_context": "The growth-spend review holds up on paper, but leadership wants to see what's actually driving both sides of the ratio — how ARPU is built from price and attach rate, and how acquisition spend splits between advertising and the sales team — before signing off on continued scaling.",
+    "hints": [
+      "Start by dragging 'LTV to CAC Ratio' into the top-level goal slot — the rest of the structure exists to explain how it's calculated.",
+      "Break it into LTV and CAC, then LTV into Monthly Gross Profit and Monthly Churn Rate, and CAC into Marketing Spend and New Customers Acquired.",
+      "ARPU and Marketing Spend each split into two pieces here — don't leave them as single leaves."
+    ],
+    "building_blocks": [
+      { "id": "ltv_cac_ratio", "label": "LTV to CAC Ratio" },
+      { "id": "ltv", "label": "LTV" },
+      { "id": "cac", "label": "CAC" },
+      { "id": "monthly_gross_profit", "label": "Monthly Gross Profit" },
+      { "id": "arpu_monthly", "label": "ARPU (Monthly)" },
+      { "id": "subscription_price", "label": "Subscription Price" },
+      { "id": "attach_rate", "label": "Attach Rate" },
+      { "id": "gross_margin_pct", "label": "Gross Margin %" },
+      { "id": "monthly_churn_rate", "label": "Monthly Churn Rate" },
+      { "id": "marketing_spend", "label": "Marketing Spend" },
+      { "id": "ad_spend", "label": "Ad Spend" },
+      { "id": "sales_team_cost", "label": "Sales Team Cost" },
+      { "id": "new_customers_acquired", "label": "New Customers Acquired" },
+      { "id": "fixed_costs", "label": "Fixed Costs" },
+      { "id": "units_demanded_per_day", "label": "Units Demanded per Day" },
+      { "id": "bottleneck_capacity", "label": "Bottleneck Capacity" },
+      { "id": "investment_cost", "label": "Investment Cost" }
+    ],
+    "given_facts": [
+      { "key": "subscription_price", "label": "Subscription Price", "value_template": "${subscription_price}/mo" },
+      { "key": "attach_rate", "label": "Attach Rate", "value_template": "{attach_rate}" },
+      { "key": "gross_margin_pct", "label": "Gross Margin %", "value_template": "{gross_margin_pct}" },
+      { "key": "monthly_churn_rate", "label": "Monthly Churn Rate", "value_template": "{monthly_churn_rate}" },
+      { "key": "ad_spend", "label": "Ad Spend", "value_template": "${ad_spend}" },
+      { "key": "sales_team_cost", "label": "Sales Team Cost", "value_template": "${sales_team_cost}" },
+      { "key": "new_customers_acquired", "label": "New Customers Acquired", "value_template": "{new_customers_acquired} customers" }
+    ],
+    "distractor_facts": [
+      { "key": "fixed_costs_distractor", "label": "Fixed Costs", "display": "$320K" },
+      { "key": "units_demanded_distractor", "label": "Units Demanded per Day", "display": "2,400" },
+      { "key": "bottleneck_distractor", "label": "Bottleneck Capacity", "display": "1,900 units/day" }
+    ]
+  }
 }
