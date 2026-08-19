@@ -114,5 +114,176 @@
     { "type": "term", "id": "purchase_frequency", "label": "Purchase Frequency", "chain_group": 1 },
     { "type": "operator", "value": "×" },
     { "type": "term", "id": "avg_spend_per_purchase", "label": "Average Spend", "chain_group": 1 }
-  ]
+  ],
+  "structure_tree": {
+    "version": 2,
+    "structure_tier": "easy",
+    "canonical": {
+      "id": "total_addressable_market",
+      "label": "Total Addressable Market",
+      "relation": "sequence",
+      "children": [
+        { "id": "target_population", "label": "Target Population", "leaf": true, "fact_keys": ["target_population"] },
+        { "id": "addressable_segment", "label": "Addressable Segment %", "leaf": true, "fact_keys": ["addressable_segment"] },
+        { "id": "penetration_rate", "label": "Penetration Rate", "leaf": true, "fact_keys": ["penetration_rate"] },
+        { "id": "purchase_frequency", "label": "Purchase Frequency", "leaf": true, "fact_keys": ["purchase_frequency"] },
+        { "id": "avg_spend_per_purchase", "label": "Average Spend per Purchase", "leaf": true, "fact_keys": ["avg_spend_per_purchase"] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "total_addressable_market": "Total Addressable Market needs all five steps of the funnel, in order — from the total population down to what each person actually spends."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct step in this funnel. It may matter elsewhere in the business, but reconsider whether it belongs in this sequence." },
+      "wrong_order": {
+        "total_addressable_market": "These five steps narrow the market down in a specific order — start broad (the whole population) and narrow with each step, ending with what a single person spends per purchase."
+      }
+    },
+    "business_context": "A startup is pitching its total addressable market to investors and needs to walk through the funnel step by step — from the full population down to the actual dollars a typical customer spends — rather than jumping straight to a number.",
+    "hints": [
+      "Start by dragging 'Total Addressable Market' into the top-level goal slot — that's what this whole structure needs to explain.",
+      "This is a funnel, not a decomposition — five steps happen in order, each narrowing the market further. Start with Target Population.",
+      "After the population is narrowed down (Addressable Segment %, then Penetration Rate), the last two steps convert users into dollars: Purchase Frequency, then Average Spend per Purchase."
+    ],
+    "building_blocks": [
+      { "id": "total_addressable_market", "label": "Total Addressable Market" },
+      { "id": "target_population", "label": "Target Population" },
+      { "id": "addressable_segment", "label": "Addressable Segment %" },
+      { "id": "penetration_rate", "label": "Penetration Rate" },
+      { "id": "purchase_frequency", "label": "Purchase Frequency" },
+      { "id": "avg_spend_per_purchase", "label": "Average Spend per Purchase" },
+      { "id": "customer_acquisition_cost", "label": "Customer Acquisition Cost" },
+      { "id": "churn_rate", "label": "Churn Rate" },
+      { "id": "gross_margin", "label": "Gross Margin" },
+      { "id": "market_growth_rate", "label": "Market Growth Rate" }
+    ],
+    "given_facts": [
+      { "key": "target_population", "label": "Target Population", "value_template": "{target_population} people" },
+      { "key": "addressable_segment", "label": "Addressable Segment %", "value_template": "{addressable_segment}" },
+      { "key": "penetration_rate", "label": "Penetration Rate", "value_template": "{penetration_rate}" },
+      { "key": "purchase_frequency", "label": "Purchase Frequency", "value_template": "{purchase_frequency} times/year" },
+      { "key": "avg_spend_per_purchase", "label": "Average Spend per Purchase", "value_template": "${avg_spend_per_purchase}" }
+    ],
+    "distractor_facts": [
+      { "key": "cac_distractor", "label": "Customer Acquisition Cost", "display": "$340" },
+      { "key": "churn_distractor", "label": "Churn Rate", "display": "4.2%" },
+      { "key": "gross_margin_distractor", "label": "Gross Margin", "display": "62%" },
+      { "key": "market_growth_distractor", "label": "Market Growth Rate", "display": "6.5%/yr" }
+    ]
+  },
+  "structure_tree_advanced": {
+    "version": 2,
+    "structure_tier": "intermediate",
+    "canonical": {
+      "id": "total_addressable_market",
+      "label": "Total Addressable Market",
+      "relation": "sequence",
+      "children": [
+        { "id": "target_population", "label": "Target Population", "leaf": true, "fact_keys": ["target_population"] },
+        { "id": "addressable_segment", "label": "Addressable Segment %", "leaf": true, "fact_keys": ["addressable_segment"] },
+        { "id": "penetration_rate", "label": "Penetration Rate", "leaf": true, "fact_keys": ["penetration_rate"] },
+        { "id": "purchase_frequency", "label": "Purchase Frequency", "leaf": true, "fact_keys": ["purchase_frequency"] },
+        { "id": "avg_spend_per_purchase", "label": "Average Spend per Purchase", "leaf": true, "fact_keys": ["avg_spend_per_purchase"] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "total_addressable_market": "Total Addressable Market needs all five steps of the funnel, in order — from the total population down to what each person actually spends."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct step in this funnel. It may matter elsewhere in the business, but reconsider whether it belongs in this sequence." },
+      "wrong_order": {
+        "total_addressable_market": "These five steps narrow the market down in a specific order — start broad (the whole population) and narrow with each step, ending with what a single person spends per purchase."
+      }
+    },
+    "business_context": "A private equity firm evaluating a new market entry wants the funnel walked through more rigorously this time — the same five steps, but with tighter, more defensible assumptions at each stage before committing capital.",
+    "hints": [
+      "Start by dragging 'Total Addressable Market' into the top-level goal slot — that's what this whole structure needs to explain.",
+      "This is a funnel, not a decomposition — five steps happen in order, each narrowing the market further. Start with Target Population.",
+      "After the population is narrowed down (Addressable Segment %, then Penetration Rate), the last two steps convert users into dollars: Purchase Frequency, then Average Spend per Purchase."
+    ],
+    "building_blocks": [
+      { "id": "total_addressable_market", "label": "Total Addressable Market" },
+      { "id": "target_population", "label": "Target Population" },
+      { "id": "addressable_segment", "label": "Addressable Segment %" },
+      { "id": "penetration_rate", "label": "Penetration Rate" },
+      { "id": "purchase_frequency", "label": "Purchase Frequency" },
+      { "id": "avg_spend_per_purchase", "label": "Average Spend per Purchase" },
+      { "id": "customer_acquisition_cost", "label": "Customer Acquisition Cost" },
+      { "id": "churn_rate", "label": "Churn Rate" },
+      { "id": "gross_margin", "label": "Gross Margin" },
+      { "id": "market_growth_rate", "label": "Market Growth Rate" }
+    ],
+    "given_facts": [
+      { "key": "target_population", "label": "Target Population", "value_template": "{target_population} people" },
+      { "key": "addressable_segment", "label": "Addressable Segment %", "value_template": "{addressable_segment}" },
+      { "key": "penetration_rate", "label": "Penetration Rate", "value_template": "{penetration_rate}" },
+      { "key": "purchase_frequency", "label": "Purchase Frequency", "value_template": "{purchase_frequency} times/year" },
+      { "key": "avg_spend_per_purchase", "label": "Average Spend per Purchase", "value_template": "${avg_spend_per_purchase}" }
+    ],
+    "distractor_facts": [
+      { "key": "cac_distractor", "label": "Customer Acquisition Cost", "display": "$340" },
+      { "key": "churn_distractor", "label": "Churn Rate", "display": "4.2%" },
+      { "key": "gross_margin_distractor", "label": "Gross Margin", "display": "62%" },
+      { "key": "market_growth_distractor", "label": "Market Growth Rate", "display": "6.5%/yr" }
+    ]
+  },
+  "structure_tree_advanced_v2": {
+    "version": 2,
+    "structure_tier": "advanced",
+    "canonical": {
+      "id": "total_addressable_market",
+      "label": "Total Addressable Market",
+      "relation": "sequence",
+      "children": [
+        { "id": "target_population", "label": "Target Population", "leaf": true, "fact_keys": ["target_population"] },
+        { "id": "addressable_segment", "label": "Addressable Segment %", "leaf": true, "fact_keys": ["addressable_segment"] },
+        { "id": "penetration_rate", "label": "Penetration Rate", "leaf": true, "fact_keys": ["penetration_rate"] },
+        { "id": "purchase_frequency", "label": "Purchase Frequency", "leaf": true, "fact_keys": ["purchase_frequency"] },
+        { "id": "avg_spend_per_purchase", "label": "Average Spend per Purchase", "leaf": true, "fact_keys": ["avg_spend_per_purchase"] }
+      ]
+    },
+    "top_level_alternate": null,
+    "feedback": {
+      "missing_child": {
+        "total_addressable_market": "Total Addressable Market needs all five steps of the funnel, in order — from the total population down to what each person actually spends."
+      },
+      "extra_child": { "*": "\"{label}\" doesn't look like a direct step in this funnel. It may matter elsewhere in the business, but reconsider whether it belongs in this sequence." },
+      "wrong_order": {
+        "total_addressable_market": "These five steps narrow the market down in a specific order — start broad (the whole population) and narrow with each step, ending with what a single person spends per purchase."
+      }
+    },
+    "business_context": "The investment committee has pushed back on the market-sizing case and wants the full funnel re-walked from scratch, with no step skipped or assumed, before the capital commitment goes forward.",
+    "hints": [
+      "Start by dragging 'Total Addressable Market' into the top-level goal slot — that's what this whole structure needs to explain.",
+      "This is a funnel, not a decomposition — five steps happen in order, each narrowing the market further. Start with Target Population.",
+      "After the population is narrowed down (Addressable Segment %, then Penetration Rate), the last two steps convert users into dollars: Purchase Frequency, then Average Spend per Purchase."
+    ],
+    "building_blocks": [
+      { "id": "total_addressable_market", "label": "Total Addressable Market" },
+      { "id": "target_population", "label": "Target Population" },
+      { "id": "addressable_segment", "label": "Addressable Segment %" },
+      { "id": "penetration_rate", "label": "Penetration Rate" },
+      { "id": "purchase_frequency", "label": "Purchase Frequency" },
+      { "id": "avg_spend_per_purchase", "label": "Average Spend per Purchase" },
+      { "id": "customer_acquisition_cost", "label": "Customer Acquisition Cost" },
+      { "id": "churn_rate", "label": "Churn Rate" },
+      { "id": "gross_margin", "label": "Gross Margin" },
+      { "id": "market_growth_rate", "label": "Market Growth Rate" }
+    ],
+    "given_facts": [
+      { "key": "target_population", "label": "Target Population", "value_template": "{target_population} people" },
+      { "key": "addressable_segment", "label": "Addressable Segment %", "value_template": "{addressable_segment}" },
+      { "key": "penetration_rate", "label": "Penetration Rate", "value_template": "{penetration_rate}" },
+      { "key": "purchase_frequency", "label": "Purchase Frequency", "value_template": "{purchase_frequency} times/year" },
+      { "key": "avg_spend_per_purchase", "label": "Average Spend per Purchase", "value_template": "${avg_spend_per_purchase}" }
+    ],
+    "distractor_facts": [
+      { "key": "cac_distractor", "label": "Customer Acquisition Cost", "display": "$340" },
+      { "key": "churn_distractor", "label": "Churn Rate", "display": "4.2%" },
+      { "key": "gross_margin_distractor", "label": "Gross Margin", "display": "62%" },
+      { "key": "market_growth_distractor", "label": "Market Growth Rate", "display": "6.5%/yr" }
+    ]
+  }
 }
